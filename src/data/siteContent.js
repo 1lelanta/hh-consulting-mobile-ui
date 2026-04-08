@@ -12,14 +12,15 @@ export const siteContent = {
     imageAlt: "Demo hero image showing a modern building facade",
   },
   about: {
-    title: "Trusted Partners in Complex Development",
+    eyebrow: "About Us",
+    title: "Building the Future, One Project at a Time",
     description:
-      "For over two decades, HH Consulting has guided landmark projects from concept to commissioning, integrating architectural intelligence with resilient engineering.",
+      "With over two decades of excellence, APEX Engineering combines cutting-edge technology with sustainable practices to deliver world-class infrastructure solutions.",
     stats: [
-      { value: "24+", label: "Years Experience" },
-      { value: "320", label: "Projects Delivered" },
-      { value: "18", label: "Regional Offices" },
-      { value: "99%", label: "Client Retention" },
+      { value: "250+", label: "Projects Completed", icon: "briefcase" },
+      { value: "85+", label: "Expert Team", icon: "users" },
+      { value: "32", label: "Industry Awards", icon: "award" },
+      { value: "98%", label: "Client Satisfaction", icon: "trend" },
     ],
   },
   services: {

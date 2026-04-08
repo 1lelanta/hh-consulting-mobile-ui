@@ -8,7 +8,7 @@ function ProjectsSection({ data, className = "" }) {
     >
       <SectionHeader eyebrow="Featured Projects" title={data.title} />
 
-      <div className="space-y-3 sm:grid sm:grid-cols-2 sm:gap-3 sm:space-y-0 lg:grid-cols-1 lg:gap-4">
+      <div className="space-y-3 lg:space-y-4">
         {data.items.map((project) => (
           <article key={project.title} className="overflow-hidden rounded-2xl border border-brand-gray200 bg-white">
             <img

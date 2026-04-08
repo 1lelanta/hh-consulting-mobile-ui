@@ -26,26 +26,14 @@ function App() {
           </nav>
         </header>
 
-        <section className="lg:mt-8 lg:grid lg:grid-cols-12 lg:gap-7 xl:gap-8">
-          <div className="lg:col-span-8">
-            <HeroSection data={siteContent.hero} />
-          </div>
-          <div className="lg:col-span-4">
-            <AboutSection data={siteContent.about} className="lg:mt-0 lg:h-full" />
-          </div>
+        <section className="lg:mt-8">
+          <HeroSection data={siteContent.hero} />
         </section>
-
+        <AboutSection data={siteContent.about} className="lg:mt-8" />
         <ServicesSection data={siteContent.services} className="lg:mt-8" />
-
-        <section className="lg:mt-1 lg:grid lg:grid-cols-12 lg:gap-7 xl:gap-8">
-          <div className="lg:col-span-8">
-            <ProjectsSection data={siteContent.projects} className="lg:mt-8" />
-          </div>
-          <div className="lg:col-span-4 lg:flex lg:flex-col lg:gap-7">
-            <TeamSection data={siteContent.team} className="lg:mt-8" />
-            <ContactSection data={siteContent.contact} className="lg:mt-0" />
-          </div>
-        </section>
+        <ProjectsSection data={siteContent.projects} className="lg:mt-8" />
+        <TeamSection data={siteContent.team} className="lg:mt-8" />
+        <ContactSection data={siteContent.contact} className="lg:mt-8" />
       </MobileShell>
 
       <StickyActions data={siteContent.stickyActions} />

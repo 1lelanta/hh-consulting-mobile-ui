@@ -7,7 +7,7 @@ function ServicesSection({ data, className = "" }) {
     >
       <SectionHeader eyebrow="Services" title={data.title} />
 
-      <div className="no-scrollbar -mx-0.5 grid snap-x snap-mandatory grid-flow-col auto-cols-[78%] gap-3 overflow-x-auto px-0.5 pb-1.5 sm:mx-0 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-3">
+      <div className="no-scrollbar -mx-0.5 grid snap-x snap-mandatory grid-flow-col auto-cols-[78%] gap-3 overflow-x-auto px-0.5 pb-1.5 sm:mx-0 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-1 sm:overflow-visible sm:px-0">
         {data.items.map((service) => (
           <article
             key={service.title}

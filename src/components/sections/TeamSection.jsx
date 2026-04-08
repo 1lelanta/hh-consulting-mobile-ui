@@ -7,7 +7,7 @@ function TeamSection({ data, className = "" }) {
     >
       <SectionHeader eyebrow="Leadership Team" title={data.title} />
 
-      <div className="space-y-2.5 sm:grid sm:grid-cols-2 sm:gap-3 sm:space-y-0 lg:grid-cols-1">
+      <div className="space-y-2.5">
         {data.members.map((member) => (
           <article
             key={member.name}
