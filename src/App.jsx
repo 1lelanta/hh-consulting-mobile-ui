@@ -15,18 +15,7 @@ function App() {
       <div className="pointer-events-none fixed inset-0 opacity-10 [background-image:radial-gradient(circle_at_20%_20%,#000_0.8px,transparent_0.8px)] [background-size:4px_4px]" />
 
       <MobileShell>
-        <header className="sticky top-0 z-30 hidden items-center justify-between rounded-2xl border border-brand-gray200/80 bg-white/75 px-7 py-4 backdrop-blur lg:mt-6 lg:flex xl:px-8 xl:py-5">
-          <div>
-            <p className="m-0 text-xs font-bold uppercase tracking-[0.2em] text-brand-gold500">HH Consulting</p>
-            <p className="m-0 mt-1 font-serif text-xl text-brand-navy950">Architecture & Engineering</p>
-          </div>
-          <nav className="flex items-center gap-6 text-sm font-semibold text-brand-gray500">
-            <a href="#projects" className="hover:text-brand-navy900">Projects</a>
-            <a href="#contact" className="hover:text-brand-navy900">Contact</a>
-          </nav>
-        </header>
-
-        <section className="lg:mt-8">
+        <section>
           <HeroSection data={siteContent.hero} />
         </section>
         <AboutSection data={siteContent.about} className="lg:mt-8" />

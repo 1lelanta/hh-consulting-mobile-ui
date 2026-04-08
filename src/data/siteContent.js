@@ -1,15 +1,15 @@
 export const siteContent = {
   hero: {
-    logoShort: "HC",
-    company: "HH Consulting",
-    subtitle: "Architecture & Engineering",
+    company: "APEX",
+    subtitle: "Engineering",
     headline: "Engineered Excellence",
     description:
-      "Delivering high-impact infrastructure and built-environment solutions with precision, sustainability, and design leadership.",
+      "Transforming visions into reality through innovative design and precision engineering",
     ctaLabel: "Explore Projects",
     ctaHref: "#projects",
-    image: "/demo/hero-modern-building.svg",
-    imageAlt: "Demo hero image showing a modern building facade",
+    image:
+      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1800&q=80",
+    imageAlt: "Modern architectural facade hero image",
   },
   about: {
     eyebrow: "About Us",
@@ -180,8 +180,7 @@ export const siteContent = {
     },
   },
   stickyActions: [
-    { label: "Call", href: "tel:+18005551234", variant: "default" },
-    { label: "Email", href: "mailto:info@hh-consulting.com", variant: "soft" },
-    { label: "Consult", href: "#contact", variant: "active" },
+    { label: "Chat Now", href: "#contact", variant: "default" },
+    { label: "Request Quote", href: "#contact", variant: "active" },
   ],
 };
