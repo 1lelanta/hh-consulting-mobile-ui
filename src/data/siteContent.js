@@ -144,10 +144,40 @@ export const siteContent = {
     ],
   },
   contact: {
-    title: "Let Us Engineer Your Next Landmark",
+    eyebrow: "Get in Touch",
+    title: "Let's Build Something Great Together",
     description:
-      "Reach out to discuss feasibility studies, design briefs, or full turnkey engineering consultancy.",
-    email: "info@hh-consulting.com",
+      "Ready to start your next project? Our team is here to help bring your vision to life.",
+    contacts: [
+      {
+        type: "phone",
+        label: "Phone",
+        value: "+1 (555) 123-4567",
+      },
+      {
+        type: "email",
+        label: "Email",
+        value: "info@apexengineering.com",
+      },
+      {
+        type: "address",
+        label: "Address",
+        value: "123 Engineering Plaza, Suite 500",
+        subValue: "New York, NY 10001",
+      },
+    ],
+    hours: [
+      { day: "Monday - Friday", time: "8:00 AM - 6:00 PM" },
+      { day: "Saturday", time: "9:00 AM - 2:00 PM" },
+      { day: "Sunday", time: "Closed" },
+    ],
+    footer: {
+      copyright: "© 2026 APEX Engineering. All rights reserved.",
+      privacyLabel: "Privacy Policy",
+      privacyHref: "#",
+      termsLabel: "Terms of Service",
+      termsHref: "#",
+    },
   },
   stickyActions: [
     { label: "Call", href: "tel:+18005551234", variant: "default" },
