@@ -48,7 +48,7 @@ function AboutSection({ data, className = "" }) {
         <div className="max-w-[760px]">
           <div className="flex items-center gap-3">
             <span className="h-[2px] w-14 bg-[#D5B223]" />
-            <p className="m-0 text-[1.65rem] font-extrabold uppercase tracking-[0.14em] text-[#D5B223] sm:text-[0.95rem]">
+            <p className="m-0 text-[0.95rem] font-extrabold uppercase tracking-[0.14em] text-[#D5B223]">
               {data.eyebrow}
             </p>
           </div>
@@ -71,8 +71,8 @@ function AboutSection({ data, className = "" }) {
               <div className="mb-5 inline-grid h-12 w-12 place-items-center rounded-2xl bg-[#F4EED8]">
                 <AboutStatIcon type={stat.icon} />
               </div>
-              <p className="m-0 text-[2.35rem] font-extrabold leading-none text-brand-navy900">{stat.value}</p>
-              <p className="m-0 mt-2 text-[1.2rem] font-medium text-brand-gray500">{stat.label}</p>
+              <p className="m-0 text-[2.15rem] font-extrabold leading-none text-brand-navy900">{stat.value}</p>
+              <p className="m-0 mt-2 text-[1.02rem] font-medium text-brand-gray500">{stat.label}</p>
             </article>
           ))}
         </div>
