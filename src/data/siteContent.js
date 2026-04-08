@@ -8,7 +8,7 @@ export const siteContent = {
       "Delivering high-impact infrastructure and built-environment solutions with precision, sustainability, and design leadership.",
     ctaLabel: "Explore Projects",
     ctaHref: "#projects",
-    image: "/demo/hero-modern-building.jpg",
+    image: "/demo/hero-modern-building.svg",
     imageAlt: "Demo hero image showing a modern building facade",
   },
   about: {
@@ -58,7 +58,7 @@ export const siteContent = {
         title: "Harbor Point Towers",
         location: "Doha, Qatar",
         description: "Twin mixed-use towers integrating passive cooling and modular construction systems.",
-        image: "/demo/project-towers.jpg",
+        image: "/demo/project-towers.svg",
         imageAlt: "Demo image of high-rise tower project",
       },
       {
@@ -66,7 +66,7 @@ export const siteContent = {
         location: "Penang, Malaysia",
         description:
           "A high-capacity bridge corridor designed for seismic resilience and low-maintenance operations.",
-        image: "/demo/project-bridge.jpg",
+        image: "/demo/project-bridge.svg",
         imageAlt: "Demo image of modern bridge project",
       },
     ],
@@ -77,19 +77,19 @@ export const siteContent = {
       {
         name: "Arif Rahman",
         role: "Principal Structural Engineer",
-        image: "/demo/team-01.jpg",
+        image: "/demo/team-01.svg",
         imageAlt: "Demo team member portrait 1",
       },
       {
         name: "Sophia Grant",
         role: "Director of Architecture",
-        image: "/demo/team-02.jpg",
+        image: "/demo/team-02.svg",
         imageAlt: "Demo team member portrait 2",
       },
       {
         name: "Daniel Okoye",
         role: "Environmental Systems Lead",
-        image: "/demo/team-03.jpg",
+        image: "/demo/team-03.svg",
         imageAlt: "Demo team member portrait 3",
       },
     ],

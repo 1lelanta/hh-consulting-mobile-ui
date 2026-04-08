@@ -5,7 +5,7 @@ function ServicesSection({ data }) {
     <section className="animate-reveal mt-6 rounded-3xl bg-white/90 p-4 shadow-card backdrop-blur-sm [animation-delay:200ms]">
       <SectionHeader eyebrow="Services" title={data.title} />
 
-      <div className="-mx-0.5 grid snap-x snap-mandatory grid-flow-col auto-cols-[78%] gap-3 overflow-x-auto px-0.5 pb-1.5">
+      <div className="no-scrollbar -mx-0.5 grid snap-x snap-mandatory grid-flow-col auto-cols-[78%] gap-3 overflow-x-auto px-0.5 pb-1.5">
         {data.items.map((service) => (
           <article
             key={service.title}

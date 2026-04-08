@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" fill="none">
+  <rect width="1200" height="700" fill="#163B63"/>
+  <path d="M80 520H1120" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="18"/>
+  <path d="M120 520C240 300 440 220 600 220C760 220 960 300 1080 520" stroke="#D7BC86" stroke-width="14"/>
+  <path d="M280 520V320M600 520V250M920 520V320" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="10"/>
+  <text x="70" y="650" fill="#FFFFFF" font-size="40" font-family="Arial, sans-serif" opacity="0.9">
+    Demo Project Image - Bridge
+  </text>
+</svg>
