@@ -60,22 +60,40 @@ export const siteContent = {
     ],
   },
   projects: {
-    title: "Signature Portfolio",
+    eyebrow: "Featured Work",
+    title: "Recent Projects",
+    viewAllLabel: "View All",
+    viewAllHref: "#projects",
     items: [
       {
-        title: "Harbor Point Towers",
-        location: "Doha, Qatar",
-        description: "Twin mixed-use towers integrating passive cooling and modular construction systems.",
-        image: "/demo/project-towers.svg",
-        imageAlt: "Demo image of high-rise tower project",
+        title: "Skyline Residences",
+        location: "Manhattan, New York",
+        category: "Residential",
+        description: "Luxury residential tower featuring sustainable design and smart building technology",
+        image:
+          "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1300&q=80",
+        imageAlt: "Modern residential building project",
+        href: "#",
       },
       {
-        title: "North Link Viaduct",
-        location: "Penang, Malaysia",
-        description:
-          "A high-capacity bridge corridor designed for seismic resilience and low-maintenance operations.",
-        image: "/demo/project-bridge.svg",
-        imageAlt: "Demo image of modern bridge project",
+        title: "Harbor Bridge Extension",
+        location: "San Francisco, CA",
+        category: "Infrastructure",
+        description: "State-of-the-art bridge infrastructure connecting key metropolitan areas",
+        image:
+          "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1f?auto=format&fit=crop&w=1300&q=80",
+        imageAlt: "Bridge infrastructure project",
+        href: "#",
+      },
+      {
+        title: "Tech Innovation Hub",
+        location: "Seattle, WA",
+        category: "Commercial",
+        description: "Modern corporate campus designed for collaboration and innovation",
+        image:
+          "https://images.unsplash.com/photo-1481026469463-66327c86e544?auto=format&fit=crop&w=1300&q=80",
+        imageAlt: "Commercial innovation hub project",
+        href: "#",
       },
     ],
   },
