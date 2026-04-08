@@ -24,31 +24,38 @@ export const siteContent = {
     ],
   },
   services: {
-    title: "Integrated Expertise",
+    eyebrow: "Our Services",
+    title: "Comprehensive Engineering Solutions",
     items: [
       {
         title: "Building Design",
-        description: "Architectural planning, BIM modeling, and high-performance envelope strategies.",
+        description: "Innovative architectural solutions for residential and commercial spaces",
+        icon: "building",
       },
       {
         title: "Infrastructure",
-        description: "Urban utilities, transport corridors, and resilient systems for growing cities.",
+        description: "Comprehensive infrastructure planning and development services",
+        icon: "infrastructure",
       },
       {
         title: "Road Works",
-        description: "Complete roadway design, traffic analysis, and lifecycle optimization.",
+        description: "Expert highway and road construction management",
+        icon: "road",
       },
       {
         title: "Bridge Design",
-        description: "Structural innovation balancing durability, constructability, and elegant spans.",
+        description: "Structural engineering excellence in bridge construction",
+        icon: "bridge",
       },
       {
         title: "Irrigation",
-        description: "Water management systems tailored to agricultural and climate realities.",
+        description: "Sustainable water management and irrigation systems",
+        icon: "irrigation",
       },
       {
-        title: "Environmental Assessment",
-        description: "Data-driven impact studies supporting compliant and sustainable development.",
+        title: "Environmental",
+        description: "Environmental impact assessment and sustainability consulting",
+        icon: "environment",
       },
     ],
   },
