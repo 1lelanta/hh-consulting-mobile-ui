@@ -212,9 +212,30 @@ function HeroSection({ data }) {
               </p>
               <a
                 href={data.ctaHref}
-                className="mt-8 inline-flex items-center justify-center rounded-full border-2 border-white/80 bg-transparent px-8 py-3.5 text-[1rem] font-extrabold tracking-[0.02em] text-white shadow-[0_10px_24px_rgba(8,25,45,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D5B223] hover:bg-[#D5B223] hover:text-[#08192D] hover:shadow-[0_18px_32px_rgba(213,178,35,0.45)] sm:px-10 sm:py-4 sm:text-[1.12rem]"
+                className="group relative mt-8 inline-flex items-center gap-2.5 overflow-visible px-8 py-3.5 text-[1rem] font-extrabold tracking-[0.02em] text-white transition-colors duration-500 sm:px-10 sm:py-4 sm:text-[1.12rem]"
               >
-                {data.ctaLabel}
+                <span className="pointer-events-none absolute inset-0 border border-white/75" aria-hidden="true" />
+                <span className="pointer-events-none absolute -left-2 -top-2 h-3 w-5 border-l border-t border-white/75" aria-hidden="true" />
+                <span className="pointer-events-none absolute -right-2 -top-2 h-3 w-5 border-r border-t border-white/75" aria-hidden="true" />
+                <span className="pointer-events-none absolute -bottom-2 -left-2 h-3 w-5 border-b border-l border-white/75" aria-hidden="true" />
+                <span className="pointer-events-none absolute -bottom-2 -right-2 h-3 w-5 border-b border-r border-white/75" aria-hidden="true" />
+
+                <span
+                  className="pointer-events-none absolute inset-0 origin-left scale-x-0 bg-[#F8FBFF]/24 transition-transform duration-700 ease-[cubic-bezier(0.2,0.9,0.24,1)] group-hover:scale-x-100"
+                  aria-hidden="true"
+                />
+
+                <span className="relative z-10">{data.ctaLabel}</span>
+                <span className="relative z-10 inline-grid w-0 -translate-x-1 opacity-0 transition-all duration-500 group-hover:w-5 group-hover:translate-x-0 group-hover:opacity-100" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5 text-[#E8EEF7]">
+                    <path d="M4 20h16" />
+                    <path d="M4 6h4v4H4z" />
+                    <path d="M16 12h4v4h-4z" />
+                    <path d="M8 8 16 12" />
+                    <circle cx="8" cy="8" r="1" fill="currentColor" />
+                    <circle cx="16" cy="12" r="1" fill="currentColor" />
+                  </svg>
+                </span>
               </a>
             </div>
           </motion.div>
