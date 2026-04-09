@@ -10,7 +10,7 @@ export const siteContent = {
     ctaHref: "#projects",
     backgroundImages: [
       {
-        src: "public/asset/ali bira guesthouse.png",
+        src: "/asset/ali%20bira%20guesthouse.png",
         alt: "Modern architectural building exterior",
       },
       {
@@ -18,7 +18,7 @@ export const siteContent = {
         alt: "Engineering bridge project illustration",
       },
       {
-        src: "public/asset/churchil hotel.png",
+        src: "/asset/churchil%20hotel.png",
         alt: "High-rise tower project illustration",
       },
       {
