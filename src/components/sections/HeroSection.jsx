@@ -46,9 +46,9 @@ function HeroSection({ data }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(213,178,35,0.14),transparent_34%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.08),transparent_34%)]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1320px] flex-col-reverse px-6 py-8 text-white sm:px-10 sm:py-10 lg:grid lg:min-h-screen lg:grid-cols-2 lg:px-14 lg:py-16">
+        <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1320px] flex-col-reverse px-6 py-8 text-white sm:px-10 sm:py-10 lg:grid lg:min-h-screen lg:grid-cols-[0.72fr_1.28fr] lg:px-14 lg:py-16">
           <motion.div
-            className="flex min-h-[36svh] flex-col justify-end pb-3 text-left sm:min-h-[38svh] sm:pb-5 lg:min-h-0 lg:justify-center lg:pb-0"
+            className="flex min-h-[36svh] max-w-[620px] flex-col justify-end pb-3 text-left sm:min-h-[38svh] sm:pb-5 lg:min-h-0 lg:max-w-[540px] lg:justify-center lg:pb-0 xl:max-w-[560px]"
             initial={{ opacity: 0, y: 42 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
@@ -73,7 +73,7 @@ function HeroSection({ data }) {
             </div>
 
             <div className="mt-8 sm:mt-10 lg:mt-12">
-              <h1 className="max-w-[680px] text-5xl leading-[0.98] tracking-[-0.02em] text-white lg:text-8xl">
+              <h1 className="max-w-[620px] text-5xl leading-[0.98] tracking-[-0.02em] text-white lg:max-w-[560px] lg:text-8xl">
                 {headlineWords.map((word, index) => {
                   const normalizedWord = word.toLowerCase().replace(/[^a-z]/g, "");
                   const isExcellence = normalizedWord === "excellence";
@@ -85,7 +85,9 @@ function HeroSection({ data }) {
                       className={[
                         "mr-[0.25em] inline-block",
                         isEngineered ? "font-black" : "",
-                        isExcellence ? "font-['Playfair_Display',serif] font-light italic text-[#F6EAD0]" : "",
+                        isExcellence
+                          ? "bg-gradient-to-r from-[#FFF7E5] via-[#F6EAD0] to-[#DFC7A0] bg-clip-text font-['Playfair_Display',serif] font-light italic text-transparent [filter:drop-shadow(0_1px_10px_rgba(255,236,196,0.22))]"
+                          : "",
                       ].join(" ")}
                     >
                       {word}
@@ -93,7 +95,7 @@ function HeroSection({ data }) {
                   );
                 })}
               </h1>
-              <p className="mt-6 max-w-[620px] text-[1.05rem] leading-8 text-white/80 sm:text-[1.25rem] sm:leading-9">
+              <p className="mt-6 max-w-[600px] text-[1.05rem] leading-8 text-white/70 sm:text-[1.25rem] sm:leading-9">
                 {data.description}
               </p>
               <a
