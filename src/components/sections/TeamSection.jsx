@@ -3,9 +3,15 @@ import { motion } from "framer-motion";
 function TeamSection({ data, className = "" }) {
   const members = [...(data.leadership || []), ...(data.departmentLeads || []), ...(data.supportTeam || [])];
 
-  function TeamCard({ member }) {
+  function TeamCard({ member, index }) {
     return (
-      <article className="group">
+      <motion.article
+        className="group"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.55, ease: [0.17, 0.67, 0.83, 0.67], delay: index * 0.12 }}
+      >
         <div className="relative w-full overflow-hidden rounded-sm bg-[#EEF2F7]">
           <img
             src={member.image}
@@ -22,7 +28,7 @@ function TeamSection({ data, className = "" }) {
             {member.role}
           </p>
         </div>
-      </article>
+      </motion.article>
     );
   }
 
@@ -54,8 +60,8 @@ function TeamSection({ data, className = "" }) {
         </div>
 
         <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-10 lg:gap-y-14">
-          {members.map((member) => (
-            <TeamCard key={member.name} member={member} />
+          {members.map((member, index) => (
+            <TeamCard key={member.name} member={member} index={index} />
           ))}
         </div>
       </div>

@@ -83,9 +83,18 @@ function ServiceIcon({ type }) {
 function ExpertiseItem({ service, index, staggerClass, scrollYProgress, isDesktop, reduceMotion }) {
   const parallaxEnabled = isDesktop && !reduceMotion;
   const ghostY = useTransform(scrollYProgress, [0, 1], [-28, 28]);
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.55, ease: [0.17, 0.67, 0.83, 0.67] },
+    },
+  };
 
   return (
-    <article
+    <motion.article
+      variants={itemVariants}
       className={[
         "relative flex min-h-[152px] w-full flex-col items-center text-center lg:min-h-[220px]",
         "lg:max-w-[240px]",
@@ -115,7 +124,7 @@ function ExpertiseItem({ service, index, staggerClass, scrollYProgress, isDeskto
           {service.description}
         </p>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -143,6 +152,15 @@ function ServicesSection({ data, className = "" }) {
     };
   }, []);
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   return (
     <motion.section
       ref={sectionRef}
@@ -167,7 +185,13 @@ function ServicesSection({ data, className = "" }) {
           </h2>
         </div>
 
-        <div className="relative z-10 mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:items-stretch lg:gap-x-12 lg:gap-y-16">
+        <motion.div
+          className="relative z-10 mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:items-stretch lg:gap-x-12 lg:gap-y-16"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {data.items.map((service, index) => {
             return (
               <ExpertiseItem
@@ -181,7 +205,7 @@ function ServicesSection({ data, className = "" }) {
               />
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   );
