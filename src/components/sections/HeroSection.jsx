@@ -1,7 +1,8 @@
-import { motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 function HeroSection({ data }) {
+  const heroRef = useRef(null);
   const backgrounds = useMemo(() => {
     if (Array.isArray(data.backgroundImages) && data.backgroundImages.length > 0) {
       return data.backgroundImages;
@@ -11,7 +12,43 @@ function HeroSection({ data }) {
   }, [data.backgroundImages, data.image, data.imageAlt]);
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobileTouch, setIsMobileTouch] = useState(false);
+  const [hasTouchStarted, setHasTouchStarted] = useState(false);
+  const [hasTouchScrolled, setHasTouchScrolled] = useState(false);
   const headlineWords = useMemo(() => (data.headline ? data.headline.split(" ") : []), [data.headline]);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const blueprintFadeRaw = useTransform(scrollYProgress, [0, 0.32], [1, 0]);
+  const blueprintFade = useSpring(blueprintFadeRaw, { stiffness: 95, damping: 22, mass: 0.35 });
+
+  const headlineVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.11,
+        delayChildren: 0.04,
+      },
+    },
+  };
+
+  const wordVariants = {
+    hidden: { opacity: 0, scale: 0.92, y: 12 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.55,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const shouldRevealByTouch = isMobileTouch && hasTouchScrolled;
 
   useEffect(() => {
     if (backgrounds.length <= 1) {
@@ -25,8 +62,55 @@ function HeroSection({ data }) {
     return () => window.clearInterval(timer);
   }, [backgrounds.length]);
 
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 1023px) and (pointer: coarse)");
+
+    const apply = () => {
+      setIsMobileTouch(media.matches);
+      if (!media.matches) {
+        setHasTouchStarted(false);
+        setHasTouchScrolled(false);
+      }
+    };
+
+    apply();
+    media.addEventListener("change", apply);
+
+    return () => {
+      media.removeEventListener("change", apply);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isMobileTouch || !hasTouchStarted || hasTouchScrolled) {
+      return undefined;
+    }
+
+    const onScroll = () => {
+      if (window.scrollY > 4) {
+        setHasTouchScrolled(true);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [isMobileTouch, hasTouchStarted, hasTouchScrolled]);
+
   return (
-    <section id="home" className="hero-grid-paper animate-reveal relative -mx-3 overflow-hidden scroll-mt-28 sm:-mx-6 lg:-mx-10 2xl:-mx-14">
+    <section
+      id="home"
+      ref={heroRef}
+      onTouchStart={() => {
+        if (isMobileTouch) {
+          setHasTouchStarted(true);
+        }
+      }}
+      className="hero-grid-paper animate-reveal relative -mx-3 overflow-hidden scroll-mt-28 sm:-mx-6 lg:-mx-10 2xl:-mx-14"
+    >
       <div className="relative min-h-[100svh] lg:min-h-screen">
         {backgrounds.map((background, index) => (
           <motion.img
@@ -42,6 +126,28 @@ function HeroSection({ data }) {
             transition={{ opacity: { duration: 1.4, ease: "easeOut" } }}
           />
         ))}
+
+        <motion.div
+          className="pointer-events-none absolute inset-0 z-[2]"
+          style={{ opacity: isMobileTouch ? (shouldRevealByTouch ? blueprintFade : 1) : 0 }}
+          aria-hidden="true"
+        >
+          {backgrounds.map((background, index) => (
+            <motion.img
+              key={`blueprint-${background.src}-${index}`}
+              src={background.src}
+              alt=""
+              className={[
+                "hero-blueprint absolute inset-0 h-full w-full object-cover will-change-[opacity,transform]",
+                index === activeIndex ? "animate-ken-burns-slow" : "",
+              ].join(" ")}
+              initial={false}
+              animate={index === activeIndex ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ opacity: { duration: 1.4, ease: "easeOut" } }}
+            />
+          ))}
+        </motion.div>
+
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(213,178,35,0.14),transparent_34%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.08),transparent_34%)]" />
@@ -73,15 +179,21 @@ function HeroSection({ data }) {
             </div>
 
             <div className="mt-8 sm:mt-10 lg:mt-12">
-              <h1 className="max-w-[620px] text-5xl leading-[0.98] tracking-[-0.02em] text-white lg:max-w-[560px] lg:text-8xl">
+              <motion.h1
+                className="max-w-[620px] text-5xl leading-[0.98] tracking-[-0.02em] text-white lg:max-w-[560px] lg:text-8xl"
+                variants={headlineVariants}
+                initial={isMobileTouch ? "hidden" : "visible"}
+                animate={isMobileTouch ? (shouldRevealByTouch ? "visible" : "hidden") : "visible"}
+              >
                 {headlineWords.map((word, index) => {
                   const normalizedWord = word.toLowerCase().replace(/[^a-z]/g, "");
                   const isExcellence = normalizedWord === "excellence";
                   const isEngineered = normalizedWord === "engineered";
 
                   return (
-                    <span
+                    <motion.span
                       key={`${word}-${index}`}
+                      variants={wordVariants}
                       className={[
                         "mr-[0.25em] inline-block",
                         isEngineered ? "font-black" : "",
@@ -91,10 +203,10 @@ function HeroSection({ data }) {
                       ].join(" ")}
                     >
                       {word}
-                    </span>
+                    </motion.span>
                   );
                 })}
-              </h1>
+              </motion.h1>
               <p className="mt-6 max-w-[600px] text-[1.05rem] leading-8 text-white/70 sm:text-[1.25rem] sm:leading-9">
                 {data.description}
               </p>
