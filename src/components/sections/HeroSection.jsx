@@ -27,7 +27,7 @@ function HeroSection({ data }) {
 
   return (
     <section id="home" className="animate-reveal -mx-3 overflow-hidden scroll-mt-28 sm:-mx-6 lg:-mx-10 2xl:-mx-14">
-      <div className="relative min-h-[90vh] sm:min-h-screen">
+      <div className="relative min-h-[100svh] lg:min-h-screen">
         {backgrounds.map((background, index) => (
           <motion.img
             key={`${background.src}-${index}`}
@@ -44,7 +44,7 @@ function HeroSection({ data }) {
           />
         ))}
         <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#071A35]/65 via-[#071A35]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(213,178,35,0.14),transparent_34%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.08),transparent_34%)]" />
         <svg aria-hidden="true" className="absolute inset-0 h-full w-full opacity-[0.05]" preserveAspectRatio="none">
           <defs>
@@ -55,8 +55,13 @@ function HeroSection({ data }) {
           <rect width="100%" height="100%" fill="url(#engineering-grid)" />
         </svg>
 
-        <div className="relative z-10 mx-auto grid min-h-[90vh] w-full max-w-[1320px] grid-cols-1 px-6 py-10 text-white sm:min-h-screen sm:px-10 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:px-14 lg:py-16">
-          <div className="flex h-full flex-col">
+        <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1320px] flex-col-reverse px-6 py-8 text-white sm:px-10 sm:py-10 lg:grid lg:min-h-screen lg:grid-cols-2 lg:px-14 lg:py-16">
+          <motion.div
+            className="flex min-h-[36svh] flex-col justify-end pb-3 text-left sm:min-h-[38svh] sm:pb-5 lg:min-h-0 lg:justify-center lg:pb-0"
+            initial={{ opacity: 0, y: 42 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          >
             <div className="flex items-start gap-3 sm:items-center sm:gap-4">
               <div className="inline-grid h-11 w-11 place-items-center overflow-hidden rounded-xl border border-white/20 bg-white/10 p-1.5 text-white shadow-[0_10px_24px_rgba(6,19,36,0.2)] backdrop-blur-[12px] sm:h-16 sm:w-16 sm:rounded-2xl sm:p-1">
                 <img src="/asset/hhlogo.jpeg" alt="HH Consulting logo" className="h-full w-full object-contain" />
@@ -76,24 +81,20 @@ function HeroSection({ data }) {
               </div>
             </div>
 
-            <motion.div
-              className="mt-16 text-left sm:mt-20 lg:mt-24"
-              initial={{ opacity: 0, y: 42 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            >
-              <h1
-                className="max-w-[680px] text-[3rem] font-extrabold leading-[1.02] tracking-[-0.02em] text-white sm:text-[4.1rem] lg:text-[5.7rem]"
-              >
+            <div className="mt-8 sm:mt-10 lg:mt-12">
+              <h1 className="max-w-[680px] text-5xl leading-[0.98] tracking-[-0.02em] text-white lg:text-8xl">
                 {headlineWords.map((word, index) => {
-                  const isExcellence = word.toLowerCase().replace(/[^a-z]/g, "") === "excellence";
+                  const normalizedWord = word.toLowerCase().replace(/[^a-z]/g, "");
+                  const isExcellence = normalizedWord === "excellence";
+                  const isEngineered = normalizedWord === "engineered";
 
                   return (
                     <span
                       key={`${word}-${index}`}
                       className={[
                         "mr-[0.25em] inline-block",
-                        isExcellence ? "font-['Playfair_Display',serif] font-semibold italic tracking-[-0.01em] text-[#F6EAD0]" : "",
+                        isEngineered ? "font-black" : "",
+                        isExcellence ? "font-['Playfair_Display',serif] font-light italic text-[#F6EAD0]" : "",
                       ].join(" ")}
                     >
                       {word}
@@ -110,16 +111,10 @@ function HeroSection({ data }) {
               >
                 {data.ctaLabel}
               </a>
-            </motion.div>
-
-            <div className="mt-auto flex justify-center pb-2 lg:justify-start">
-              <div className="flex h-14 w-9 items-start justify-center rounded-full border-2 border-white/35 p-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-white/70" />
-              </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="hidden lg:block" aria-hidden="true" />
+          <div className="h-[58svh] lg:h-auto" aria-hidden="true" />
         </div>
       </div>
     </section>
