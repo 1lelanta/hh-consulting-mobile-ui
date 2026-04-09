@@ -203,7 +203,7 @@ export const siteContent = {
         ],
         description:
           "Tourism development project including architectural, landscape, and engineering design.",
-        image: "/asset/tsehay.png",
+        image: "/asset/Tiya.png",
         imageAlt: "Heritage park and cultural landscape design",
         href: "#",
       },
