@@ -1,3 +1,6 @@
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
 function formatGhostNumber(index) {
   return String(index + 1).padStart(2, "0");
 }
@@ -77,15 +80,85 @@ function ServiceIcon({ type }) {
   );
 }
 
-function ServicesSection({ data, className = "" }) {
-  const staggerMap = ["lg:self-start", "lg:self-center", "lg:self-end"];
+function ExpertiseItem({ service, index, staggerClass, scrollYProgress, isDesktop, reduceMotion }) {
+  const parallaxEnabled = isDesktop && !reduceMotion;
+  const direction = index % 2 === 0 ? -1 : 1;
+  const iconY = useTransform(scrollYProgress, [0, 1], [0, direction * 24]);
+  const ghostY = useTransform(scrollYProgress, [0, 1], [0, direction * 12]);
 
   return (
-    <section
+    <article
+      className={[
+        "relative flex min-h-[152px] w-full flex-col items-center text-center lg:min-h-[220px]",
+        "lg:max-w-[240px]",
+        staggerClass,
+      ].join(" ")}
+    >
+      <motion.span
+        className="pointer-events-none absolute left-1/2 top-[-22px] z-0 -translate-x-1/2 text-[108px] font-black leading-none text-transparent sm:text-[132px] lg:text-[144px]"
+        style={{ WebkitTextStroke: "1px #e2e8f0", y: parallaxEnabled ? ghostY : 0 }}
+        aria-hidden="true"
+      >
+        {formatGhostNumber(index)}
+      </motion.span>
+
+      <motion.div
+        className="relative z-10 flex w-full flex-col items-center"
+        style={{ y: parallaxEnabled ? iconY : 0 }}
+      >
+        <div className="inline-flex h-11 w-11 items-center justify-center sm:h-14 sm:w-14">
+          <ServiceIcon type={service.icon} />
+        </div>
+
+        <span className="mt-3 block h-[1px] w-[50px] bg-[#D5B223]" aria-hidden="true" />
+
+        <h3 className="m-0 mt-3 text-[0.84rem] font-extrabold uppercase leading-[1.35] tracking-[0.18em] text-brand-navy900 sm:text-[0.92rem]">
+          {service.title}
+        </h3>
+
+        <p className="m-0 mt-2 max-w-[230px] text-[0.74rem] leading-5 text-brand-gray500 sm:max-w-[250px] sm:text-[0.84rem] sm:leading-6">
+          {service.description}
+        </p>
+      </motion.div>
+    </article>
+  );
+}
+
+function ServicesSection({ data, className = "" }) {
+  const sectionRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1024px)");
+
+    const apply = () => {
+      setIsDesktop(media.matches);
+    };
+
+    apply();
+    media.addEventListener("change", apply);
+
+    return () => {
+      media.removeEventListener("change", apply);
+    };
+  }, []);
+
+  return (
+    <motion.section
+      ref={sectionRef}
       id="services"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: [0.17, 0.67, 0.83, 0.67] }}
+      viewport={{ once: true, amount: 0.2 }}
       className={`animate-reveal mt-8 -mx-3 scroll-mt-28 bg-[#F3F5F8] px-3 py-12 [animation-delay:200ms] sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-10 lg:px-10 lg:py-20 2xl:-mx-14 2xl:px-14 ${className}`}
     >
-      <div className="mx-auto w-full max-w-[1320px]">
+      <div className="relative mx-auto w-full max-w-[1320px]">
         <div className="max-w-[700px]">
           <div className="flex items-center gap-3">
             <span className="h-[2px] w-14 bg-[#D5B223]" />
@@ -99,42 +172,23 @@ function ServicesSection({ data, className = "" }) {
           </h2>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:items-stretch lg:gap-x-12 lg:gap-y-16">
+        <div className="relative z-10 mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:items-stretch lg:gap-x-12 lg:gap-y-16">
           {data.items.map((service, index) => {
             return (
-              <article
+              <ExpertiseItem
                 key={service.title}
-                className={[
-                  "relative min-h-[220px]",
-                  "flex flex-col items-start justify-start",
-                  staggerMap[index % staggerMap.length],
-                ].join(" ")}
-              >
-                <span
-                  className="pointer-events-none absolute -left-1 top-[-28px] z-0 text-[120px] font-black leading-none text-transparent sm:text-[128px] lg:text-[144px]"
-                  style={{ WebkitTextStroke: "1px #e2e8f0" }}
-                  aria-hidden="true"
-                >
-                  {formatGhostNumber(index)}
-                </span>
-
-                <div className="relative z-10 flex w-full flex-col items-center text-center">
-                  <div className="inline-flex h-12 w-12 items-center justify-center sm:h-14 sm:w-14">
-                    <ServiceIcon type={service.icon} />
-                  </div>
-
-                  <span className="mt-4 block h-[1px] w-[50px] bg-[#D5B223]" aria-hidden="true" />
-
-                  <h3 className="m-0 mt-4 text-[0.86rem] font-extrabold uppercase leading-[1.45] tracking-[0.18em] text-brand-navy900 sm:text-[0.92rem]">
-                    {service.title}
-                  </h3>
-                </div>
-              </article>
+                service={service}
+                index={index}
+                staggerClass=""
+                scrollYProgress={scrollYProgress}
+                isDesktop={isDesktop}
+                reduceMotion={reduceMotion}
+              />
             );
           })}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

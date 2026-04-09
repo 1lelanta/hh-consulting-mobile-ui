@@ -101,7 +101,7 @@ function HeroSection({ data }) {
   }, [isMobileTouch, hasTouchStarted, hasTouchScrolled]);
 
   return (
-    <section
+    <motion.section
       id="home"
       ref={heroRef}
       onTouchStart={() => {
@@ -109,6 +109,10 @@ function HeroSection({ data }) {
           setHasTouchStarted(true);
         }
       }}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: [0.17, 0.67, 0.83, 0.67] }}
+      viewport={{ once: true, amount: 0.2 }}
       className="hero-grid-paper animate-reveal relative -mx-3 overflow-hidden scroll-mt-28 sm:-mx-6 lg:-mx-10 2xl:-mx-14"
     >
       <div className="relative min-h-[100svh] lg:min-h-screen">
@@ -243,7 +247,7 @@ function HeroSection({ data }) {
           <div className="h-[58svh] lg:h-auto" aria-hidden="true" />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
