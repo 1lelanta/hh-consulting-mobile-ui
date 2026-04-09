@@ -45,7 +45,7 @@ function TeamSection({ data, className = "" }) {
         <div className="max-w-[860px]">
           <div className="flex items-center gap-3">
             <span className="h-[2px] w-14 bg-[#D5B223]" />
-            <p className="m-0 text-[0.95rem] font-extrabold uppercase tracking-[0.14em] text-[#D5B223]">
+            <p className="section-eyebrow text-[#D5B223]">
               {data.eyebrow}
             </p>
           </div>

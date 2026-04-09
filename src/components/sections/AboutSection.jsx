@@ -114,7 +114,7 @@ function AboutSection({ data, className = "" }) {
                 <div className="relative z-10 min-h-[340px] px-4 py-5 text-white sm:min-h-[420px] sm:px-6 sm:py-6 lg:min-h-[520px]">
                   <div className="flex items-center gap-3">
                     <span className="h-[2px] w-14 bg-[#D5B223]" />
-                    <p className="m-0 text-[0.88rem] font-extrabold uppercase tracking-[0.14em] text-[#D5B223]">{data.eyebrow}</p>
+                    <p className="section-eyebrow text-[#D5B223]">{data.eyebrow}</p>
                   </div>
 
                   <h2 className="m-0 mt-4 text-balance text-[1.85rem] font-extrabold leading-[1.15] tracking-[-0.02em] text-white sm:text-[2.35rem] lg:max-w-[420px] lg:text-[2.8rem]">
@@ -126,7 +126,7 @@ function AboutSection({ data, className = "" }) {
               <>
                 <div className="flex items-center gap-3">
                   <span className="h-[2px] w-14 bg-[#D5B223]" />
-                  <p className="m-0 text-[0.88rem] font-extrabold uppercase tracking-[0.14em] text-[#B18428]">{data.eyebrow}</p>
+                  <p className="section-eyebrow text-[#B18428]">{data.eyebrow}</p>
                 </div>
 
                 <h2 className="m-0 mt-4 text-balance text-[1.85rem] font-extrabold leading-[1.15] tracking-[-0.02em] text-brand-navy900 sm:text-[2.35rem] lg:max-w-[420px] lg:text-[2.8rem]">

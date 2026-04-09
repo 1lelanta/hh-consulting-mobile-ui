@@ -22,7 +22,7 @@ function ContactSection({ data, className = "" }) {
   };
 
   const fieldBase =
-    "w-full rounded-[16px] border border-brand-gray200 bg-white px-4 py-4 text-[1rem] text-brand-navy900 outline-none transition-all duration-300 placeholder:text-brand-gray400 focus:border-[#D5B223] focus:shadow-[0_0_0_4px_rgba(213,178,35,0.12)]";
+    "peer w-full border-0 border-b-[0.5px] border-white/20 bg-transparent px-0 pb-2 pt-7 text-[1rem] text-slate-100 outline-none transition-all duration-300 placeholder:text-slate-500 focus:border-[#FACC15] focus:outline-none focus:[text-shadow:0_0_8px_rgba(250,204,21,0.22)] [&:not(:placeholder-shown)]:border-[#FACC15] [&:not(:placeholder-shown)]:[text-shadow:0_0_8px_rgba(250,204,21,0.14)]";
 
   function ContactCard({ card }) {
     return (
@@ -66,7 +66,7 @@ function ContactSection({ data, className = "" }) {
         <div className="max-w-[860px]">
           <div className="flex items-center gap-3">
             <span className="h-[2px] w-14 bg-[#D5B223]" />
-            <p className="m-0 text-[0.95rem] font-extrabold uppercase tracking-[0.14em] text-[#D5B223]">
+            <p className="section-eyebrow text-[#D5B223]">
               {data.eyebrow}
             </p>
           </div>
@@ -78,7 +78,7 @@ function ContactSection({ data, className = "" }) {
           <p className="m-0 mt-4 text-[1.1rem] leading-8 text-white/75">{data.subtitle}</p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
+          <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
           <div className="relative">
             <span
               className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 text-[220px] font-black leading-none text-transparent opacity-5 lg:text-[300px]"
@@ -88,34 +88,47 @@ function ContactSection({ data, className = "" }) {
               07
             </span>
 
-            <article id="contact-form" className="relative z-10 rounded-[24px] border border-brand-gray200 bg-white p-5 shadow-[0_16px_34px_rgba(13,40,74,0.08)] sm:p-6">
-              <h3 className="m-0 text-[1.45rem] font-extrabold tracking-[-0.02em] text-brand-navy900 sm:text-[1.8rem]">
+            <article id="contact-form" className="relative z-20 rounded-[24px] border border-white/10 bg-transparent p-5 sm:p-6">
+              <h3 className="relative z-20 m-0 text-[1.45rem] font-extrabold tracking-[-0.02em] text-white sm:text-[1.8rem]">
                 {data.form.title}
               </h3>
 
               <form className="mt-5 space-y-4">
                 {data.form.fields.map((field) => (
-                  <div key={field.name}>
-                    <label className="mb-2 block text-[0.92rem] font-semibold text-brand-navy900" htmlFor={field.name}>
-                      {field.label}
-                    </label>
+                  <div key={field.name} className="relative">
                     {field.type === "textarea" ? (
-                      <textarea
-                        id={field.name}
-                        name={field.name}
-                        rows={5}
-                        placeholder={field.placeholder}
-                        className={`${fieldBase} resize-none`}
-                      />
+                      <>
+                        <textarea
+                          id={field.name}
+                          name={field.name}
+                          rows={5}
+                          placeholder={field.placeholder}
+                          className={`${fieldBase} resize-none`}
+                        />
+                        <label
+                          className="pointer-events-none absolute left-0 top-5 text-[0.92rem] font-semibold text-slate-300 transition-all duration-300 peer-focus:top-0 peer-focus:text-[0.72rem] peer-focus:text-[#FACC15] peer-focus:[text-shadow:0_0_8px_rgba(250,204,21,0.28)] peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:text-[0.72rem] peer-[&:not(:placeholder-shown)]:text-[#FACC15]"
+                          htmlFor={field.name}
+                        >
+                          {field.label}
+                        </label>
+                      </>
                     ) : (
-                      <input id={field.name} name={field.name} type={field.type} placeholder={field.placeholder} className={fieldBase} />
+                      <>
+                        <input id={field.name} name={field.name} type={field.type} placeholder={field.placeholder} className={fieldBase} />
+                        <label
+                          className="pointer-events-none absolute left-0 top-5 text-[0.92rem] font-semibold text-slate-300 transition-all duration-300 peer-focus:top-0 peer-focus:text-[0.72rem] peer-focus:text-[#FACC15] peer-focus:[text-shadow:0_0_8px_rgba(250,204,21,0.28)] peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:text-[0.72rem] peer-[&:not(:placeholder-shown)]:text-[#FACC15]"
+                          htmlFor={field.name}
+                        >
+                          {field.label}
+                        </label>
+                      </>
                     )}
                   </div>
                 ))}
 
                 <button
                   type="submit"
-                  className="mt-2 w-full rounded-[16px] bg-brand-navy900 px-6 py-4 text-[1rem] font-semibold text-white shadow-[0_14px_28px_rgba(13,40,74,0.18)] transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#0A234A]"
+                  className="mt-2 w-full rounded-[16px] bg-[#FF5500] px-6 py-4 text-[0.9rem] font-extrabold uppercase tracking-widest text-white shadow-[0_14px_28px_rgba(255,85,0,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
                 >
                   {data.form.buttonLabel}
                 </button>
@@ -135,10 +148,20 @@ function ContactSection({ data, className = "" }) {
               <p className="m-0 mt-2 text-[1.02rem] leading-7 text-white/80">{data.cta.subtitle}</p>
               <a
                 href="#contact-form"
-                className="mt-5 inline-flex rounded-2xl bg-[#D5B223] px-6 py-3 text-[1rem] font-semibold text-white shadow-[0_10px_20px_rgba(190,154,90,0.28)] transition-transform duration-300 hover:-translate-y-0.5"
+                className="mt-5 inline-flex rounded-2xl bg-[#FF5500] px-8 py-3 text-[0.86rem] font-extrabold uppercase tracking-widest text-white shadow-[0_10px_20px_rgba(255,85,0,0.32)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
               >
                 {data.cta.buttonLabel}
               </a>
+            </div>
+
+            <div className="pointer-events-none relative mt-6 h-[190px] overflow-hidden">
+              <span
+                className="absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 font-['JetBrains_Mono',monospace] text-[250px] font-black leading-none text-transparent opacity-50"
+                style={{ WebkitTextStroke: "1px rgba(255,255,255,1)" }}
+                aria-hidden="true"
+              >
+                07
+              </span>
             </div>
           </div>
         </div>
