@@ -329,34 +329,54 @@ export const siteContent = {
   },
   contact: {
     eyebrow: "Get in Touch",
-    title: "Let's Build Something Great Together",
-    description:
-      "Ready to start your next project? Our team is here to help bring your vision to life.",
-    contacts: [
+    title: "Get in Touch",
+    subtitle: "Let’s discuss your next architectural, engineering, or infrastructure project.",
+    image: "/asset/hero-modern-building.svg",
+    imageAlt: "Consulting office and modern building visual",
+    form: {
+      title: "Send us a message",
+      fields: [
+        { name: "fullName", label: "Full Name", placeholder: "Enter your full name", type: "text" },
+        { name: "email", label: "Email Address", placeholder: "Enter your email", type: "email" },
+        { name: "phone", label: "Phone Number", placeholder: "Enter your phone number", type: "tel" },
+        {
+          name: "message",
+          label: "Project Inquiry / Message",
+          placeholder: "Tell us about your project requirements",
+          type: "textarea",
+        },
+      ],
+      buttonLabel: "Send Message",
+    },
+    contactCards: [
       {
-        type: "phone",
-        label: "Phone",
-        value: "+1 (555) 123-4567",
+        icon: "phone",
+        title: "Call Us",
+        lines: ["011 868 3830", "011 667 2951", "+251 913 592 121", "+251 911 228 253", "+251 966 935 979"],
       },
       {
-        type: "email",
-        label: "Email",
-        value: "info@apexengineering.com",
+        icon: "email",
+        title: "Email",
+        lines: ["hhconsultingarchitectengineers@gmail.com", "haylah@yahoo.com"],
       },
       {
-        type: "address",
-        label: "Address",
-        value: "123 Engineering Plaza, Suite 500",
-        subValue: "New York, NY 10001",
+        icon: "address",
+        title: "Office Address",
+        lines: ["22 Mazoriya,", "Efrata Building, 3rd Floor,", "Addis Ababa, Ethiopia"],
+      },
+      {
+        icon: "website",
+        title: "Website",
+        lines: ["https://hhconsultinget.com"],
       },
     ],
-    hours: [
-      { day: "Monday - Friday", time: "8:00 AM - 6:00 PM" },
-      { day: "Saturday", time: "9:00 AM - 2:00 PM" },
-      { day: "Sunday", time: "Closed" },
-    ],
+    cta: {
+      title: "Ready to build with confidence?",
+      subtitle: "Connect with our team today.",
+      buttonLabel: "Schedule Consultation",
+    },
     footer: {
-      copyright: "© 2026 APEX Engineering. All rights reserved.",
+      copyright: "© 2026 HH Consulting Architects & Engineers PLC. All rights reserved.",
       privacyLabel: "Privacy Policy",
       privacyHref: "#",
       termsLabel: "Terms of Service",
