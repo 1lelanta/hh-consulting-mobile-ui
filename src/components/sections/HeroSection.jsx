@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
 function HeroSection({ data }) {
@@ -10,7 +11,29 @@ function HeroSection({ data }) {
   }, [data.backgroundImages, data.image, data.imageAlt]);
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const headlineHasExcellence = data.headline?.includes("Excellence");
+  const headlineWords = useMemo(() => (data.headline ? data.headline.split(" ") : []), [data.headline]);
+
+  const headlineVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.14,
+        delayChildren: 0.15,
+      },
+    },
+  };
+
+  const wordVariants = {
+    hidden: { opacity: 0, y: 26 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
 
   useEffect(() => {
     if (backgrounds.length <= 1) {
@@ -41,6 +64,14 @@ function HeroSection({ data }) {
         <div className="absolute inset-0 bg-[#0E2A55]/72" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A234A]/70 via-[#0A234A]/50 to-[#0A234A]/34" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(213,178,35,0.14),transparent_34%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.08),transparent_34%)]" />
+        <svg aria-hidden="true" className="absolute inset-0 h-full w-full opacity-[0.05]" preserveAspectRatio="none">
+          <defs>
+            <pattern id="engineering-grid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <path d="M10 0H0V10" fill="none" stroke="white" strokeWidth="1" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#engineering-grid)" />
+        </svg>
 
         <div className="relative z-10 mx-auto grid min-h-[90vh] w-full max-w-[1320px] grid-cols-1 px-6 py-10 text-white sm:min-h-screen sm:px-10 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:px-14 lg:py-16">
           <div className="flex h-full flex-col">
@@ -64,26 +95,38 @@ function HeroSection({ data }) {
             </div>
 
             <div className="mt-16 text-left sm:mt-20 lg:mt-24">
-              <h1 className="max-w-[680px] text-[3rem] font-extrabold leading-[1.02] tracking-[-0.02em] text-white sm:text-[4.1rem] lg:text-[5.7rem]">
-                {headlineHasExcellence ? (
-                  <>
-                    {data.headline.replace("Excellence", "")}
-                    <span className="font-['Playfair_Display',serif] font-semibold italic tracking-[-0.01em] text-[#F6EAD0]">
-                      Excellence
-                    </span>
-                  </>
-                ) : (
-                  data.headline
-                )}
-              </h1>
+              <motion.h1
+                className="max-w-[680px] text-[3rem] font-extrabold leading-[1.02] tracking-[-0.02em] text-white sm:text-[4.1rem] lg:text-[5.7rem]"
+                variants={headlineVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {headlineWords.map((word, index) => {
+                  const isExcellence = word.toLowerCase().replace(/[^a-z]/g, "") === "excellence";
+
+                  return (
+                    <motion.span
+                      key={`${word}-${index}`}
+                      variants={wordVariants}
+                      className={[
+                        "mr-[0.25em] inline-block",
+                        isExcellence ? "font-['Playfair_Display',serif] font-semibold italic tracking-[-0.01em] text-[#F6EAD0]" : "",
+                      ].join(" ")}
+                    >
+                      {word}
+                    </motion.span>
+                  );
+                })}
+              </motion.h1>
               <p className="mt-6 max-w-[620px] text-[1.05rem] leading-8 text-white/80 sm:text-[1.25rem] sm:leading-9">
                 {data.description}
               </p>
               <a
                 href={data.ctaHref}
-                className="mt-8 inline-block rounded-2xl bg-[#D5B223] px-8 py-4 text-[1rem] font-bold text-white shadow-[0_10px_24px_rgba(190,154,90,0.35)] sm:px-10 sm:py-5 sm:text-[1.2rem]"
+                className="group relative mt-8 inline-block overflow-hidden rounded-2xl bg-[#D5B223] px-8 py-4 text-[1rem] font-bold text-white shadow-[0_10px_24px_rgba(190,154,90,0.35)] sm:px-10 sm:py-5 sm:text-[1.2rem]"
               >
-                {data.ctaLabel}
+                <span className="absolute inset-y-0 left-0 w-0 bg-[#B89215] transition-all duration-500 ease-out group-hover:w-full" aria-hidden="true" />
+                <span className="relative z-10">{data.ctaLabel}</span>
               </a>
             </div>
 
