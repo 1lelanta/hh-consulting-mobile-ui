@@ -30,6 +30,8 @@ export const siteContent = {
   about: {
     eyebrow: "About Our Company",
     title: "HH CONSULTING ARCHITECTS AND ENGINEERS",
+    image: "/asset/churchil hotel.png",
+    imageAlt: "Architectural high-rise concept by HH Consulting",
     description:
       "A multidisciplinary firm based in Ethiopia, dedicated to providing innovative, sustainable, and integrated solutions in architecture and engineering. We combine visionary design with technical excellence to deliver impactful and resilient projects across Ethiopia and beyond.",
     approachTitle: "OUR APPROACH",

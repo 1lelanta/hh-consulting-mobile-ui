@@ -102,14 +102,38 @@ function AboutSection({ data, className = "" }) {
       <div className="relative z-10 mx-auto w-full max-w-[1320px]">
         <div className="mx-auto grid max-w-[1080px] grid-cols-1 gap-8 px-1 sm:px-2 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:px-4">
           <div className="text-left lg:sticky lg:top-28 lg:self-start">
-            <div className="flex items-center gap-3">
-              <span className="h-[2px] w-14 bg-[#D5B223]" />
-              <p className="m-0 text-[0.88rem] font-extrabold uppercase tracking-[0.14em] text-[#B18428]">{data.eyebrow}</p>
-            </div>
+            {data.image ? (
+              <div className="relative overflow-hidden rounded-[18px] border border-[#D1DAE7] bg-white/70 shadow-[0_12px_28px_rgba(13,40,74,0.08)]">
+                <img
+                  src={data.image}
+                  alt={data.imageAlt || "About us image"}
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                />
+                <span className="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand-navy900/62 via-brand-navy900/45 to-brand-navy900/68" aria-hidden="true" />
 
-            <h2 className="m-0 mt-4 text-balance text-[1.85rem] font-extrabold leading-[1.15] tracking-[-0.02em] text-brand-navy900 sm:text-[2.35rem] lg:max-w-[420px] lg:text-[2.8rem]">
-              {data.title}
-            </h2>
+                <div className="relative z-10 min-h-[340px] px-4 py-5 text-white sm:min-h-[420px] sm:px-6 sm:py-6 lg:min-h-[520px]">
+                  <div className="flex items-center gap-3">
+                    <span className="h-[2px] w-14 bg-[#D5B223]" />
+                    <p className="m-0 text-[0.88rem] font-extrabold uppercase tracking-[0.14em] text-[#D5B223]">{data.eyebrow}</p>
+                  </div>
+
+                  <h2 className="m-0 mt-4 text-balance text-[1.85rem] font-extrabold leading-[1.15] tracking-[-0.02em] text-white sm:text-[2.35rem] lg:max-w-[420px] lg:text-[2.8rem]">
+                    {data.title}
+                  </h2>
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className="flex items-center gap-3">
+                  <span className="h-[2px] w-14 bg-[#D5B223]" />
+                  <p className="m-0 text-[0.88rem] font-extrabold uppercase tracking-[0.14em] text-[#B18428]">{data.eyebrow}</p>
+                </div>
+
+                <h2 className="m-0 mt-4 text-balance text-[1.85rem] font-extrabold leading-[1.15] tracking-[-0.02em] text-brand-navy900 sm:text-[2.35rem] lg:max-w-[420px] lg:text-[2.8rem]">
+                  {data.title}
+                </h2>
+              </>
+            )}
           </div>
 
           <div className="relative border-l border-[#C9D3E0] pl-5 sm:pl-7 lg:pl-10">
