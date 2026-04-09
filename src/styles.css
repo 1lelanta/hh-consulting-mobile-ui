@@ -22,7 +22,38 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+.hero-grid-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.9) 0, rgba(255, 255, 255, 0.9) 1px, transparent 1px, transparent 10px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.9) 0, rgba(255, 255, 255, 0.9) 1px, transparent 1px, transparent 10px);
+}
+
 @layer utilities {
+  @keyframes ken-burns-slow {
+    0% {
+      transform: scale(1.03) translate3d(0%, 0%, 0);
+    }
+
+    50% {
+      transform: scale(1.07) translate3d(-1.1%, -0.8%, 0);
+    }
+
+    100% {
+      transform: scale(1.1) translate3d(-2.1%, -1.4%, 0);
+    }
+  }
+
+  .animate-ken-burns-slow {
+    animation: ken-burns-slow 20s ease-in-out forwards;
+    transform-origin: center center;
+  }
+
   @keyframes marquee {
     0% {
       transform: translateX(0);

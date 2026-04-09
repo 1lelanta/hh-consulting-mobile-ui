@@ -20,40 +20,31 @@ function HeroSection({ data }) {
 
     const timer = window.setInterval(() => {
       setActiveIndex((currentIndex) => (currentIndex + 1) % backgrounds.length);
-    }, 7600);
+    }, 20000);
 
     return () => window.clearInterval(timer);
   }, [backgrounds.length]);
 
   return (
-    <section id="home" className="animate-reveal -mx-3 overflow-hidden scroll-mt-28 sm:-mx-6 lg:-mx-10 2xl:-mx-14">
+    <section id="home" className="hero-grid-paper animate-reveal relative -mx-3 overflow-hidden scroll-mt-28 sm:-mx-6 lg:-mx-10 2xl:-mx-14">
       <div className="relative min-h-[100svh] lg:min-h-screen">
         {backgrounds.map((background, index) => (
           <motion.img
             key={`${background.src}-${index}`}
             src={background.src}
             alt={background.alt}
-            className="absolute inset-0 h-full w-full object-cover will-change-[opacity,transform]"
+            className={[
+              "absolute inset-0 h-full w-full object-cover will-change-[opacity,transform]",
+              index === activeIndex ? "animate-ken-burns-slow" : "",
+            ].join(" ")}
             initial={false}
-            animate={
-              index === activeIndex
-                ? { opacity: 1, scale: 1.08 }
-                : { opacity: 0, scale: 1 }
-            }
-            transition={{ opacity: { duration: 1.4, ease: "easeOut" }, scale: { duration: 8.2, ease: "linear" } }}
+            animate={index === activeIndex ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ opacity: { duration: 1.4, ease: "easeOut" } }}
           />
         ))}
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(213,178,35,0.14),transparent_34%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.08),transparent_34%)]" />
-        <svg aria-hidden="true" className="absolute inset-0 h-full w-full opacity-[0.05]" preserveAspectRatio="none">
-          <defs>
-            <pattern id="engineering-grid" width="10" height="10" patternUnits="userSpaceOnUse">
-              <path d="M10 0H0V10" fill="none" stroke="white" strokeWidth="1" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#engineering-grid)" />
-        </svg>
 
         <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1320px] flex-col-reverse px-6 py-8 text-white sm:px-10 sm:py-10 lg:grid lg:min-h-screen lg:grid-cols-2 lg:px-14 lg:py-16">
           <motion.div
