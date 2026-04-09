@@ -82,9 +82,7 @@ function ServiceIcon({ type }) {
 
 function ExpertiseItem({ service, index, staggerClass, scrollYProgress, isDesktop, reduceMotion }) {
   const parallaxEnabled = isDesktop && !reduceMotion;
-  const direction = index % 2 === 0 ? -1 : 1;
-  const iconY = useTransform(scrollYProgress, [0, 1], [0, direction * 24]);
-  const ghostY = useTransform(scrollYProgress, [0, 1], [0, direction * 12]);
+  const ghostY = useTransform(scrollYProgress, [0, 1], [-28, 28]);
 
   return (
     <article
@@ -102,10 +100,7 @@ function ExpertiseItem({ service, index, staggerClass, scrollYProgress, isDeskto
         {formatGhostNumber(index)}
       </motion.span>
 
-      <motion.div
-        className="relative z-10 flex w-full flex-col items-center"
-        style={{ y: parallaxEnabled ? iconY : 0 }}
-      >
+      <div className="relative z-10 flex w-full flex-col items-center">
         <div className="inline-flex h-11 w-11 items-center justify-center sm:h-14 sm:w-14">
           <ServiceIcon type={service.icon} />
         </div>
@@ -119,7 +114,7 @@ function ExpertiseItem({ service, index, staggerClass, scrollYProgress, isDeskto
         <p className="m-0 mt-2 max-w-[230px] text-[0.74rem] leading-5 text-brand-gray500 sm:max-w-[250px] sm:text-[0.84rem] sm:leading-6">
           {service.description}
         </p>
-      </motion.div>
+      </div>
     </article>
   );
 }

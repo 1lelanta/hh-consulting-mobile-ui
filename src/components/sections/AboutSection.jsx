@@ -49,7 +49,7 @@ function AboutSection({ data, className = "" }) {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const watermarkParallaxX = useTransform(scrollYProgress, [0, 1], [-28, 28]);
+  const watermarkParallaxY = useTransform(scrollYProgress, [0, 1], [-32, 32]);
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 1023px)");
@@ -77,7 +77,7 @@ function AboutSection({ data, className = "" }) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-[38%] z-0 -translate-y-1/2 select-none text-center sm:top-[42%]"
         style={{
-          x: watermarkParallaxX,
+          y: watermarkParallaxY,
           WebkitMaskImage: isMobile
             ? "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)"
             : "none",
