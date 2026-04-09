@@ -157,7 +157,7 @@ export const siteContent = {
         ],
         description:
           "Design-build of airport airfield, terminal, and facility building maintenance project.",
-        image: "/asset/national intelligence.jpg",
+        image: "/asset/Axum.png",
         imageAlt: "Airport terminal and aviation infrastructure",
         href: "#",
       },

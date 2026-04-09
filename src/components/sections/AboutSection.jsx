@@ -2,7 +2,7 @@ function AboutSection({ data, className = "" }) {
   return (
     <section
       id="about"
-      className={`animate-reveal relative mt-8 -mx-3 scroll-mt-28 overflow-hidden bg-gradient-to-r from-[#0A234A] via-[#123660] to-[#F3F5F8] px-3 py-14 [animation-delay:120ms] sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-10 lg:px-10 lg:py-20 2xl:-mx-14 2xl:px-14 ${className}`}
+      className={`animate-reveal relative mt-8 -mx-3 scroll-mt-28 overflow-hidden bg-[#F3F5F8] px-3 py-14 [animation-delay:120ms] sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-10 lg:px-10 lg:py-20 2xl:-mx-14 2xl:px-14 ${className}`}
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[58%] lg:block">
         <img src={data.image} alt="" aria-hidden="true" className="h-full w-full object-cover object-left" />
