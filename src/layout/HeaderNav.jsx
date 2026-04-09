@@ -9,8 +9,8 @@ const navItems = [
 
 function HeaderNav() {
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 sm:px-6 lg:px-10">
-      <nav className="mx-auto flex w-full max-w-[1320px] items-center gap-4 rounded-2xl border border-white/60 bg-white/90 px-3 py-3 shadow-[0_14px_36px_rgba(13,40,74,0.12)] backdrop-blur-xl">
+    <header className="fixed left-0 right-0 top-0 z-50">
+      <nav className="flex w-full items-center gap-4 border-b border-white/60 bg-white/90 px-3 py-3 shadow-[0_14px_36px_rgba(13,40,74,0.12)] backdrop-blur-xl sm:px-6 lg:px-10">
         <a href="#home" aria-label="HH Consulting home" className="flex shrink-0 items-center gap-3">
           <span className="inline-grid h-12 w-12 place-items-center overflow-hidden rounded-2xl bg-white ring-1 ring-brand-gray200">
             <img src="/asset/hhlogo.jpeg" alt="HH Consulting logo" className="h-full w-full object-cover" />
