@@ -1,6 +1,7 @@
 export const siteContent = {
   hero: {
     company: "HH CONSULTING ARCHITECTS & ENGINEERS PLC.",
+    companyAmharic: "ኤች ኤች ኮንሰልቲንግ አርክቴክቶች እና መሀንዲሶች ሃ/የተ/የግል/ማህበር",
     subtitle: "WORLDWIDE CONSULTING ",
     headline: "Engineered Excellence",
     description:
@@ -28,18 +29,12 @@ export const siteContent = {
   },
   about: {
     eyebrow: "About Our Company",
-    title: "Who We Are & What We Deliver",
+    title: "HH CONSULTING ARCHITECTS AND ENGINEERS",
     description:
-      "HH Consulting Architects & Engineers PLC is a multidisciplinary consulting partner delivering architectural design, engineering solutions, infrastructure planning, and construction supervision from concept to completion for public and private clients.",
-    image:
-      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1800&q=80",
-    imageAlt: "Real engineering construction and infrastructure project site",
-    stats: [
-      { value: "10+", label: "Years Experience" },
-      { value: "100+", label: "Projects" },
-      { value: "50+", label: "Experts" },
-      { value: "Global", label: "International Clients" },
-    ],
+      "A multidisciplinary firm based in Ethiopia, dedicated to providing innovative, sustainable, and integrated solutions in architecture and engineering. We combine visionary design with technical excellence to deliver impactful and resilient projects across Ethiopia and beyond.",
+    approachTitle: "OUR APPROACH",
+    approachDescription:
+      "We are committed to excellence, sustainability, and innovation. Our designs balance aesthetics, function, and environmental responsibility. We work closely with clients, stakeholders, and communities to ensure every project meets technical, regulatory, and social expectations.",
   },
   services: {
     eyebrow: "Expertise",
@@ -143,6 +138,33 @@ export const siteContent = {
           "Full building design package including architectural, structural, sanitary, electrical, and supervision services.",
         image: "/asset/churchil hotel.png",
         imageAlt: "Premium hotel skyscraper and hospitality building",
+        href: "#",
+      },
+      {
+        title: "ECOLE DES LUMIERES SCHOOL",
+        location: "Rep de Djibouti",
+        category: "Education",
+        filterCategory: "Buildings",
+        meta: [
+          { label: "Year", value: "2020" },
+          { label: "Country", value: "Djibouti" },
+        ],
+        description:
+          "Professional staff provided by our firm: Architects, Engineers, and CAD experts.",
+        image: "/asset/DJIBUTI.png",
+        imageAlt: "Ecole des Lumieres school project in Djibouti",
+        href: "#",
+      },
+      {
+        title: "ROAD CONSTRUCTION B",
+        location: "Ethiopia",
+        category: "Infrastructure / Road",
+        filterCategory: "Infrastructure",
+        meta: [{ label: "Country", value: "Ethiopia" }],
+        description:
+          "Professional staff provided by our firm: Architects, Project Manager, Office Engineer, Site Engineer, Contract Engineer, Highway Engineer, and Surveyor. Client: Bulehora University. Scope includes curb stone work and asphalt work from 0+780 to 0+860.",
+        image: "/asset/bule road.png",
+        imageAlt: "Road construction project for Bulehora University",
         href: "#",
       },
       {

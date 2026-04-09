@@ -48,6 +48,9 @@ function HeroSection({ data }) {
             </div>
             <div className="leading-tight">
               <p className="m-0 text-[2rem] font-extrabold tracking-[0.01em] text-white">{data.company}</p>
+              {data.companyAmharic ? (
+                <p className="m-0 mt-1 text-[1.06rem] font-black tracking-[0.02em] text-white">{data.companyAmharic}</p>
+              ) : null}
               <p className="m-0 mt-1 text-[1.05rem] font-bold uppercase tracking-[0.12em] text-[#D5B223]">
                 {data.subtitle}
               </p>
