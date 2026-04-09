@@ -43,8 +43,8 @@ function HeroSection({ data }) {
 
         <div className="relative z-10 mx-auto flex min-h-[90vh] w-full max-w-[1320px] flex-col px-6 py-10 text-white sm:min-h-screen sm:px-10 sm:py-14 lg:px-14 lg:py-16">
           <div className="flex items-start gap-3 sm:items-center sm:gap-4">
-            <div className="inline-grid h-12 w-12 place-items-center overflow-hidden rounded-xl bg-white/95 p-1 text-white shadow-[0_10px_24px_rgba(6,19,36,0.18)] sm:h-16 sm:w-16 sm:rounded-2xl">
-              <img src="/asset/hhlogo.jpeg" alt="HH Consulting logo" className="h-full w-full object-cover" />
+            <div className="inline-grid h-11 w-11 place-items-center overflow-hidden rounded-xl bg-white/95 p-1.5 text-white shadow-[0_10px_24px_rgba(6,19,36,0.18)] sm:h-16 sm:w-16 sm:rounded-2xl sm:p-1">
+              <img src="/asset/hhlogo.jpeg" alt="HH Consulting logo" className="h-full w-full object-contain" />
             </div>
             <div className="min-w-0 leading-tight">
               <p className="m-0 text-[1.08rem] font-extrabold leading-[1.2] tracking-[0.01em] text-white sm:text-[2rem] sm:leading-tight">
