@@ -1,10 +1,43 @@
-function ClientLogoTile({ item }) {
+import { useMemo, useState } from "react";
+
+function ClientLogoTile({ item, offsetIndex }) {
+  const [magnetic, setMagnetic] = useState({ x: 0, y: 0 });
+
+  const baseOffsetY = useMemo(() => {
+    const pattern = [0, -8, 6, -5, 10, -7, 4, -4];
+    return pattern[offsetIndex % pattern.length];
+  }, [offsetIndex]);
+
+  const handleMouseMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const deltaX = event.clientX - centerX;
+    const deltaY = event.clientY - centerY;
+
+    setMagnetic({
+      x: deltaX * 0.16,
+      y: deltaY * 0.14,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setMagnetic({ x: 0, y: 0 });
+  };
+
   return (
-    <div className="group flex h-[84px] w-[144px] shrink-0 items-center justify-center rounded-[16px] bg-transparent px-2 transition-all duration-300 hover:-translate-y-0.5 lg:h-[96px] lg:w-[176px]">
+    <div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="group relative z-10 flex h-[84px] w-[144px] shrink-0 items-center justify-center bg-transparent px-2 transition-transform duration-300 lg:h-[96px] lg:w-[176px]"
+      style={{
+        transform: `translate3d(${magnetic.x}px, ${baseOffsetY + magnetic.y}px, 0)`,
+      }}
+    >
       <img
         src={item.logoSrc}
         alt={item.name}
-        className="max-h-[48px] max-w-[120px] object-contain transition duration-300 group-hover:scale-[1.03] lg:max-h-[56px] lg:max-w-[144px]"
+        className="max-h-[48px] max-w-[120px] object-contain transition duration-500 group-hover:scale-[1.03] lg:max-h-[56px] lg:max-w-[144px]"
       />
       <span className="sr-only">{item.name}</span>
     </div>
@@ -36,16 +69,21 @@ function ClientsSection({ data, className = "" }) {
 
         <div className="mt-8 space-y-4 lg:mt-10">
           {data.logoRows.map((row, index) => (
-            <div key={index} className="overflow-hidden">
+            <div key={index} className="relative overflow-hidden py-2">
+              <span
+                className="pointer-events-none absolute inset-x-0 top-1/2 z-0 -translate-y-1/2 border-t-[0.5px] border-dashed border-[#98ABC4]/75"
+                aria-hidden="true"
+              />
+
               <div
                 className={[
                   "flex w-max gap-4 px-1 pb-2 lg:gap-5",
                   index % 2 === 0 ? "animate-marquee" : "animate-marquee-reverse",
-                  "[animation-duration:34s] hover:[animation-play-state:paused]",
+                  "[animation-duration:40s] [animation-timing-function:linear]",
                 ].join(" ")}
               >
                 {duplicateRow(row).map((item, itemIndex) => (
-                  <ClientLogoTile key={`${item.name}-${itemIndex}`} item={item} />
+                  <ClientLogoTile key={`${item.name}-${itemIndex}`} item={item} offsetIndex={itemIndex} />
                 ))}
               </div>
             </div>
