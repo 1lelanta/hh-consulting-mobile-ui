@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
 function WhyChooseIcon({ type }) {
   const common = "h-6 w-6 text-[#D5B223] sm:h-7 sm:w-7";
 
@@ -39,6 +42,42 @@ function WhyChooseIcon({ type }) {
 }
 
 function WhyChooseUsSection({ data, className = "" }) {
+  const gridRef = useRef(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [mouseRatio, setMouseRatio] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1024px)");
+    const apply = () => setIsDesktop(media.matches);
+
+    apply();
+    media.addEventListener("change", apply);
+
+    return () => {
+      media.removeEventListener("change", apply);
+    };
+  }, []);
+
+  const depthByIndex = [46, 12, 58, 24];
+  const speedByIndex = [10, 15, 21, 13];
+  const baseOffsetYByIndex = [0, 28, -12, 20];
+
+  const handleMouseMove = (event) => {
+    if (!isDesktop || !gridRef.current) {
+      return;
+    }
+
+    const rect = gridRef.current.getBoundingClientRect();
+    const ratioX = (event.clientX - rect.left) / rect.width - 0.5;
+    const ratioY = (event.clientY - rect.top) / rect.height - 0.5;
+
+    setMouseRatio({ x: ratioX, y: ratioY });
+  };
+
+  const handleMouseLeave = () => {
+    setMouseRatio({ x: 0, y: 0 });
+  };
+
   return (
     <section
       id="why-choose-us"
@@ -62,26 +101,72 @@ function WhyChooseUsSection({ data, className = "" }) {
           </p>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-5">
-          {data.items.map((item) => (
-            <article
+        <div
+          ref={gridRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8"
+          style={isDesktop ? { perspective: "1200px" } : undefined}
+        >
+          {data.items.map((item, index) => (
+            <motion.article
               key={item.title}
-              className="flex h-full items-start gap-3 rounded-[16px] border border-brand-gray200 bg-white p-4 text-left shadow-[0_10px_24px_rgba(13,40,74,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_34px_rgba(13,40,74,0.12)] sm:min-h-[220px] sm:flex-col sm:items-center sm:gap-0 sm:rounded-[18px] sm:p-5 sm:text-center"
+              className={[
+                "relative overflow-hidden rounded-[16px] bg-white/5 p-4 backdrop-blur-lg sm:p-5",
+              ].join(" ")}
+              style={
+                isDesktop
+                  ? {
+                      transformStyle: "preserve-3d",
+                      transform: `translate3d(${mouseRatio.x * speedByIndex[index]}px, ${baseOffsetYByIndex[index] + mouseRatio.y * speedByIndex[index] * -0.65}px, 0) translateZ(${depthByIndex[index]}px)`,
+                    }
+                  : undefined
+              }
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.07 }}
             >
-              <div className="inline-grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#F4EED8] sm:mx-auto sm:h-14 sm:w-14">
-                <WhyChooseIcon type={item.icon} />
+              <p
+                className="pointer-events-none absolute -right-2 top-0 m-0 select-none text-[86px] font-semibold leading-none tracking-[0.04em] text-transparent sm:text-[108px]"
+                style={{
+                  WebkitTextStroke: "1px rgba(8,25,45,0.28)",
+                  opacity: 0.2,
+                }}
+                aria-hidden="true"
+              >
+                {String(index + 1).padStart(2, "0")}
+              </p>
+
+              <div className="relative h-12 w-12">
+                <motion.span
+                  className="absolute inset-0 rounded-full border border-[#D5B223]/55"
+                  animate={{ scale: [1, 1.22, 1], opacity: [0.45, 0.1, 0.45] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: index * 0.15 }}
+                />
+                <div className="relative inline-grid h-12 w-12 place-items-center rounded-full bg-[#F4EED8]/95">
+                  <WhyChooseIcon type={item.icon} />
+                </div>
               </div>
 
-              <div>
-                <h3 className="m-0 text-[1rem] font-extrabold leading-tight tracking-[-0.02em] text-brand-navy900 sm:mt-4 sm:text-[1.2rem]">
+              <motion.span
+                className="pointer-events-none absolute left-[3.15rem] top-[1.35rem] h-px w-20 origin-left rotate-[60deg] bg-[#90A8C6]"
+                initial={{ scaleX: 0, opacity: 0 }}
+                whileInView={{ scaleX: 1, opacity: 1 }}
+                viewport={{ once: true, amount: 0.45 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.12 + index * 0.08 }}
+              />
+
+              <div className="mt-4 pl-3 sm:pl-4">
+                <h3 className="m-0 font-['JetBrains_Mono',monospace] text-[1rem] font-semibold uppercase leading-tight tracking-[0.02em] text-brand-navy900 sm:text-[1.08rem]">
                   {item.title}
                 </h3>
 
-                <p className="m-0 mt-2 text-[0.9rem] leading-6 text-brand-gray500 sm:mt-3 sm:text-[0.98rem] sm:leading-7">
+                <p className="m-0 mt-2 text-[0.9rem] leading-6 text-brand-gray500 sm:text-[0.96rem] sm:leading-7">
                   {item.description}
                 </p>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>
