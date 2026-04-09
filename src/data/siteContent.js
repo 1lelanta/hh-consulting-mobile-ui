@@ -405,6 +405,5 @@ export const siteContent = {
   },
   stickyActions: [
     { label: "Chat Now", href: "#contact", variant: "default" },
-    { label: "Request Quote", href: "#contact", variant: "active" },
   ],
 };

@@ -42,16 +42,20 @@ function HeroSection({ data }) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(213,178,35,0.14),transparent_34%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.08),transparent_34%)]" />
 
         <div className="relative z-10 mx-auto flex min-h-[90vh] w-full max-w-[1320px] flex-col px-6 py-10 text-white sm:min-h-screen sm:px-10 sm:py-14 lg:px-14 lg:py-16">
-          <div className="flex items-center gap-4">
-            <div className="inline-grid h-16 w-16 place-items-center overflow-hidden rounded-2xl bg-white/95 p-1 text-white shadow-[0_10px_24px_rgba(6,19,36,0.18)]">
+          <div className="flex items-start gap-3 sm:items-center sm:gap-4">
+            <div className="inline-grid h-12 w-12 place-items-center overflow-hidden rounded-xl bg-white/95 p-1 text-white shadow-[0_10px_24px_rgba(6,19,36,0.18)] sm:h-16 sm:w-16 sm:rounded-2xl">
               <img src="/asset/hhlogo.jpeg" alt="HH Consulting logo" className="h-full w-full object-cover" />
             </div>
-            <div className="leading-tight">
-              <p className="m-0 text-[2rem] font-extrabold tracking-[0.01em] text-white">{data.company}</p>
+            <div className="min-w-0 leading-tight">
+              <p className="m-0 text-[1.08rem] font-extrabold leading-[1.2] tracking-[0.01em] text-white sm:text-[2rem] sm:leading-tight">
+                {data.company}
+              </p>
               {data.companyAmharic ? (
-                <p className="m-0 mt-1 text-[1.06rem] font-black tracking-[0.02em] text-white">{data.companyAmharic}</p>
+                <p className="m-0 mt-1 text-[0.86rem] font-black leading-[1.25] tracking-[0.01em] text-white sm:text-[1.06rem] sm:tracking-[0.02em]">
+                  {data.companyAmharic}
+                </p>
               ) : null}
-              <p className="m-0 mt-1 text-[1.05rem] font-bold uppercase tracking-[0.12em] text-[#D5B223]">
+              <p className="m-0 mt-1 text-[0.8rem] font-bold uppercase tracking-[0.1em] text-[#D5B223] sm:text-[1.05rem] sm:tracking-[0.12em]">
                 {data.subtitle}
               </p>
             </div>
