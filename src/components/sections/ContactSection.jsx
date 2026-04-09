@@ -3,18 +3,18 @@ import { motion } from "framer-motion";
 function ContactSection({ data, className = "" }) {
   const icons = {
     phone: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.9">
+      <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.9">
         <path d="M5 4h4l2 5-2.5 1.8a16 16 0 0 0 4.2 4.2L14.5 13l5 2v4a2 2 0 0 1-2 2C10.6 21 3 13.4 3 6a2 2 0 0 1 2-2Z" />
       </svg>
     ),
     email: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.9">
+      <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.9">
         <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
         <path d="m5 8 7 5 7-5" />
       </svg>
     ),
     address: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.9">
+      <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.9">
         <path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11Z" />
         <circle cx="12" cy="10" r="2.5" />
       </svg>
@@ -26,15 +26,15 @@ function ContactSection({ data, className = "" }) {
 
   function ContactCard({ card }) {
     return (
-      <article className="flex min-h-[132px] items-start gap-4 rounded-[16px] border border-brand-gray200 bg-white p-4 shadow-[0_10px_24px_rgba(13,40,74,0.06)]">
-        <div className="mt-0.5 inline-grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#F4EED8] text-[#D5B223]">
+      <article className="flex min-h-[132px] items-start gap-4 rounded-[16px] border border-white/10 bg-white/5 p-4 backdrop-blur-xl">
+        <div className="mt-0.5 inline-grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white/5 text-[#D5B223] [filter:drop-shadow(0_0_6px_rgba(213,178,35,0.35))]">
           {icons[card.icon]}
         </div>
         <div className="min-w-0">
-          <p className="m-0 text-[0.86rem] font-bold uppercase tracking-[0.12em] text-[#D5B223]">{card.title}</p>
+          <p className="m-0 text-[0.86rem] font-bold uppercase tracking-[0.12em] text-slate-100">{card.title}</p>
           <div className="mt-2 space-y-1.5">
             {card.lines.map((line) => (
-              <p key={line} className="m-0 break-words text-[0.98rem] leading-7 text-brand-navy900">
+              <p key={line} className="m-0 break-words text-[0.98rem] leading-7 text-slate-400">
                 {line}
               </p>
             ))}
@@ -51,9 +51,18 @@ function ContactSection({ data, className = "" }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: [0.17, 0.67, 0.83, 0.67] }}
       viewport={{ once: true, amount: 0.2 }}
-      className={`animate-reveal mt-8 -mx-3 scroll-mt-28 bg-[#F3F5F8] px-3 py-16 [animation-delay:430ms] sm:-mx-6 sm:px-6 sm:py-20 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${className}`}
+      className={`animate-reveal relative mt-8 -mx-3 scroll-mt-28 overflow-hidden bg-[#0F172A] px-3 py-16 [animation-delay:430ms] sm:-mx-6 sm:px-6 sm:py-20 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${className}`}
     >
-      <div className="mx-auto w-full max-w-[1320px]">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(0deg, rgba(255,255,255,1) 0, rgba(255,255,255,1) 1px, transparent 1px, transparent 40px), repeating-linear-gradient(90deg, rgba(255,255,255,1) 0, rgba(255,255,255,1) 1px, transparent 1px, transparent 40px)",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-[1320px]">
         <div className="max-w-[860px]">
           <div className="flex items-center gap-3">
             <span className="h-[2px] w-14 bg-[#D5B223]" />
@@ -62,15 +71,24 @@ function ContactSection({ data, className = "" }) {
             </p>
           </div>
 
-          <h2 className="m-0 mt-5 text-[2rem] font-extrabold leading-[1.14] tracking-[-0.02em] text-brand-navy900 sm:text-[2.45rem] lg:text-[3.3rem]">
+          <h2 className="m-0 mt-5 text-[2rem] font-extrabold leading-[1.14] tracking-[-0.02em] text-white sm:text-[2.45rem] lg:text-[3.3rem]">
             {data.title}
           </h2>
 
-          <p className="m-0 mt-4 text-[1.1rem] leading-8 text-brand-gray500">{data.subtitle}</p>
+          <p className="m-0 mt-4 text-[1.1rem] leading-8 text-white/75">{data.subtitle}</p>
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
-          <article id="contact-form" className="rounded-[24px] border border-brand-gray200 bg-white p-5 shadow-[0_16px_34px_rgba(13,40,74,0.08)] sm:p-6">
+          <div className="relative">
+            <span
+              className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 text-[220px] font-black leading-none text-transparent opacity-5 lg:text-[300px]"
+              style={{ WebkitTextStroke: "1.5px rgba(255,255,255,1)" }}
+              aria-hidden="true"
+            >
+              07
+            </span>
+
+            <article id="contact-form" className="relative z-10 rounded-[24px] border border-brand-gray200 bg-white p-5 shadow-[0_16px_34px_rgba(13,40,74,0.08)] sm:p-6">
               <h3 className="m-0 text-[1.45rem] font-extrabold tracking-[-0.02em] text-brand-navy900 sm:text-[1.8rem]">
                 {data.form.title}
               </h3>
@@ -102,7 +120,8 @@ function ContactSection({ data, className = "" }) {
                   {data.form.buttonLabel}
                 </button>
               </form>
-          </article>
+            </article>
+          </div>
 
           <div>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
