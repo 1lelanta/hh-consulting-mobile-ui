@@ -2,40 +2,30 @@ function AboutSection({ data, className = "" }) {
   return (
     <section
       id="about"
-      className={`animate-reveal relative mt-8 -mx-3 scroll-mt-28 overflow-hidden bg-[#F3F5F8] px-3 py-14 [animation-delay:120ms] sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-10 lg:px-10 lg:py-20 2xl:-mx-14 2xl:px-14 ${className}`}
+      className={`animate-reveal relative mt-8 -mx-3 scroll-mt-28 overflow-hidden bg-gradient-to-r from-[#0A234A] via-[#123660] to-[#F3F5F8] px-3 py-14 [animation-delay:120ms] sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-10 lg:px-10 lg:py-20 2xl:-mx-14 2xl:px-14 ${className}`}
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[58%] lg:block">
         <img src={data.image} alt="" aria-hidden="true" className="h-full w-full object-cover object-left" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#08192D]/26 via-[#08192D]/10 to-[#F3F5F8]/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#08192D]/72 via-[#0B2A51]/38 to-[#F3F5F8]/88" />
       </div>
 
       <div className="mx-auto w-full max-w-[1320px]">
         <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
-          <div className="relative lg:min-h-[560px]">
+          <div className="relative lg:min-h-[580px]">
             <div className="relative overflow-hidden rounded-[2.2rem] border border-brand-gray200/80 bg-white shadow-[0_14px_30px_rgba(13,40,74,0.09)] lg:hidden">
               <img src={data.image} alt={data.imageAlt} className="h-[320px] w-full object-cover object-center sm:h-[420px]" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08192D]/20 via-transparent to-transparent" />
-            </div>
-
-            <div className="absolute bottom-5 left-5 hidden rounded-2xl bg-white/92 px-4 py-3 shadow-[0_12px_28px_rgba(6,19,36,0.10)] backdrop-blur lg:block">
-              <p className="m-0 text-[0.82rem] font-bold uppercase tracking-[0.14em] text-[#D5B223]">HH Consulting</p>
-              <p className="m-0 mt-1 text-[0.98rem] font-semibold text-brand-navy900">Architecture. Engineering. Supervision.</p>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08192D]/44 via-[#08192D]/12 to-transparent" />
             </div>
           </div>
 
-          <div className="max-w-[720px] rounded-[2rem] border border-brand-gray200/80 bg-white/88 p-5 shadow-[0_16px_36px_rgba(13,40,74,0.09)] backdrop-blur-sm sm:p-7 lg:p-8">
-            <div className="flex items-center gap-3">
-              <span className="h-[2px] w-14 bg-[#D5B223]" />
-              <p className="m-0 text-[0.95rem] font-extrabold uppercase tracking-[0.14em] text-[#D5B223]">
-                {data.eyebrow}
-              </p>
-            </div>
+          <div className="animate-reveal max-w-[740px] rounded-[2rem] border border-white/70 bg-white/94 p-6 shadow-[0_20px_42px_rgba(9,30,56,0.16)] backdrop-blur-md sm:p-8 lg:-ml-20 lg:p-10 [animation-delay:220ms]">
+            <p className="m-0 text-[0.9rem] font-extrabold uppercase tracking-[0.14em] text-[#D5B223]">{data.eyebrow}</p>
 
-            <h2 className="m-0 mt-5 text-balance text-[2rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-brand-navy900 sm:text-[2.5rem] lg:text-[3.65rem]">
+            <h2 className="m-0 mt-4 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-brand-navy900 sm:text-[2.65rem] lg:text-[3.45rem]">
               {data.title}
             </h2>
 
-            <p className="m-0 mt-6 text-[1.08rem] leading-8 text-brand-gray500 sm:text-[1.12rem]">
+            <p className="m-0 mt-6 text-[1.05rem] leading-8 text-brand-gray500 sm:text-[1.14rem] sm:leading-9">
               {data.description}
             </p>
 
@@ -43,7 +33,7 @@ function AboutSection({ data, className = "" }) {
               {data.stats.map((stat) => (
                 <article
                   key={stat.label}
-                  className="rounded-2xl border border-brand-gray200/90 bg-white px-4 py-5 shadow-[0_10px_24px_rgba(13,40,74,0.06)]"
+                  className="rounded-2xl border border-brand-gray200/90 bg-white px-4 py-5 shadow-[0_10px_24px_rgba(13,40,74,0.07)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_34px_rgba(13,40,74,0.12)]"
                 >
                   <p className="m-0 text-[1.7rem] font-extrabold leading-none tracking-[-0.02em] text-brand-navy900 sm:text-[1.95rem]">
                     {stat.value}

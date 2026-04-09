@@ -12,12 +12,13 @@ export const siteContent = {
     imageAlt: "Modern architectural facade hero image",
   },
   about: {
-    eyebrow: "About Company",
-    title: "Who We Are",
+    eyebrow: "About Our Company",
+    title: "Who We Are & What We Deliver",
     description:
-      "HH Consulting Architects & Engineers PLC is a multidisciplinary consulting company specializing in architectural design, engineering solutions, infrastructure planning, and construction supervision across Ethiopia and international markets.",
-    image: "/asset/hero-modern-building.svg",
-    imageAlt: "Modern office and building illustration for HH Consulting",
+      "HH Consulting Architects & Engineers PLC is a multidisciplinary consulting partner delivering architectural design, engineering solutions, infrastructure planning, and construction supervision from concept to completion for public and private clients.",
+    image:
+      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1800&q=80",
+    imageAlt: "Real engineering construction and infrastructure project site",
     stats: [
       { value: "10+", label: "Years Experience" },
       { value: "100+", label: "Projects" },

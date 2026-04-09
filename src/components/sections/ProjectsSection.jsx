@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useRef } from "react";
 
 function ProjectsSection({ data, className = "" }) {
   const locationIcon = (
@@ -8,16 +8,20 @@ function ProjectsSection({ data, className = "" }) {
     </svg>
   );
 
-  const filterTabs = ["All", "Buildings", "Infrastructure", "Airport", "Roads", "Bridges", "Irrigation"];
-  const [activeFilter, setActiveFilter] = useState("All");
+  const carouselRef = useRef(null);
 
-  const visibleProjects = useMemo(() => {
-    if (activeFilter === "All") {
-      return data.items;
+  const scrollCarousel = (direction) => {
+    const container = carouselRef.current;
+
+    if (!container) {
+      return;
     }
 
-    return data.items.filter((project) => project.filterCategory === activeFilter);
-  }, [activeFilter, data.items]);
+    const cardWidth = container.querySelector("article")?.getBoundingClientRect().width ?? 360;
+    const distance = direction === "left" ? -(cardWidth + 20) * 3 : (cardWidth + 20) * 3;
+
+    container.scrollBy({ left: distance, behavior: "smooth" });
+  };
 
   return (
     <section
@@ -47,87 +51,94 @@ function ProjectsSection({ data, className = "" }) {
           </a>
         </div>
 
-        <div className="mt-8 flex gap-3 overflow-x-auto pb-1 no-scrollbar">
-          {filterTabs.map((tab) => {
-            const active = tab === activeFilter;
+        <div className="mt-8">
+          <p className="m-0 text-[0.95rem] font-medium text-brand-gray500">
+            Swipe left or use the arrows on both sides to explore the featured projects.
+          </p>
 
-            return (
-              <button
-                key={tab}
-                type="button"
-                onClick={() => setActiveFilter(tab)}
-                className={[
-                  "whitespace-nowrap rounded-full border px-4 py-2 text-[0.94rem] font-semibold transition-all duration-300",
-                  active
-                    ? "border-[#D5B223] bg-[#D5B223] text-white shadow-[0_10px_20px_rgba(190,154,90,0.20)]"
-                    : "border-brand-gray200 bg-white text-brand-gray500 hover:-translate-y-0.5 hover:border-[#D5B223] hover:text-[#D5B223]",
-                ].join(" ")}
-              >
-                {tab}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {visibleProjects.map((project) => (
-            <article
-              key={project.title}
-              className="group overflow-hidden rounded-[1.75rem] border border-brand-gray200 bg-white shadow-[0_10px_24px_rgba(13,40,74,0.07)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(13,40,74,0.12)]"
+          <div className="mt-10 grid grid-cols-[auto_1fr_auto] items-center gap-4 lg:gap-6">
+            <button
+              type="button"
+              onClick={() => scrollCarousel("left")}
+              aria-label="Scroll projects left"
+              className="inline-grid h-12 w-12 shrink-0 place-items-center rounded-full border border-brand-gray200 bg-white text-brand-navy900 shadow-[0_10px_22px_rgba(13,40,74,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D5B223] hover:text-[#D5B223]"
             >
-              <div className="relative">
-                <img
-                  src={project.image}
-                  alt={project.imageAlt}
-                  className="h-[250px] w-full object-cover object-center transition duration-500 group-hover:scale-105 sm:h-[280px]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#08192D]/35 via-transparent to-transparent" />
-                <span className="absolute left-4 top-4 rounded-full bg-[#08192D]/65 px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur">
-                  {project.category}
-                </span>
-              </div>
+              <span aria-hidden="true">←</span>
+            </button>
 
-              <div className="flex h-full flex-col p-6 sm:p-7">
-                <p className="m-0 inline-flex items-center gap-2 rounded-full bg-[#F4F6FA] px-3 py-2 text-[0.92rem] font-semibold text-brand-navy900">
-                  <span className="text-[#D5B223]">{locationIcon}</span>
-                  {project.location}
-                </p>
-
-                <h3 className="m-0 mt-4 text-[1.45rem] font-extrabold leading-tight tracking-[-0.02em] text-brand-navy900 sm:text-[1.8rem]">
-                  {project.title}
-                </h3>
-
-                <div className="mt-4 grid grid-cols-2 gap-3">
-                  {(project.meta || []).map((item) => (
-                    <div key={`${project.title}-${item.label}`} className="rounded-2xl border border-brand-gray200 bg-[#F8FAFD] px-4 py-3">
-                      <p className="m-0 text-[0.74rem] font-bold uppercase tracking-[0.12em] text-[#D5B223]">
-                        {item.label}
-                      </p>
-                      <p className="m-0 mt-1 text-[0.95rem] font-semibold leading-6 text-brand-navy900">
-                        {item.value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <p className="m-0 mt-5 text-[1rem] leading-7 text-brand-gray500 sm:text-[1.05rem]">
-                  {project.description}
-                </p>
-
-                <a
-                  href={project.href}
-                  className="mt-6 inline-flex items-center gap-2 text-[1rem] font-semibold text-[#D5B223] underline-offset-4 transition-all duration-300 hover:gap-3 hover:underline"
+            <div
+              ref={carouselRef}
+              className="flex gap-5 overflow-x-auto pb-4 pt-1 no-scrollbar snap-x snap-mandatory scroll-smooth"
+            >
+              {data.items.map((project) => (
+                <article
+                  key={project.title}
+                  className="group w-[86%] shrink-0 snap-start overflow-hidden rounded-[1.75rem] border border-brand-gray200 bg-white shadow-[0_10px_24px_rgba(13,40,74,0.07)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(13,40,74,0.12)] sm:w-[420px] lg:w-[390px]"
                 >
-                  View Details <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </article>
-          ))}
+                  <div className="relative">
+                    <img
+                      src={project.image}
+                      alt={project.imageAlt}
+                      className="h-[250px] w-full object-cover object-center transition duration-500 group-hover:scale-105 sm:h-[280px]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#08192D]/35 via-transparent to-transparent" />
+                    <span className="absolute left-4 top-4 rounded-full bg-[#08192D]/65 px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur">
+                      {project.category}
+                    </span>
+                  </div>
+
+                  <div className="flex h-full flex-col p-6 sm:p-7">
+                    <p className="m-0 inline-flex items-center gap-2 rounded-full bg-[#F4F6FA] px-3 py-2 text-[0.92rem] font-semibold text-brand-navy900">
+                      <span className="text-[#D5B223]">{locationIcon}</span>
+                      {project.location}
+                    </p>
+
+                    <h3 className="m-0 mt-4 text-[1.45rem] font-extrabold leading-tight tracking-[-0.02em] text-brand-navy900 sm:text-[1.8rem]">
+                      {project.title}
+                    </h3>
+
+                    <div className="mt-4 grid grid-cols-2 gap-3">
+                      {(project.meta || []).map((item) => (
+                        <div key={`${project.title}-${item.label}`} className="rounded-2xl border border-brand-gray200 bg-[#F8FAFD] px-4 py-3">
+                          <p className="m-0 text-[0.74rem] font-bold uppercase tracking-[0.12em] text-[#D5B223]">
+                            {item.label}
+                          </p>
+                          <p className="m-0 mt-1 text-[0.95rem] font-semibold leading-6 text-brand-navy900">
+                            {item.value}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <p className="m-0 mt-5 text-[1rem] leading-7 text-brand-gray500 sm:text-[1.05rem]">
+                      {project.description}
+                    </p>
+
+                    <a
+                      href={project.href}
+                      className="mt-6 inline-flex items-center gap-2 text-[1rem] font-semibold text-[#D5B223] underline-offset-4 transition-all duration-300 hover:gap-3 hover:underline"
+                    >
+                      View Details <span aria-hidden="true">→</span>
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => scrollCarousel("right")}
+              aria-label="Scroll projects right"
+              className="inline-grid h-12 w-12 shrink-0 place-items-center rounded-full border border-brand-gray200 bg-white text-brand-navy900 shadow-[0_10px_22px_rgba(13,40,74,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D5B223] hover:text-[#D5B223]"
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
         </div>
 
-        {visibleProjects.length === 0 ? (
+        {data.items.length === 0 ? (
           <div className="mt-10 rounded-[1.5rem] border border-dashed border-brand-gray300 bg-white px-6 py-10 text-center text-brand-gray500">
-            No projects available in this category yet.
+            No projects available in this section yet.
           </div>
         ) : null}
       </div>

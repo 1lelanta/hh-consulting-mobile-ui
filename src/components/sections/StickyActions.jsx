@@ -1,10 +1,12 @@
 function StickyActions({ data }) {
+  const sortedActions = [...data].sort((a, b) => (a.variant === "active" ? -1 : 1) - (b.variant === "active" ? -1 : 1));
+
   return (
     <nav
       aria-label="Quick contact actions"
-      className="fixed bottom-4 left-1/2 z-40 grid w-[calc(100%-1.5rem)] max-w-[366px] -translate-x-1/2 grid-cols-2 gap-3 lg:left-auto lg:right-8 lg:w-[170px] lg:grid-cols-1 lg:translate-x-0 lg:gap-3"
+      className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3"
     >
-      {data.map((action) => {
+      {sortedActions.map((action) => {
         const active = action.variant === "active";
 
         return (
@@ -12,10 +14,10 @@ function StickyActions({ data }) {
             key={action.label}
             href={action.href}
             className={[
-              "flex items-center justify-center rounded-2xl px-4 py-4 text-center text-[0.95rem] font-semibold shadow-[0_12px_24px_rgba(6,19,36,0.20)]",
+              "flex items-center justify-center text-center font-semibold shadow-[0_12px_24px_rgba(6,19,36,0.20)] transition-all duration-300 hover:-translate-y-0.5",
               active
-                ? "bg-[#D5B223] text-white"
-                : "bg-brand-navy900 text-white",
+                ? "min-w-[188px] rounded-2xl bg-[#D5B223] px-5 py-4 text-[0.96rem] text-white"
+                : "rounded-full bg-brand-navy900 px-4 py-3 text-[0.9rem] text-white",
             ].join(" ")}
           >
             {action.label}
