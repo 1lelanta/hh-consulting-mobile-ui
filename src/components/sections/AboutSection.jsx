@@ -49,7 +49,7 @@ function AboutSection({ data, className = "" }) {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const mobileParallaxY = useTransform(scrollYProgress, [0, 1], [34, -38]);
+  const watermarkParallaxX = useTransform(scrollYProgress, [0, 1], [-28, 28]);
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 1023px)");
@@ -72,7 +72,17 @@ function AboutSection({ data, className = "" }) {
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-[38%] z-0 -translate-y-1/2 select-none text-center sm:top-[42%]"
-        style={{ y: isMobile ? mobileParallaxY : 0 }}
+        style={{
+          x: watermarkParallaxX,
+          WebkitMaskImage: isMobile
+            ? "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)"
+            : "none",
+          maskImage: isMobile
+            ? "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)"
+            : "none",
+          WebkitMaskRepeat: "no-repeat",
+          maskRepeat: "no-repeat",
+        }}
       >
         <p
           className="m-0 whitespace-nowrap text-[92px] font-semibold uppercase leading-none tracking-[0.08em] text-transparent sm:text-[132px] lg:text-[170px]"
@@ -105,8 +115,8 @@ function AboutSection({ data, className = "" }) {
               </p>
 
               {data.approachTitle || data.approachDescription ? (
-                <div className="px-2 sm:px-3 lg:px-0">
-                  <div className="relative w-full max-w-[780px] rounded-[20px] bg-[#EAEFF5] p-4 text-right shadow-[0_10px_22px_rgba(13,40,74,0.05)] sm:p-6 lg:text-left">
+                <div className="-ml-1 w-[95%] sm:ml-0 sm:px-3 lg:-ml-[50px] lg:w-full lg:px-0">
+                  <div className="relative z-20 w-full max-w-[780px] rounded-[20px] border border-white/35 bg-white/40 p-4 text-right shadow-[0_10px_22px_rgba(13,40,74,0.05)] backdrop-blur-[10px] sm:p-6 lg:text-left">
                     <span className="pointer-events-none absolute -left-[1px] -top-[1px] h-4 w-4 border-l-[0.5px] border-t-[0.5px] border-[#D5B223]" aria-hidden="true" />
                     <span className="pointer-events-none absolute -right-[1px] -top-[1px] h-4 w-4 border-r-[0.5px] border-t-[0.5px] border-[#D5B223]" aria-hidden="true" />
                     <span className="pointer-events-none absolute -bottom-[1px] -left-[1px] h-4 w-4 border-b-[0.5px] border-l-[0.5px] border-[#D5B223]" aria-hidden="true" />
