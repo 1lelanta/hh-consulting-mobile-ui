@@ -71,18 +71,8 @@ function ContactSection({ data, className = "" }) {
           <p className="m-0 mt-4 text-[1.1rem] leading-8 text-brand-gray500">{data.subtitle}</p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-          <div className="relative overflow-hidden rounded-[24px] border border-brand-gray200 bg-white shadow-[0_16px_34px_rgba(13,40,74,0.08)]">
-            <img src={data.image} alt={data.imageAlt} className="h-[280px] w-full object-cover sm:h-[340px] lg:h-[100%] lg:min-h-[620px]" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#08192D]/28 via-transparent to-transparent" />
-            <div className="absolute bottom-5 left-5 rounded-2xl bg-white/92 px-4 py-3 shadow-[0_12px_28px_rgba(6,19,36,0.12)] backdrop-blur">
-              <p className="m-0 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-[#D5B223]">Addis Ababa, Ethiopia</p>
-              <p className="m-0 mt-1 text-[0.98rem] font-semibold text-brand-navy900">Consulting office / location map visual</p>
-            </div>
-          </div>
-
-          <div>
-            <article id="contact-form" className="rounded-[24px] border border-brand-gray200 bg-white p-5 shadow-[0_16px_34px_rgba(13,40,74,0.08)] sm:p-6">
+        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
+          <article id="contact-form" className="rounded-[24px] border border-brand-gray200 bg-white p-5 shadow-[0_16px_34px_rgba(13,40,74,0.08)] sm:p-6">
               <h3 className="m-0 text-[1.45rem] font-extrabold tracking-[-0.02em] text-brand-navy900 sm:text-[1.8rem]">
                 {data.form.title}
               </h3>
@@ -114,9 +104,10 @@ function ContactSection({ data, className = "" }) {
                   {data.form.buttonLabel}
                 </button>
               </form>
-            </article>
+          </article>
 
-            <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               {data.contactCards.map((card) => (
                 <ContactCard key={card.title} card={card} />
               ))}
