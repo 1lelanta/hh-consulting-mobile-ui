@@ -168,6 +168,18 @@ export const siteContent = {
         href: "#",
       },
       {
+        title: "IRRIGATION WORK",
+        location: "Ethiopia",
+        category: "Irrigation / Water",
+        filterCategory: "Infrastructure",
+        meta: [{ label: "Country", value: "Ethiopia" }],
+        description:
+          "Professional staff provided by our firm: Hydrolics engineers, Architects, project manager, office engineer, site engineer, contract engineer, and surveyor.",
+        image: "/asset/irrigation.png",
+        imageAlt: "Irrigation work project in Ethiopia",
+        href: "#",
+      },
+      {
         title: "Axum International Airport",
         location: "Axum, Tigray",
         category: "Aviation / Terminal Design",
