@@ -9,7 +9,7 @@ export const siteContent = {
     ctaHref: "#projects",
     backgroundImages: [
       {
-        src: "/asset/hero-modern-building.svg",
+        src: "public/asset/ali bira guesthouse.png",
         alt: "Modern architectural building exterior",
       },
       {
@@ -17,7 +17,7 @@ export const siteContent = {
         alt: "Engineering bridge project illustration",
       },
       {
-        src: "/asset/project-towers.svg",
+        src: "public/asset/churchil hotel.png",
         alt: "High-rise tower project illustration",
       },
       {
@@ -78,7 +78,7 @@ export const siteContent = {
     ],
   },
   whyChooseUs: {
-    eyebrow: "Why Choose Us",
+    eyebrow: "Our Advantage",
     title: "Why Choose Us",
     subtitle:
       "Delivering innovative architectural and engineering solutions with excellence, reliability, and impact.",
@@ -110,6 +110,7 @@ export const siteContent = {
     ],
   },
   projects: {
+    eyebrow: "Our Portfolio",
     title: "Featured Projects",
     viewAllLabel: "View All",
     viewAllHref: "#projects",
@@ -225,17 +226,17 @@ export const siteContent = {
     ],
   },
   team: {
-    eyebrow: "Leadership & Core Team",
-    title: "Leadership & Core Team",
+    eyebrow: "PEOPLE BEHIND THE MISSION",
+    title: "OUR TEAM",
     subtitle:
-      "Meet the professionals leading our architectural, engineering, and project delivery excellence.",
+      "Meet the workers behind our architectural, engineering, and project delivery excellence.",
     leadership: [
       {
         name: "Hailemichael Solomon",
         role: "General Manager",
         description:
           "Leads strategic direction, project oversight, and executive decision-making across all consulting and engineering operations.",
-        image: "/asset/team-01.svg",
+        image: "/asset/hailemichael.png",
         imageAlt: "Portrait of Hailemichael Solomon",
       },
       {
@@ -243,7 +244,7 @@ export const siteContent = {
         role: "Deputy General Manager",
         description:
           "Supports company leadership, project coordination, and operational management across departments.",
-        image: "/asset/team-02.svg",
+        image: "/asset/Feven.png",
         imageAlt: "Portrait of Feven Girma",
       },
     ],
@@ -253,7 +254,7 @@ export const siteContent = {
         role: "Human Resource Department",
         description:
           "Manages talent acquisition, staff development, and human resource operations.",
-        image: "/asset/team-03.svg",
+        image: "/asset/yitbarak.png",
         imageAlt: "Portrait of Yitbarek Tekle",
       },
       {
@@ -261,7 +262,7 @@ export const siteContent = {
         role: "Bid Department Head",
         description:
           "Oversees tender preparation, proposal documentation, and bidding processes.",
-        image: "/asset/team-01.svg",
+        image: "/asset/dibora.png",
         imageAlt: "Portrait of Dibora Mesfin",
       },
       {
@@ -269,17 +270,8 @@ export const siteContent = {
         role: "IT Department",
         description:
           "Responsible for technology systems, digital operations, and IT support infrastructure.",
-        image: "/asset/team-02.svg",
+        image: "/asset/hailegiorgis.png",
         imageAlt: "Portrait of Hailegiorgis Solomon",
-      },
-      {
-        name: "SCAD Team",
-        role: "Supervision & Contract Administration",
-        description:
-          "Ensures project quality control, supervision, compliance, and contract management.",
-        image: "/asset/team-03.svg",
-        imageAlt: "SCAD team visual",
-        isServiceCard: true,
       },
     ],
     supportTitle: "Administrative Support",
@@ -287,20 +279,20 @@ export const siteContent = {
       {
         name: "Helen",
         role: "Receptionist",
-        image: "/asset/team-01.svg",
+        image: "/asset/helen.png",
         imageAlt: "Portrait of Helen",
       },
       {
         name: "Mekdes Gebru",
         role: "Receptionist",
-        image: "/asset/team-02.svg",
+        image: "/asset/mekdes.png",
         imageAlt: "Portrait of Mekdes Gebru",
       },
     ],
     highlights: ["Design Department", "Payment Department", "Staff Recognition"],
   },
   contact: {
-    eyebrow: "Get in Touch",
+    eyebrow: "Let’s Connect",
     title: "Get in Touch",
     subtitle: "Let’s discuss your next architectural, engineering, or infrastructure project.",
     image: "/asset/hero-modern-building.svg",
