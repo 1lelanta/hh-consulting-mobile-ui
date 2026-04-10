@@ -1,8 +1,26 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 function ProjectsSection({ data, className = "" }) {
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia("(max-width: 639px)").matches);
   const totalProjects = Array.isArray(data?.items) ? data.items.length : 0;
-  const visibleProjects = (data.items || []).slice(0, Math.min(3, totalProjects));
+  const maxVisibleProjects = isMobile ? 1 : 3;
+  const visibleProjects = (data.items || []).slice(0, Math.min(maxVisibleProjects, totalProjects));
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 639px)");
+
+    const apply = () => {
+      setIsMobile(media.matches);
+    };
+
+    apply();
+    media.addEventListener("change", apply);
+
+    return () => {
+      media.removeEventListener("change", apply);
+    };
+  }, []);
 
   const getProjectYear = (project) => {
     const yearMeta = (project.meta || []).find((item) => item.label?.toLowerCase() === "year");
@@ -90,7 +108,7 @@ function ProjectsSection({ data, className = "" }) {
           {visibleProjects.map((project) => renderProjectItem(project))}
         </div>
 
-        {totalProjects > 3 ? (
+        {totalProjects > maxVisibleProjects ? (
           <div className="relative z-30 mt-12 flex justify-center pointer-events-auto">
             <a
               href="#all-projects"

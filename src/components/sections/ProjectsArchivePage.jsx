@@ -9,38 +9,33 @@ function ProjectsArchivePage({ data }) {
   };
 
   const renderProjectItem = (project) => (
-    <article key={project.title} className="group overflow-hidden rounded-[18px] bg-white shadow-[0_12px_28px_rgba(13,40,74,0.1)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(13,40,74,0.15)]">
-      <div className="relative overflow-hidden">
+    <article key={project.title} className="block">
+      <div className="group relative overflow-hidden">
         <img
           src={project.image}
           alt={project.imageAlt}
-          className="aspect-[4/3] w-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.03]"
+          className="aspect-[4/3] w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.02)_0%,rgba(2,6,23,0.1)_100%)]" />
-      </div>
 
-      <div className="space-y-3 p-5">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="m-0 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-[#B18428]">{project.category}</p>
-            <h3 className="m-0 mt-2 text-[1.05rem] font-extrabold leading-[1.25] text-brand-navy900 sm:text-[1.12rem]">
-              {project.title}
-            </h3>
+        <div className="absolute inset-0 overflow-hidden p-4 text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          <div className="pointer-events-none absolute inset-0 bg-[#041A33]/34" />
+          <div className="pointer-events-none absolute inset-0 water-overlay-layer animate-water-drift opacity-45" />
+          <div className="pointer-events-none absolute inset-0 water-overlay-layer animate-water-ripple opacity-35" />
+
+          <div className="relative z-10 mt-auto rounded-[10px] bg-[#031428]/32 px-3 py-2.5 backdrop-blur-[1px]">
+            <p className="m-0 text-[0.75rem] font-semibold uppercase tracking-[0.08em] text-white/82">
+              {getProjectYear(project)} • {project.location}
+            </p>
+            <p className="m-0 mt-2 text-[0.9rem] leading-6 text-white/95 sm:text-[0.96rem] sm:leading-7">
+              {project.description}
+            </p>
           </div>
-          <span className="shrink-0 rounded-full bg-[#F4F7FB] px-3 py-1 text-[0.74rem] font-semibold text-brand-gray500">
-            {getProjectYear(project)}
-          </span>
         </div>
 
-        <p className="m-0 text-[0.95rem] leading-7 text-brand-gray500">{project.description}</p>
-
-        <div className="flex flex-wrap gap-2 pt-1">
-          <span className="rounded-full bg-[#F4F7FB] px-3 py-1 text-[0.78rem] font-semibold text-brand-navy900">{project.location}</span>
-          {(project.meta || []).slice(0, 2).map((item) => (
-            <span key={`${project.title}-${item.label}`} className="rounded-full bg-[#FFF6DD] px-3 py-1 text-[0.78rem] font-semibold text-brand-navy900">
-              {item.label}: {item.value}
-            </span>
-          ))}
+        <div className="absolute inset-x-0 bottom-0 z-20 border-t border-white/20 bg-[#041A33]/88 px-3 py-2 backdrop-blur-sm sm:px-4 sm:py-2.5">
+          <p className="m-0 text-[0.86rem] font-extrabold uppercase tracking-[0.08em] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.35)] sm:text-[0.92rem]">
+            {project.title}
+          </p>
         </div>
       </div>
     </article>

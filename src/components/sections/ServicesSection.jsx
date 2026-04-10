@@ -109,7 +109,7 @@ function ExpertiseItem({ service, index, staggerClass, scrollYProgress, isDeskto
     <motion.article
       variants={itemVariants}
       className={[
-        "relative flex min-h-[108px] w-full items-start gap-4 border-b border-[#D9E1EC] py-4 text-left",
+        "relative flex min-h-[108px] w-full items-start gap-4 border-b border-[#D9E1EC] py-4 text-left transition-all duration-300 ease-in-out hover:translate-x-2 hover:shadow-lg",
         staggerClass,
       ].join(" ")}
     >
@@ -151,23 +151,6 @@ function ServicesSection({ data, className = "" }) {
   const imageY = useTransform(scrollYProgress, [0, 0.5, 1], [56, 0, -48]);
   const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.94, 1, 1.06]);
   const imageRotate = useTransform(scrollYProgress, [0, 0.5, 1], [-2.5, 0, 2.5]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.7, 1, 1, 0.88]);
-  const leftRevealVariants = {
-    hidden: { opacity: 0, x: -48 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-  const rightRevealVariants = {
-    hidden: { opacity: 0, x: 48 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, ease: "easeOut", delay: 0.2 },
-    },
-  };
 
   useEffect(() => {
     const media = window.matchMedia("(min-width: 1024px)");
@@ -204,10 +187,10 @@ function ServicesSection({ data, className = "" }) {
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-12">
           <motion.div
             className="max-w-[760px] lg:-ml-3"
-            variants={leftRevealVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
           >
             <div className="flex items-center gap-3">
               <span className="h-[2px] w-14 bg-[#D5B223]" />
@@ -255,8 +238,12 @@ function ServicesSection({ data, className = "" }) {
 
           {data.image ? (
             <motion.figure
-              className="relative m-0 overflow-hidden rounded-[22px] border border-white/60 bg-white shadow-[0_18px_44px_rgba(13,40,74,0.16)] lg:sticky lg:top-24"
-              style={reduceMotion ? undefined : { y: imageY, scale: imageScale, rotate: imageRotate, opacity: imageOpacity }}
+              className="relative m-0 overflow-hidden rounded-[22px] border border-white/60 bg-white shadow-[0_18px_44px_rgba(13,40,74,0.16)] transition-all duration-500 hover:scale-105 hover:shadow-2xl lg:sticky lg:top-24"
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }}
+              style={reduceMotion ? undefined : { y: imageY, scale: imageScale, rotate: imageRotate }}
             >
               <motion.img
                 src={data.image}
