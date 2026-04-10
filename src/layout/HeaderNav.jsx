@@ -14,8 +14,33 @@ function HeaderNav() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const lastScrollYRef = useRef(0);
+  const navSurfaceClass = "bg-[#372D14]";
 
   useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth >= 768) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const isMobileViewport = window.innerWidth < 768;
+
+    if (!(isMenuOpen && isMobileViewport)) {
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.overscrollBehavior = "";
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      return undefined;
+    }
+
     const scrollY = window.scrollY;
     const prevHtmlOverflow = document.documentElement.style.overflow;
     const prevHtmlOverscrollBehavior = document.documentElement.style.overscrollBehavior;
@@ -44,9 +69,7 @@ function HeaderNav() {
       document.body.style.top = prevBodyTop;
       document.body.style.width = prevBodyWidth;
 
-      if (isMenuOpen) {
-        window.scrollTo(0, scrollY);
-      }
+      window.scrollTo(0, scrollY);
     };
   }, [isMenuOpen]);
 
@@ -83,7 +106,7 @@ function HeaderNav() {
 
   return (
     <header
-      className={`fixed left-0 right-0 top-0 z-50 px-2 [transition-property:transform,opacity,filter,padding] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-4 ${
+      className={`fixed left-0 right-0 top-0 z-50 px-0 [transition-property:transform,opacity,filter,padding] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-4 ${
         isNavVisible
           ? "translate-y-0 opacity-100 scale-100 blur-0"
           : "-translate-y-4 opacity-0 scale-[0.96] blur-[2px] pointer-events-none"
@@ -92,7 +115,7 @@ function HeaderNav() {
       }`}
     >
       <nav
-        className={`mx-auto w-full max-w-[1400px] rounded-2xl border border-[#8E7A4A]/45 bg-[#372D14] backdrop-blur-xl transition-all duration-500 ${
+        className={`mx-auto w-full max-w-[1400px] rounded-none border border-[#8E7A4A]/45 ${navSurfaceClass} transition-all duration-500 sm:rounded-md ${
           hasScrolled
             ? "shadow-[0_10px_22px_rgba(16,14,10,0.26),inset_0_1px_0_rgba(255,255,255,0.06)]"
             : "shadow-[0_18px_38px_rgba(16,14,10,0.34),inset_0_1px_0_rgba(255,255,255,0.1)]"
@@ -158,7 +181,7 @@ function HeaderNav() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-x-0 top-[calc(100%-1px)] z-[80] flex h-[calc(100dvh-5.8rem)] flex-col overflow-hidden rounded-b-2xl border-x border-b border-[#8E7A4A]/45 bg-[#372D14] text-[#F5F5F5] shadow-[0_22px_44px_rgba(7,6,4,0.48)] md:hidden"
+                className={`absolute inset-x-0 top-[calc(100%-1px)] z-[80] flex h-[calc(100dvh-5.8rem)] flex-col overflow-hidden rounded-b-md border-x border-b border-[#8E7A4A]/45 ${navSurfaceClass} text-[#F5F5F5] shadow-[0_22px_44px_rgba(7,6,4,0.48)] md:hidden`}
               >
                 <div className="flex-1 overflow-y-auto px-7 py-8">
                   <div className="space-y-5">
@@ -183,7 +206,7 @@ function HeaderNav() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-6 border-t border-[#8E7A4A]/30 bg-[#372D14] px-7 py-5">
+                <div className={`grid grid-cols-2 gap-6 border-t border-[#8E7A4A]/30 ${navSurfaceClass} px-7 py-5`}>
                   <div>
                     <p className="m-0 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#D6B84F]">Contact</p>
                     <p className="m-0 mt-2 text-[0.95rem] leading-7 text-[#F5F5F5]/90">Addis Ababa, Ethiopia</p>
