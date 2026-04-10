@@ -379,10 +379,10 @@ export const siteContent = {
     companyName: "HH CONSULTING ARCHITECTS & ENGINEERS PLC.",
     quickLinks: [
       { label: "Home", href: "#home" },
-      { label: "About", href: "#about" },
+      { label: "About", href: "#about-us" },
       { label: "Services", href: "#services" },
       { label: "Projects", href: "#projects" },
-      { label: "Contact", href: "#contact" },
+      { label: "Get In Touch", href: "#get-in-touch" },
     ],
     services: [
       { label: "Architectural Design", href: "#services" },
@@ -403,6 +403,6 @@ export const siteContent = {
     copyright: "© 2026 HH Consulting Architects & Engineers PLC. All rights reserved.",
   },
   stickyActions: [
-    { label: "Chat Now", href: "#contact", variant: "default" },
+    { label: "Chat Now", href: "#get-in-touch", variant: "default" },
   ],
 };

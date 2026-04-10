@@ -15,10 +15,14 @@ import { siteContent } from "./data/siteContent";
 
 function App() {
   const [isProjectsArchive, setIsProjectsArchive] = useState(() => window.location.hash === "#all-projects");
+  const [isAboutPage, setIsAboutPage] = useState(() => window.location.hash === "#about-us");
+  const [isContactPage, setIsContactPage] = useState(() => window.location.hash === "#get-in-touch");
 
   useEffect(() => {
     const updateRoute = () => {
       setIsProjectsArchive(window.location.hash === "#all-projects");
+      setIsAboutPage(window.location.hash === "#about-us");
+      setIsContactPage(window.location.hash === "#get-in-touch");
     };
 
     updateRoute();
@@ -35,17 +39,19 @@ function App() {
       <MobileShell>
         {isProjectsArchive ? (
           <ProjectsArchivePage data={siteContent.projects} />
+        ) : isAboutPage ? (
+          <AboutSection data={siteContent.about} className="lg:mt-8" />
+        ) : isContactPage ? (
+          <ContactSection data={siteContent.contact} className="lg:mt-8" />
         ) : (
           <>
             <section>
               <HeroSection data={siteContent.hero} />
             </section>
-            <AboutSection data={siteContent.about} className="lg:mt-8" />
             <ServicesSection data={siteContent.services} className="lg:mt-8" />
             <ProjectsSection data={siteContent.projects} className="lg:mt-8" />
             <ClientsSection data={siteContent.clients} className="lg:mt-8" />
             <TeamSection data={siteContent.team} className="lg:mt-8" />
-            <ContactSection data={siteContent.contact} className="lg:mt-8" />
           </>
         )}
         <FooterSection data={siteContent.footer} className="mt-8" />
