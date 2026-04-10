@@ -12,13 +12,11 @@ function TeamSection({ data, className = "" }) {
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.55, ease: [0.17, 0.67, 0.83, 0.67], delay: index * 0.12 }}
       >
-        <div className="relative w-full overflow-hidden rounded-sm bg-[#EEF2F7]">
-          <img
-            src={member.image}
-            alt={member.imageAlt}
-            className="aspect-square w-full object-cover grayscale transition-[filter,transform] duration-500 group-hover:scale-105 group-hover:grayscale-0"
-          />
-        </div>
+        <img
+          src={member.image}
+          alt={member.imageAlt}
+          className="aspect-square w-full object-cover grayscale transition-[filter,transform] duration-500 group-hover:scale-105 group-hover:grayscale-0"
+        />
 
         <div className="mt-3 text-left">
           <h3 className="m-0 text-[1rem] font-bold leading-tight tracking-[-0.01em] text-brand-navy900 sm:text-[1.04rem]">

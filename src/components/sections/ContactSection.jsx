@@ -1,4 +1,3 @@
-import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 
 function ContactSection({ data, className = "" }) {
@@ -21,63 +20,6 @@ function ContactSection({ data, className = "" }) {
       </svg>
     ),
   };
-
-  const [values, setValues] = useState(() => data.form.fields.reduce((acc, field) => ({ ...acc, [field.name]: "" }), {}));
-  const [touched, setTouched] = useState({});
-  const [submitState, setSubmitState] = useState("idle");
-
-  const errors = useMemo(() => {
-    const nextErrors = {};
-
-    data.form.fields.forEach((field) => {
-      const value = values[field.name]?.trim() ?? "";
-
-      if (!value) {
-        nextErrors[field.name] = "This field is required.";
-        return;
-      }
-
-      if (field.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-        nextErrors[field.name] = "Enter a valid email address.";
-      }
-
-      if (field.type === "tel" && !/^\+?[0-9()\-\s]{7,}$/.test(value)) {
-        nextErrors[field.name] = "Enter a valid phone number.";
-      }
-
-      if (field.name === "message" && value.length < 20) {
-        nextErrors[field.name] = "Please provide at least 20 characters.";
-      }
-    });
-
-    return nextErrors;
-  }, [data.form.fields, values]);
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setValues((prev) => ({ ...prev, [name]: value }));
-  }
-
-  function handleBlur(event) {
-    const { name } = event.target;
-    setTouched((prev) => ({ ...prev, [name]: true }));
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    const allTouched = data.form.fields.reduce((acc, field) => ({ ...acc, [field.name]: true }), {});
-    setTouched(allTouched);
-
-    if (Object.keys(errors).length === 0) {
-      setSubmitState("success");
-      setValues(data.form.fields.reduce((acc, field) => ({ ...acc, [field.name]: "" }), {}));
-      setTouched({});
-      return;
-    }
-
-    setSubmitState("error");
-  }
 
   function ContactCard({ card }) {
     const isPhone = card.icon === "phone";
@@ -134,6 +76,10 @@ function ContactSection({ data, className = "" }) {
       className={`animate-reveal relative mt-8 -mx-3 scroll-mt-28 overflow-hidden bg-[#0F172A] px-3 py-16 [animation-delay:430ms] sm:-mx-6 sm:px-6 sm:py-20 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${className}`}
     >
       <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(239,243,248,0.92)_0%,rgba(15,23,42,0)_100%)]"
+        aria-hidden="true"
+      />
+      <div
         className="pointer-events-none absolute inset-0 opacity-[0.06]"
         style={{
           backgroundImage:
@@ -158,120 +104,8 @@ function ContactSection({ data, className = "" }) {
           <p className="m-0 mt-4 max-w-[760px] text-[1.05rem] leading-8 text-white/78 sm:text-[1.1rem]">{data.subtitle}</p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-8 lg:mt-16 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
-          <div className="relative">
-            <span
-              className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 text-[220px] font-black leading-none text-transparent opacity-5 lg:text-[300px]"
-              style={{ WebkitTextStroke: "1.5px rgba(255,255,255,1)" }}
-              aria-hidden="true"
-            >
-              07
-            </span>
-
-            <article id="contact-form" className="relative z-20 rounded-[24px] border border-white/15 bg-[#0B1425]/85 p-5 shadow-[0_24px_44px_rgba(0,0,0,0.22)] backdrop-blur sm:p-7">
-              <span className="pointer-events-none absolute -left-2 -top-2 text-[12px] font-bold leading-none text-white/55" aria-hidden="true">+</span>
-              <span className="pointer-events-none absolute -right-2 -top-2 text-[12px] font-bold leading-none text-white/55" aria-hidden="true">+</span>
-              <span className="pointer-events-none absolute -bottom-2 -left-2 text-[12px] font-bold leading-none text-white/55" aria-hidden="true">+</span>
-              <span className="pointer-events-none absolute -bottom-2 -right-2 text-[12px] font-bold leading-none text-white/55" aria-hidden="true">+</span>
-
-              <h3 className="relative z-20 m-0 text-[1.45rem] font-extrabold tracking-[-0.02em] text-white sm:text-[1.8rem]">
-                {data.form.title}
-              </h3>
-
-              <p className="m-0 mt-2 text-sm leading-6 text-slate-300">Share a few project details and our team will follow up within one business day.</p>
-
-              <form className="mt-5 space-y-4" noValidate onSubmit={handleSubmit}>
-                {data.form.fields.map((field) => (
-                  <div key={field.name} className="space-y-1.5">
-                    <label htmlFor={field.name} className="block text-[0.88rem] font-semibold tracking-[0.02em] text-slate-200">
-                      {field.label}
-                    </label>
-                    {field.type === "textarea" ? (
-                      <textarea
-                        id={field.name}
-                        name={field.name}
-                        rows={5}
-                        required
-                        value={values[field.name]}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder={field.placeholder}
-                        aria-invalid={Boolean(touched[field.name] && errors[field.name])}
-                        aria-describedby={`${field.name}-feedback`}
-                        className={`w-full resize-none rounded-[14px] border bg-[#0A1323]/90 px-4 py-3 text-[0.98rem] text-slate-100 outline-none transition duration-200 placeholder:text-slate-500 focus-visible:ring-2 focus-visible:ring-offset-0 ${
-                          touched[field.name] && errors[field.name]
-                            ? "border-rose-400/85 focus-visible:border-rose-300 focus-visible:ring-rose-400/35"
-                            : touched[field.name] && values[field.name].trim()
-                              ? "border-emerald-400/80 focus-visible:border-emerald-300 focus-visible:ring-emerald-400/30"
-                              : "border-white/15 hover:border-white/30 focus-visible:border-[#D5B223] focus-visible:ring-[#D5B223]/35"
-                        }`}
-                      />
-                    ) : (
-                      <input
-                        id={field.name}
-                        name={field.name}
-                        type={field.type}
-                        required
-                        value={values[field.name]}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder={field.placeholder}
-                        aria-invalid={Boolean(touched[field.name] && errors[field.name])}
-                        aria-describedby={`${field.name}-feedback`}
-                        className={`w-full rounded-[14px] border bg-[#0A1323]/90 px-4 py-3 text-[0.98rem] text-slate-100 outline-none transition duration-200 placeholder:text-slate-500 focus-visible:ring-2 focus-visible:ring-offset-0 ${
-                          touched[field.name] && errors[field.name]
-                            ? "border-rose-400/85 focus-visible:border-rose-300 focus-visible:ring-rose-400/35"
-                            : touched[field.name] && values[field.name].trim()
-                              ? "border-emerald-400/80 focus-visible:border-emerald-300 focus-visible:ring-emerald-400/30"
-                              : "border-white/15 hover:border-white/30 focus-visible:border-[#D5B223] focus-visible:ring-[#D5B223]/35"
-                        }`}
-                      />
-                    )}
-
-                    <p
-                      id={`${field.name}-feedback`}
-                      className={`m-0 min-h-[1.25rem] text-[0.8rem] ${
-                        touched[field.name] && errors[field.name]
-                          ? "text-rose-300"
-                          : touched[field.name] && values[field.name].trim()
-                            ? "text-emerald-300"
-                            : "text-slate-400"
-                      }`}
-                    >
-                      {touched[field.name] && errors[field.name]
-                        ? errors[field.name]
-                        : touched[field.name] && values[field.name].trim()
-                          ? "Looks good."
-                          : " "}
-                    </p>
-                  </div>
-                ))}
-
-                <p
-                  className={`m-0 min-h-[1.3rem] text-[0.86rem] ${
-                    submitState === "success" ? "text-emerald-300" : submitState === "error" ? "text-rose-300" : "text-slate-400"
-                  }`}
-                  role="status"
-                  aria-live="polite"
-                >
-                  {submitState === "success"
-                    ? "Thank you. Your message has been prepared successfully."
-                    : submitState === "error"
-                      ? "Please fix the highlighted fields and try again."
-                      : " "}
-                </p>
-
-                <button
-                  type="submit"
-                  className="mt-1 inline-flex w-full items-center justify-center rounded-[16px] bg-[#FF5B1A] px-6 py-4 text-[0.92rem] font-extrabold uppercase tracking-[0.14em] text-white shadow-[0_16px_32px_rgba(255,91,26,0.34)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFD39E]"
-                >
-                  {data.form.buttonLabel}
-                </button>
-              </form>
-            </article>
-          </div>
-
-          <div className="space-y-5">
+        <div className="mt-14 lg:mt-16">
+          <div className="mx-auto max-w-[420px] space-y-5">
             <div className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
               {data.contactCards.map((card) => (
                 <ContactCard key={card.title} card={card} />
@@ -283,7 +117,7 @@ function ContactSection({ data, className = "" }) {
               <p className="relative z-10 m-0 text-[1.42rem] font-black leading-tight sm:text-[1.62rem]">{data.cta.title}</p>
               <p className="relative z-10 m-0 mt-2 text-[1.02rem] leading-7 text-white/85">{data.cta.subtitle}</p>
               <a
-                href="#contact-form"
+                href="#contact"
                 className="relative z-10 mt-6 inline-flex items-center rounded-2xl bg-[#FF5B1A] px-8 py-3 text-[0.85rem] font-extrabold uppercase tracking-[0.13em] text-white shadow-[0_14px_26px_rgba(255,91,26,0.35)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#ff6c32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFD39E]"
               >
                 {data.cta.buttonLabel}

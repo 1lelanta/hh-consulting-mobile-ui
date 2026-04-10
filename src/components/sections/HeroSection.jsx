@@ -49,8 +49,8 @@ function HeroSection({ data }) {
           />
         ))}
 
-        <div className="absolute inset-0 bg-slate-950/62" />
-        <div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(2,6,23,0.86)_10%,rgba(2,6,23,0.65)_45%,rgba(2,6,23,0.25)_100%)]" />
+        <div className="absolute inset-0 bg-slate-950/54 lg:bg-slate-950/42" />
+        <div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(2,6,23,0.8)_10%,rgba(2,6,23,0.58)_45%,rgba(2,6,23,0.22)_100%)] lg:bg-[linear-gradient(112deg,rgba(2,6,23,0.7)_10%,rgba(2,6,23,0.42)_45%,rgba(2,6,23,0.14)_100%)]" />
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.05]"
           style={{
@@ -60,7 +60,7 @@ function HeroSection({ data }) {
           aria-hidden="true"
         />
 
-        <div className="relative z-10 mx-auto w-full max-w-[1200px] px-5 py-10 text-white sm:px-8 sm:py-12 lg:px-10 lg:py-20">
+        <div className="relative z-10 mx-auto w-full max-w-[1200px] px-5 py-10 text-white sm:px-8 sm:py-12 lg:px-10 lg:py-18">
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(330px,0.85fr)] lg:gap-10">
             <motion.div
               className="max-w-[640px] space-y-5"

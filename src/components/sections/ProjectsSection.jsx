@@ -1,13 +1,8 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 function ProjectsSection({ data, className = "" }) {
   const totalProjects = Array.isArray(data?.items) ? data.items.length : 0;
-  const initialVisibleCount = Math.min(3, totalProjects);
-  const [visibleCount, setVisibleCount] = useState(initialVisibleCount);
-
-  const visibleProjects = (data.items || []).slice(0, visibleCount);
-  const hasHiddenProjects = totalProjects > visibleCount;
+  const visibleProjects = (data.items || []).slice(0, Math.min(3, totalProjects));
 
   const getProjectYear = (project) => {
     const yearMeta = (project.meta || []).find((item) => item.label?.toLowerCase() === "year");
@@ -81,16 +76,14 @@ function ProjectsSection({ data, className = "" }) {
     >
       <div className="mx-auto w-full max-w-[1320px]">
         <div className="max-w-[820px]">
-            <div className="flex items-center gap-3">
-              <span className="h-[2px] w-14 bg-[#D5B223]" />
-              <p className="section-eyebrow text-[#D5B223]">
-                {data.eyebrow}
-              </p>
-            </div>
+          <div className="flex items-center gap-3">
+            <span className="h-[2px] w-14 bg-[#D5B223]" />
+            <p className="section-eyebrow text-[#D5B223]">{data.eyebrow}</p>
+          </div>
 
-            <h2 className="m-0 mt-4 text-[1.65rem] font-black uppercase leading-[1.08] tracking-[0.08em] text-brand-navy900 sm:mt-5 sm:text-[2.35rem] lg:text-[3.1rem]">
-              SOME OF OUR <span className="text-orange-600">PROJECTS</span>
-            </h2>
+          <h2 className="m-0 mt-4 text-[1.65rem] font-black uppercase leading-[1.08] tracking-[0.08em] text-brand-navy900 sm:mt-5 sm:text-[2.35rem] lg:text-[3.1rem]">
+            SOME OF OUR <span className="text-orange-600">PROJECTS</span>
+          </h2>
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:gap-5 lg:grid-cols-3">
@@ -99,14 +92,12 @@ function ProjectsSection({ data, className = "" }) {
 
         {totalProjects > 3 ? (
           <div className="relative z-30 mt-12 flex justify-center pointer-events-auto">
-            <button
-              type="button"
-              onClick={() => setVisibleCount((current) => (current >= totalProjects ? initialVisibleCount : totalProjects))}
-              aria-expanded={!hasHiddenProjects}
-              className="cursor-pointer bg-orange-600 px-8 py-3 text-[0.86rem] font-extrabold uppercase tracking-[0.1em] text-white transition-colors duration-300 hover:bg-orange-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
+            <a
+              href="#all-projects"
+              className="inline-flex items-center justify-center rounded-full bg-orange-600 px-8 py-3 text-[0.86rem] font-extrabold uppercase tracking-[0.1em] text-white transition-colors duration-300 hover:bg-orange-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
             >
-              {hasHiddenProjects ? "SEE ALL PROJECTS" : "SHOW LESS PROJECTS"}
-            </button>
+              See All Projects
+            </a>
           </div>
         ) : null}
 

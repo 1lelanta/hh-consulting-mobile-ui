@@ -32,31 +32,36 @@ function FooterSocialIcon({ type }) {
 
 function FooterSection({ data, className = "" }) {
   return (
-    <footer className={`-mx-3 bg-[#08192D] px-3 py-16 text-white sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10 lg:py-20 2xl:-mx-14 2xl:px-14 ${className}`}>
-      <div className="mx-auto w-full max-w-[1320px]">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
-          <div>
-            <div className="flex items-center gap-4">
-              <span className="inline-grid h-14 w-14 place-items-center overflow-hidden rounded-2xl bg-white/95 ring-1 ring-white/10">
+    <footer className={`relative -mx-3 overflow-hidden bg-[#08192D] px-3 py-12 text-white sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10 lg:py-20 2xl:-mx-14 2xl:px-14 ${className}`}>
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(239,243,248,0.9)_0%,rgba(8,25,45,0)_100%)]"
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-[1320px]">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr] lg:gap-10">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-start sm:text-left">
+              <span className="inline-grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-2xl bg-white/95 ring-1 ring-white/10 sm:h-14 sm:w-14">
                 <img src="/asset/hhlogo.jpeg" alt="HH Consulting logo" className="h-full w-full object-cover" />
               </span>
-              <div>
-                <p className="m-0 text-[0.85rem] font-bold uppercase tracking-[0.14em] text-[#D5B223]">
+              <div className="min-w-0 max-w-[320px] sm:max-w-none">
+                <p className="m-0 text-[0.74rem] font-bold uppercase tracking-[0.14em] text-[#D5B223] sm:text-[0.85rem]">
                   {data.companyName}
                 </p>
-                <p className="m-0 mt-1 max-w-[280px] text-[1.05rem] leading-7 text-white/80">
-                  Architectural and engineering excellence for public and private institutions.
+                <p className="m-0 mt-2 text-[0.92rem] leading-6 text-white/74 sm:text-[1.02rem] sm:leading-7">
+                  Integrated architecture and engineering solutions for public and private projects.
                 </p>
               </div>
             </div>
 
-            <div className="mt-6 flex items-center gap-3">
+            <div className="mt-5 flex justify-center gap-3 sm:justify-start">
               {data.socials.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="inline-grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-white/8 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D5B223]"
+                  className="inline-grid h-10 w-10 place-items-center rounded-full border border-white/12 bg-white/8 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D5B223]"
                 >
                   <FooterSocialIcon type={social.icon} />
                 </a>
@@ -65,11 +70,11 @@ function FooterSection({ data, className = "" }) {
           </div>
 
           <div>
-            <p className="m-0 text-[0.9rem] font-bold uppercase tracking-[0.14em] text-[#D5B223]">Quick Links</p>
-            <ul className="mt-4 space-y-3">
+            <p className="m-0 text-[0.82rem] font-bold uppercase tracking-[0.14em] text-[#D5B223] sm:text-[0.9rem]">Quick Links</p>
+            <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-1">
               {data.quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-[1rem] text-white/80 transition-colors hover:text-white">
+                  <a href={link.href} className="text-[0.98rem] text-white/78 transition-colors hover:text-white">
                     {link.label}
                   </a>
                 </li>
@@ -78,11 +83,11 @@ function FooterSection({ data, className = "" }) {
           </div>
 
           <div>
-            <p className="m-0 text-[0.9rem] font-bold uppercase tracking-[0.14em] text-[#D5B223]">Services</p>
-            <ul className="mt-4 space-y-3">
+            <p className="m-0 text-[0.82rem] font-bold uppercase tracking-[0.14em] text-[#D5B223] sm:text-[0.9rem]">Services</p>
+            <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-1">
               {data.services.map((service) => (
                 <li key={service.label}>
-                  <a href={service.href} className="text-[1rem] text-white/80 transition-colors hover:text-white">
+                  <a href={service.href} className="text-[0.98rem] text-white/78 transition-colors hover:text-white">
                     {service.label}
                   </a>
                 </li>
@@ -90,9 +95,9 @@ function FooterSection({ data, className = "" }) {
             </ul>
           </div>
 
-          <div>
-            <p className="m-0 text-[0.9rem] font-bold uppercase tracking-[0.14em] text-[#D5B223]">Contact</p>
-            <div className="mt-4 space-y-4 text-[1rem] leading-7 text-white/80">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <p className="m-0 text-[0.82rem] font-bold uppercase tracking-[0.14em] text-[#D5B223] sm:text-[0.9rem]">Contact</p>
+            <div className="mt-4 space-y-3 text-[0.94rem] leading-6 text-white/74 sm:text-[0.98rem] sm:leading-7">
               <p className="m-0">{data.contact.address}</p>
               <p className="m-0">{data.contact.phone}</p>
               <p className="m-0 break-words">{data.contact.email}</p>
@@ -100,7 +105,7 @@ function FooterSection({ data, className = "" }) {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-6 text-sm text-white/60 sm:flex sm:items-center sm:justify-between">
+        <div className="mt-10 border-t border-white/10 pt-5 text-center text-sm text-white/60 sm:flex sm:items-center sm:justify-between sm:text-left">
           <p className="m-0">{data.copyright}</p>
           <p className="m-0 mt-2 sm:mt-0">Trusted by institutions across Ethiopia and beyond.</p>
         </div>
