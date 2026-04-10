@@ -1,6 +1,14 @@
 import { motion } from "framer-motion";
 
 function ContactSection({ data, className = "" }) {
+  const officeAddressCard = Array.isArray(data?.contactCards)
+    ? data.contactCards.find((card) => card.icon === "address")
+    : null;
+  const officeAddress = officeAddressCard ? officeAddressCard.lines.join(" ") : "";
+  const mapSrc = officeAddress
+    ? `https://www.google.com/maps?q=${encodeURIComponent(officeAddress)}&output=embed`
+    : "";
+
   const icons = {
     phone: (
       <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.9">
@@ -96,12 +104,35 @@ function ContactSection({ data, className = "" }) {
         </div>
 
         <div className="mt-14 lg:mt-16">
-          <div className="mx-auto max-w-[420px] space-y-5">
+          <div className="mx-auto max-w-[760px] space-y-5">
             <div className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
               {data.contactCards.map((card) => (
                 <ContactCard key={card.title} card={card} />
               ))}
             </div>
+
+            {mapSrc ? (
+              <div className="overflow-hidden rounded-[24px] border border-[#E5E7EB] bg-white shadow-[0_18px_38px_rgba(15,23,42,0.1)]">
+                <div className="border-b border-[#E5E7EB] px-5 py-4 sm:px-6">
+                  <p className="m-0 text-[0.82rem] font-bold uppercase tracking-[0.13em] text-[#1F2937]">
+                    Office Location
+                  </p>
+                  <p className="m-0 mt-1 text-[0.95rem] leading-6 text-[#1F2937]">
+                    {officeAddress}
+                  </p>
+                </div>
+                <div className="h-[360px] bg-[#F3F4F6] sm:h-[420px]">
+                  <iframe
+                    title="HH Consulting office location on Google Maps"
+                    src={mapSrc}
+                    className="h-full w-full"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+            ) : null}
 
             <div className="relative overflow-hidden rounded-[24px] border border-[#E5E7EB] bg-white px-6 py-7 text-[#1F2937] shadow-[0_18px_38px_rgba(15,23,42,0.1)] sm:px-7">
               <p className="relative z-10 m-0 text-[1.42rem] font-black leading-tight sm:text-[1.62rem]">{data.cta.title}</p>
@@ -121,6 +152,7 @@ function ContactSection({ data, className = "" }) {
                 aria-hidden="true"
               >
                 07
+            const officeCoordinates = "Coordinates: 9°07'09.8\"N, 38°28'16.9\"E";
               </span>
             </div>
           </div>
