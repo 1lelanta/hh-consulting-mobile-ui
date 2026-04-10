@@ -38,24 +38,24 @@ function ContactSection({ data, className = "" }) {
     }
 
     return (
-      <article className="group flex h-full min-h-[154px] items-start gap-4 rounded-[18px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_10px_24px_rgba(2,7,17,0.2)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-[#D5B223]/45 hover:bg-white/[0.07]">
-        <div className="mt-0.5 inline-grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-white/10 bg-white/5 text-[#D5B223] transition duration-300 [filter:drop-shadow(0_0_6px_rgba(213,178,35,0.35))] group-hover:scale-[1.03] group-hover:border-[#D5B223]/45">
+      <article className="group flex h-full min-h-[154px] items-start gap-4 rounded-[18px] border border-[#E5E7EB] bg-white p-5 shadow-[0_10px_24px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-0.5 hover:border-[#D5B223]/45">
+        <div className="mt-0.5 inline-grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-[#E5E7EB] bg-[#F8F9FA] text-[#D5B223] transition duration-300 [filter:drop-shadow(0_0_6px_rgba(213,178,35,0.28))] group-hover:scale-[1.03] group-hover:border-[#D5B223]/45">
           {icons[card.icon]}
         </div>
         <div className="min-w-0 space-y-2">
-          <p className="m-0 text-[0.8rem] font-bold uppercase tracking-[0.13em] text-slate-200">{card.title}</p>
+          <p className="m-0 text-[0.8rem] font-bold uppercase tracking-[0.13em] text-[#1F2937]">{card.title}</p>
           <div className="space-y-1.5">
             {card.lines.map((line) => (
               toHref(line) ? (
                 <a
                   key={line}
                   href={toHref(line)}
-                  className="m-0 block break-words text-[0.98rem] leading-7 text-slate-300 transition hover:text-white focus-visible:rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D5B223]"
+                  className="m-0 block break-words text-[0.98rem] leading-7 text-[#1F2937] transition hover:text-[#111827] focus-visible:rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D5B223]"
                 >
                   {line}
                 </a>
               ) : (
-                <p key={line} className="m-0 break-words text-[0.98rem] leading-7 text-slate-300">
+                <p key={line} className="m-0 break-words text-[0.98rem] leading-7 text-[#1F2937]">
                   {line}
                 </p>
               )
@@ -76,7 +76,7 @@ function ContactSection({ data, className = "" }) {
       className={`animate-reveal relative mt-8 -mx-3 scroll-mt-28 overflow-hidden bg-[#F8F9FA] px-3 py-16 [animation-delay:430ms] sm:-mx-6 sm:px-6 sm:py-20 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${className}`}
     >
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(34,34,34,0.95)_0%,rgba(30,30,30,0)_100%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(229,231,235,0.7)_0%,rgba(248,249,250,0)_100%)]"
         aria-hidden="true"
       />
       <div className="relative z-10 mx-auto w-full max-w-[1320px]">
@@ -88,11 +88,11 @@ function ContactSection({ data, className = "" }) {
             </p>
           </div>
 
-          <h2 className="m-0 mt-5 text-[2.2rem] font-black leading-[1.08] tracking-[-0.02em] text-white sm:text-[2.7rem] lg:text-[3.45rem]">
+          <h2 className="m-0 mt-5 text-[2.2rem] font-black leading-[1.08] tracking-[-0.02em] text-[#1F2937] sm:text-[2.7rem] lg:text-[3.45rem]">
             {data.title}
           </h2>
 
-          <p className="m-0 mt-4 max-w-[760px] text-[1.05rem] leading-8 text-white/78 sm:text-[1.1rem]">{data.subtitle}</p>
+          <p className="m-0 mt-4 max-w-[760px] text-[1.05rem] leading-8 text-[#1F2937] sm:text-[1.1rem]">{data.subtitle}</p>
         </div>
 
         <div className="mt-14 lg:mt-16">
@@ -103,12 +103,12 @@ function ContactSection({ data, className = "" }) {
               ))}
             </div>
 
-            <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-[#2B2B2B] px-6 py-7 text-white shadow-[0_18px_38px_rgba(0,0,0,0.28)] sm:px-7">
+            <div className="relative overflow-hidden rounded-[24px] border border-[#E5E7EB] bg-white px-6 py-7 text-[#1F2937] shadow-[0_18px_38px_rgba(15,23,42,0.1)] sm:px-7">
               <p className="relative z-10 m-0 text-[1.42rem] font-black leading-tight sm:text-[1.62rem]">{data.cta.title}</p>
-              <p className="relative z-10 m-0 mt-2 text-[1.02rem] leading-7 text-white/85">{data.cta.subtitle}</p>
+              <p className="relative z-10 m-0 mt-2 text-[1.02rem] leading-7 text-[#1F2937]">{data.cta.subtitle}</p>
               <a
                 href="#contact"
-                className="relative z-10 mt-6 inline-flex items-center rounded-2xl bg-[#2B2B2B] px-8 py-3 text-[0.85rem] font-extrabold uppercase tracking-[0.13em] text-white shadow-[0_14px_26px_rgba(0,0,0,0.28)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#333333] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D5B223]"
+                className="relative z-10 mt-6 inline-flex items-center rounded-2xl bg-[#1F2937] px-8 py-3 text-[0.85rem] font-extrabold uppercase tracking-[0.13em] text-white shadow-[0_14px_26px_rgba(15,23,42,0.22)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#111827] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D5B223]"
               >
                 {data.cta.buttonLabel}
               </a>
@@ -117,7 +117,7 @@ function ContactSection({ data, className = "" }) {
             <div className="pointer-events-none relative h-[130px] overflow-hidden">
               <span
                 className="absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 font-['JetBrains_Mono',monospace] text-[250px] font-black leading-none text-transparent opacity-50"
-                style={{ WebkitTextStroke: "1px rgba(255,255,255,1)" }}
+                style={{ WebkitTextStroke: "1px rgba(31,41,55,0.28)" }}
                 aria-hidden="true"
               >
                 07
