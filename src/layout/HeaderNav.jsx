@@ -14,7 +14,7 @@ function HeaderNav() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const lastScrollYRef = useRef(0);
-  const navSurfaceClass = "bg-[#2E2510]";
+  const navSurfaceClass = "bg-[#0A0A0ACC]";
 
   useEffect(() => {
     function handleResize() {
@@ -115,11 +115,12 @@ function HeaderNav() {
       }`}
     >
       <nav
-        className={`mx-auto w-full max-w-[1400px] rounded-none border border-[#7A6940]/55 ${navSurfaceClass} transition-all duration-500 sm:rounded-md ${
+        className={`mx-auto w-full max-w-[1400px] rounded-none border-x border-x-[#7A6940]/35 border-b border-b-[rgba(212,175,55,0.18)] ${navSurfaceClass} backdrop-blur-[12px] transition-all duration-500 sm:rounded-md ${
           hasScrolled
             ? "shadow-[0_10px_22px_rgba(10,8,5,0.34),inset_0_1px_0_rgba(255,255,255,0.05)]"
             : "shadow-[0_18px_38px_rgba(10,8,5,0.42),inset_0_1px_0_rgba(255,255,255,0.08)]"
         }`}
+        style={{ backgroundColor: "rgba(10, 10, 10, 0.75)" }}
       >
         <div
           className={`mx-auto flex w-full items-center justify-between gap-3 px-3 transition-all duration-500 sm:px-6 lg:px-8 ${
