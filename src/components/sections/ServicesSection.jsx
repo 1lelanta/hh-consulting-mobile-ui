@@ -188,7 +188,7 @@ function ServicesSection({ data, className = "" }) {
     >
       <div className="relative mx-auto w-full max-w-[1320px]">
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-12">
-          <div className="max-w-[760px]">
+          <div className="max-w-[760px] lg:-ml-3">
             <div className="flex items-center gap-3">
               <span className="h-[2px] w-14 bg-[#D5B223]" />
               <p className="section-eyebrow text-[#D5B223]">{data.eyebrow}</p>

@@ -69,11 +69,6 @@ export const siteContent = {
         description: "Reliable water systems designed for efficient delivery and sustainable use.",
         icon: "water-engineering",
       },
-      {
-        title: "Feasibility Study",
-        description: "Clear project assessments that inform smart decisions before delivery begins.",
-        icon: "feasibility-study",
-      },
     ],
   },
   whyChooseUs: {

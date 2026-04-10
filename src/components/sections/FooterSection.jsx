@@ -32,9 +32,12 @@ function FooterSocialIcon({ type }) {
 
 function FooterSection({ data, className = "" }) {
   return (
-    <footer className={`relative -mx-3 overflow-hidden bg-[#08192D] px-3 py-12 text-white sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10 lg:py-20 2xl:-mx-14 2xl:px-14 ${className}`}>
+    <footer
+      className={`relative -mx-3 overflow-hidden px-3 py-12 text-white sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10 lg:py-20 2xl:-mx-14 2xl:px-14 ${className}`}
+      style={{ background: "linear-gradient(180deg, #111111 0%, #0A0A08 100%)" }}
+    >
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(239,243,248,0.9)_0%,rgba(8,25,45,0)_100%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(17,17,17,0.9)_0%,rgba(10,10,8,0)_100%)]"
         aria-hidden="true"
       />
 
