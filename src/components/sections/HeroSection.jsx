@@ -64,7 +64,7 @@ function HeroSection({ data }) {
   useEffect(() => {
     const slideTimer = window.setInterval(() => {
       setActiveHeroSlide((currentIndex) => (currentIndex + 1) % heroSlides.length);
-    }, 5000);
+    }, 6500);
 
     return () => {
       window.clearInterval(slideTimer);
@@ -118,14 +118,14 @@ function HeroSection({ data }) {
               viewport={{ once: true, amount: 0.25 }}
             >
               <div className="space-y-5">
-                <div className="min-h-[230px] sm:min-h-[250px] lg:min-h-[290px]">
+                <div className="min-h-[340px] sm:min-h-[360px] lg:min-h-[420px]">
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.div
                       key={currentSlide.key}
-                      initial={{ opacity: 0, y: 14 }}
+                      initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -14 }}
-                      transition={{ duration: 0.65, ease: [0.22, 0.61, 0.36, 1] }}
+                      exit={{ opacity: 0, y: -16 }}
+                      transition={{ duration: 0.6, ease: "easeInOut" }}
                       className="space-y-5"
                     >
                       <p className="m-0 inline-flex w-fit items-center rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[0.8rem] font-bold uppercase tracking-[0.16em] text-[#E7CB74] backdrop-blur sm:text-[0.86rem]">
@@ -145,43 +145,43 @@ function HeroSection({ data }) {
                       <p className="m-0 max-w-[56ch] text-[1.08rem] font-medium leading-[1.65] text-slate-100/92 sm:text-[1.18rem] lg:text-[1.28rem]">
                         {currentSlide.description}
                       </p>
+
+                      <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+                        <a
+                          href={data.ctaHref}
+                          className="inline-flex w-full items-center justify-center rounded-[12px] bg-[#D5B223] px-6 py-3.5 text-center text-[0.9rem] font-extrabold uppercase tracking-[0.12em] text-[#0B1730] shadow-[0_12px_26px_rgba(213,178,35,0.35)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#E2C241] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F8E8B3] sm:w-auto sm:min-w-[190px]"
+                        >
+                          {data.ctaLabel}
+                        </a>
+
+                        <div className="relative inline-flex w-full sm:w-auto sm:min-w-[190px]">
+                          <span
+                            className="pointer-events-none absolute -left-1.5 -top-1.5 h-3 w-3 border-l border-t border-[#D5B223]/90"
+                            aria-hidden="true"
+                          />
+                          <span
+                            className="pointer-events-none absolute -right-1.5 -top-1.5 h-3 w-3 border-r border-t border-[#D5B223]/90"
+                            aria-hidden="true"
+                          />
+                          <span
+                            className="pointer-events-none absolute -left-1.5 -bottom-1.5 h-3 w-3 border-l border-b border-[#D5B223]/90"
+                            aria-hidden="true"
+                          />
+                          <span
+                            className="pointer-events-none absolute -bottom-1.5 -right-1.5 h-3 w-3 border-r border-b border-[#D5B223]/90"
+                            aria-hidden="true"
+                          />
+
+                          <a
+                            href="#get-in-touch"
+                            className="inline-flex w-full items-center justify-center rounded-none border border-white/30 bg-white/10 px-6 py-3.5 text-center text-[0.9rem] font-bold uppercase tracking-[0.12em] text-white backdrop-blur transition duration-300 hover:border-white/60 hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                          >
+                            Contact Us
+                          </a>
+                        </div>
+                      </div>
                     </motion.div>
                   </AnimatePresence>
-                </div>
-
-                <div className="flex flex-col gap-3 pt-2 sm:flex-row">
-                  <a
-                    href={data.ctaHref}
-                    className="inline-flex w-full items-center justify-center rounded-[12px] bg-[#D5B223] px-6 py-3.5 text-center text-[0.9rem] font-extrabold uppercase tracking-[0.12em] text-[#0B1730] shadow-[0_12px_26px_rgba(213,178,35,0.35)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#E2C241] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F8E8B3] sm:w-auto sm:min-w-[190px]"
-                  >
-                    {data.ctaLabel}
-                  </a>
-
-                  <div className="relative inline-flex w-full sm:w-auto sm:min-w-[190px]">
-                    <span
-                      className="pointer-events-none absolute -left-1.5 -top-1.5 h-3 w-3 border-l border-t border-[#D5B223]/90"
-                      aria-hidden="true"
-                    />
-                    <span
-                      className="pointer-events-none absolute -right-1.5 -top-1.5 h-3 w-3 border-r border-t border-[#D5B223]/90"
-                      aria-hidden="true"
-                    />
-                    <span
-                      className="pointer-events-none absolute -left-1.5 -bottom-1.5 h-3 w-3 border-l border-b border-[#D5B223]/90"
-                      aria-hidden="true"
-                    />
-                    <span
-                      className="pointer-events-none absolute -bottom-1.5 -right-1.5 h-3 w-3 border-r border-b border-[#D5B223]/90"
-                      aria-hidden="true"
-                    />
-
-                    <a
-                      href="#get-in-touch"
-                      className="inline-flex w-full items-center justify-center rounded-none border border-white/30 bg-white/10 px-6 py-3.5 text-center text-[0.9rem] font-bold uppercase tracking-[0.12em] text-white backdrop-blur transition duration-300 hover:border-white/60 hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                    >
-                      Contact Us
-                    </a>
-                  </div>
                 </div>
               </div>
             </motion.div>
