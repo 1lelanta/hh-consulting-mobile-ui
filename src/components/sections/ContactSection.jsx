@@ -4,6 +4,9 @@ function ContactSection({ data, className = "" }) {
   const officeAddressCard = Array.isArray(data?.contactCards)
     ? data.contactCards.find((card) => card.icon === "address")
     : null;
+  const visibleContactCards = Array.isArray(data?.contactCards)
+    ? data.contactCards.filter((card) => card.icon !== "address")
+    : [];
   const officeAddress = officeAddressCard ? officeAddressCard.lines.join(" ") : "";
   const mapSrc = officeAddress
     ? `https://www.google.com/maps?q=${encodeURIComponent(officeAddress)}&output=embed`
@@ -106,7 +109,7 @@ function ContactSection({ data, className = "" }) {
         <div className="mt-14 lg:mt-16">
           <div className="mx-auto max-w-[760px] space-y-5">
             <div className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
-              {data.contactCards.map((card) => (
+              {visibleContactCards.map((card) => (
                 <ContactCard key={card.title} card={card} />
               ))}
             </div>
