@@ -187,6 +187,21 @@ function HeroSection({ data }) {
             </motion.div>
           </div>
         </div>
+
+        {backgrounds.length > 1 ? (
+          <div className="pointer-events-none absolute inset-x-0 bottom-6 z-20 flex items-center justify-center gap-2.5 sm:bottom-7 lg:bottom-8" aria-hidden="true">
+            {backgrounds.map((background, index) => {
+              const isActive = index === activeIndex;
+
+              return (
+                <span
+                  key={`hero-dot-${background.src}-${index}`}
+                  className={`h-2.5 rounded-full transition-all duration-500 ease-in-out ${isActive ? "w-7 bg-[#D5B223] shadow-[0_0_14px_rgba(213,178,35,0.55)]" : "w-2.5 bg-white/55"}`}
+                />
+              );
+            })}
+          </div>
+        ) : null}
       </div>
     </motion.section>
   );
