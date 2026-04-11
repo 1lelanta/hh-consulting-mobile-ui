@@ -38,8 +38,7 @@ function HeroSection({ data, contact }) {
     [data.description, data.headline, data.subtitle]
   );
 
-  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
-  const currentSlide = heroSlides[activeHeroSlide];
+  const currentSlide = heroSlides[activeIndex % heroSlides.length];
   const currentTitleWords = String(currentSlide?.title || "").trim().split(/\s+/).filter(Boolean);
   const shouldHighlightLastWord = currentSlide?.key === "default" && currentTitleWords.length > 1;
   const highlightedWord = shouldHighlightLastWord ? currentTitleWords[currentTitleWords.length - 1] : "";
@@ -73,16 +72,6 @@ function HeroSection({ data, contact }) {
       window.clearInterval(timer);
     };
   }, [backgrounds.length]);
-
-  useEffect(() => {
-    const slideTimer = window.setInterval(() => {
-      setActiveHeroSlide((currentIndex) => (currentIndex + 1) % heroSlides.length);
-    }, 6500);
-
-    return () => {
-      window.clearInterval(slideTimer);
-    };
-  }, [heroSlides.length]);
 
   return (
     <motion.section
@@ -138,7 +127,7 @@ function HeroSection({ data, contact }) {
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -16 }}
-                      transition={{ duration: 0.6, ease: "easeInOut" }}
+                      transition={{ duration: 0.9, ease: "easeInOut" }}
                       className="space-y-5"
                     >
                       <p className="m-0 inline-flex w-fit items-center rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[0.8rem] font-bold uppercase tracking-[0.16em] text-[#E7CB74] backdrop-blur sm:text-[0.86rem]">

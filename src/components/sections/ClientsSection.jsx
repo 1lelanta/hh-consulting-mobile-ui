@@ -66,7 +66,7 @@ function ClientsSection({ data, className = "" }) {
 
         </div>
 
-        <div className="relative mt-10 overflow-hidden py-2 lg:mt-12">
+        <div className="relative mt-10 overflow-hidden py-2 lg:mt-12 no-scrollbar">
           <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 bg-gradient-to-r from-[#F6F9FC] to-transparent sm:w-24" aria-hidden="true" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 bg-gradient-to-l from-[#F2F5F9] to-transparent sm:w-24" aria-hidden="true" />
 
