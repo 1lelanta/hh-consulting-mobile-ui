@@ -14,8 +14,7 @@ function HeaderNav() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const prevScrollYRef = useRef(0);
-  const touchYRef = useRef(null);
-  const revealLockUntilRef = useRef(0);
+  const accumulatedDeltaRef = useRef(0);
   const rafIdRef = useRef(0);
   const isTickingRef = useRef(false);
   const navSurfaceClass = "bg-[#0A0A0ACC]";
@@ -78,40 +77,41 @@ function HeaderNav() {
   }, [isMenuOpen]);
 
   useEffect(() => {
-    const threshold = 4;
+    const threshold = 14;
 
     function runScrollLogic() {
       isTickingRef.current = false;
       const currentY = window.scrollY;
-      const now = performance.now();
+      const deltaY = currentY - prevScrollYRef.current;
 
       setHasScrolled(currentY > 24);
 
       if (isMenuOpen) {
         prevScrollYRef.current = currentY;
+        accumulatedDeltaRef.current = 0;
         setIsNavVisible(true);
         return;
       }
 
       if (currentY <= 10) {
         prevScrollYRef.current = currentY;
+        accumulatedDeltaRef.current = 0;
         setIsNavVisible(true);
         return;
       }
 
-      if (now < revealLockUntilRef.current) {
-        prevScrollYRef.current = currentY;
-        setIsNavVisible(true);
-        return;
+      if (deltaY > 0) {
+        accumulatedDeltaRef.current = Math.max(0, accumulatedDeltaRef.current) + deltaY;
+      } else if (deltaY < 0) {
+        accumulatedDeltaRef.current = Math.min(0, accumulatedDeltaRef.current) + deltaY;
       }
 
-      const deltaY = currentY - prevScrollYRef.current;
-
-      if (deltaY > threshold) {
-        setIsNavVisible((prev) => (prev ? false : prev));
-      } else if (deltaY < -threshold) {
-        setIsNavVisible((prev) => (!prev ? true : prev));
-        revealLockUntilRef.current = now + 380;
+      if (accumulatedDeltaRef.current > threshold) {
+        setIsNavVisible(false);
+        accumulatedDeltaRef.current = 0;
+      } else if (accumulatedDeltaRef.current < -threshold) {
+        setIsNavVisible(true);
+        accumulatedDeltaRef.current = 0;
       }
 
       prevScrollYRef.current = currentY;
@@ -132,57 +132,6 @@ function HeaderNav() {
       if (rafIdRef.current) {
         window.cancelAnimationFrame(rafIdRef.current);
       }
-    };
-  }, [isMenuOpen]);
-
-  useEffect(() => {
-    function handleWheel(event) {
-      if (isMenuOpen) return;
-
-      if (event.deltaY < -0.5) {
-        setIsNavVisible(true);
-        revealLockUntilRef.current = performance.now() + 380;
-      } else if (event.deltaY > 0.5 && window.scrollY > 110) {
-        setIsNavVisible(false);
-      }
-    }
-
-    function handleTouchStart(event) {
-      touchYRef.current = event.touches[0]?.clientY ?? null;
-    }
-
-    function handleTouchMove(event) {
-      if (isMenuOpen || touchYRef.current === null) return;
-
-      const currentTouchY = event.touches[0]?.clientY;
-      if (typeof currentTouchY !== "number") return;
-
-      const delta = touchYRef.current - currentTouchY;
-
-      if (delta < -1.2) {
-        setIsNavVisible(true);
-        revealLockUntilRef.current = performance.now() + 380;
-      } else if (delta > 1.2 && window.scrollY > 110) {
-        setIsNavVisible(false);
-      }
-
-      touchYRef.current = currentTouchY;
-    }
-
-    function handleTouchEnd() {
-      touchYRef.current = null;
-    }
-
-    window.addEventListener("wheel", handleWheel, { passive: true });
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: true });
-
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [isMenuOpen]);
 
