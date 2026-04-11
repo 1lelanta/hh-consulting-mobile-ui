@@ -52,9 +52,6 @@ function ClientsSection({ data, className = "" }) {
             We collaborate with government, private, and industrial leaders.
           </p>
 
-          <p className="m-0 mt-2 max-w-[820px] text-[0.97rem] leading-7 text-[#6B7280] sm:text-[1rem]">
-            {data.subtitle}
-          </p>
         </div>
 
         <div className="relative mt-10 overflow-hidden py-2 lg:mt-12">

@@ -47,6 +47,7 @@ function HeroSection({ data }) {
       viewport={{ once: true, amount: 0.2 }}
       className="animate-reveal relative -mx-3 overflow-hidden scroll-mt-28 sm:-mx-6 lg:-mx-10 2xl:-mx-14"
     >
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-px bg-[#D5B223]/85" aria-hidden="true" />
       <div className="relative isolate min-h-[86svh] overflow-hidden sm:min-h-[92svh] lg:min-h-[98svh]">
         {backgrounds.map((background, index) => (
           <motion.img

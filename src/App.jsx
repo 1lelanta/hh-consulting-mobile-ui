@@ -21,6 +21,7 @@ function App() {
   const [isContactPage, setIsContactPage] = useState(() => window.location.hash === "#get-in-touch");
   const [isLoading, setIsLoading] = useState(true);
   const [showPreloader, setShowPreloader] = useState(true);
+  const isHomePage = !isProjectsArchive && !isAboutPage && !isTeamPage && !isContactPage;
 
   useEffect(() => {
     let hasCompleted = false;
@@ -108,7 +109,7 @@ function App() {
       <HeaderNav />
       <div className="pointer-events-none fixed inset-0 opacity-40 [background:radial-gradient(circle_at_100%_0%,rgba(190,154,90,0.20),transparent_35%),radial-gradient(circle_at_0%_10%,rgba(22,59,99,0.14),transparent_30%)]" />
 
-      <MobileShell>
+      <MobileShell className={isHomePage ? "pt-0" : "pt-[88px]"}>
         {isProjectsArchive ? (
           <ProjectsArchivePage data={siteContent.projects} />
         ) : isAboutPage ? (
