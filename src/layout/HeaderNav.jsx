@@ -21,14 +21,14 @@ function HeaderNav() {
       opacity: 1,
       scale: 1,
       filter: "blur(0px)",
-      transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.52, ease: [0.22, 1, 0.36, 1] },
     },
     hidden: {
-      y: -18,
+      y: -64,
       opacity: 0,
-      scale: 0.98,
-      filter: "blur(2px)",
-      transition: { duration: 0.26, ease: [0.4, 0, 1, 1] },
+      scale: 0.965,
+      filter: "blur(3px)",
+      transition: { duration: 0.32, ease: [0.4, 0, 1, 1] },
     },
   };
 
@@ -103,9 +103,9 @@ function HeaderNav() {
         setIsNavVisible(true);
       } else if (currentY <= 72) {
         setIsNavVisible(true);
-      } else if (deltaY > 0.8) {
+      } else if (deltaY > 0.2 && currentY > 110) {
         setIsNavVisible(false);
-      } else if (deltaY < -0.8) {
+      } else if (deltaY < -0.2) {
         setIsNavVisible(true);
       }
 

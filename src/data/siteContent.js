@@ -105,7 +105,7 @@ export const siteContent = {
     ],
   },
   projects: {
-    eyebrow: "Our Portfolio",
+    eyebrow: "Selected Projects",
     title: "Featured Projects",
     viewAllLabel: "Projects",
     viewAllHref: "#projects",

@@ -44,11 +44,11 @@ function FooterSection({ data, className = "" }) {
       <div className="relative z-10 mx-auto w-full max-w-[1320px]">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr] lg:gap-10">
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-start sm:text-left">
+            <div className="flex items-start gap-2 text-left sm:flex-row sm:items-start sm:gap-3 sm:text-left">
               <span className="inline-grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-2xl bg-white/95 ring-1 ring-white/10 sm:h-14 sm:w-14">
                 <img src="/asset/hhlogo.jpeg" alt="HH Consulting logo" className="h-full w-full object-cover" />
               </span>
-              <div className="min-w-0 max-w-[320px] sm:max-w-none">
+              <div className="min-w-0 max-w-[320px] text-left sm:max-w-none">
                 <p className="m-0 text-[0.74rem] font-bold uppercase tracking-[0.14em] text-[#D5B223] sm:text-[0.85rem]">
                   {data.companyName}
                 </p>

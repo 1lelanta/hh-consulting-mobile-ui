@@ -98,6 +98,7 @@ function App() {
               HH CONSULTING
             </p>
             <p className="m-0 mt-1.5 text-[0.82rem] uppercase tracking-[0.14em] text-[#D5B223]">Preparing your experience</p>
+            <p className="m-0 mt-1 text-[0.8rem] tracking-[0.06em] text-white/78">Addis Ababa, Ethiopia</p>
 
             <div className="mt-6 h-[3px] w-full overflow-hidden rounded-full bg-white/20">
               <span className={`preloader-progress ${isLoading ? "is-animating" : "is-complete"}`} />
