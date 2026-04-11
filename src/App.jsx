@@ -130,7 +130,7 @@ function App() {
             <ClientsSection data={siteContent.clients} className="lg:mt-8" />
           </>
         )}
-        <FooterSection data={siteContent.footer} className="mt-8" />
+        <FooterSection data={siteContent.footer} className={isContactPage ? "mt-0" : "mt-8"} />
       </MobileShell>
       </div>
 
