@@ -4,6 +4,7 @@ import HeroSection from "./components/sections/HeroSection";
 import AboutSection from "./components/sections/AboutSection";
 import ServicesSection from "./components/sections/ServicesSection";
 import ProjectsSection from "./components/sections/ProjectsSection";
+import PostProjectsCtaSection from "./components/sections/PostProjectsCtaSection";
 import ProjectsArchivePage from "./components/sections/ProjectsArchivePage";
 import ClientsSection from "./components/sections/ClientsSection";
 import TeamSection from "./components/sections/TeamSection";
@@ -16,6 +17,7 @@ import { siteContent } from "./data/siteContent";
 function App() {
   const [isProjectsArchive, setIsProjectsArchive] = useState(() => window.location.hash === "#all-projects");
   const [isAboutPage, setIsAboutPage] = useState(() => window.location.hash === "#about-us");
+  const [isTeamPage, setIsTeamPage] = useState(() => window.location.hash === "#team");
   const [isContactPage, setIsContactPage] = useState(() => window.location.hash === "#get-in-touch");
   const [isLoading, setIsLoading] = useState(true);
   const [showPreloader, setShowPreloader] = useState(true);
@@ -65,6 +67,7 @@ function App() {
     const updateRoute = () => {
       setIsProjectsArchive(window.location.hash === "#all-projects");
       setIsAboutPage(window.location.hash === "#about-us");
+      setIsTeamPage(window.location.hash === "#team");
       setIsContactPage(window.location.hash === "#get-in-touch");
     };
 
@@ -110,6 +113,8 @@ function App() {
           <ProjectsArchivePage data={siteContent.projects} />
         ) : isAboutPage ? (
           <AboutSection data={siteContent.about} className="lg:mt-8" />
+        ) : isTeamPage ? (
+          <TeamSection data={siteContent.team} className="lg:mt-8" />
         ) : isContactPage ? (
           <ContactSection data={siteContent.contact} className="lg:mt-8" />
         ) : (
@@ -119,15 +124,15 @@ function App() {
             </section>
             <ServicesSection data={siteContent.services} className="lg:mt-8" />
             <ProjectsSection data={siteContent.projects} className="lg:mt-8" />
+            <PostProjectsCtaSection className="lg:mt-8" />
             <ClientsSection data={siteContent.clients} className="lg:mt-8" />
-            <TeamSection data={siteContent.team} className="lg:mt-8" />
           </>
         )}
         <FooterSection data={siteContent.footer} className="mt-8" />
       </MobileShell>
+      </div>
 
       <StickyActions data={siteContent.stickyActions} />
-      </div>
     </div>
   );
 }

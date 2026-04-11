@@ -54,15 +54,15 @@ function ProjectsArchivePage({ data }) {
         <div className="max-w-[900px] space-y-4">
           <div className="flex items-center gap-3">
             <span className="h-[2px] w-14 bg-[#D5B223]" />
-            <p className="section-eyebrow text-[#D5B223]">All Projects</p>
+            <p className="section-eyebrow text-[#D5B223]">Selected Projects</p>
           </div>
 
           <h1 className="m-0 text-[1.95rem] font-black leading-[1.08] tracking-[-0.02em] text-brand-navy900 sm:text-[2.7rem] lg:text-[3.5rem]">
-            Our Full Project Portfolio
+            Representative Project Collection
           </h1>
 
           <p className="m-0 max-w-[68ch] text-[1rem] leading-[1.7] text-brand-gray500 sm:text-[1.08rem]">
-            Explore the complete selection of architecture, engineering, infrastructure, and planning projects delivered by HH Consulting.
+            Explore a representative selection of architecture, engineering, infrastructure, and planning work delivered by HH Consulting.
           </p>
 
           <a
@@ -76,6 +76,34 @@ function ProjectsArchivePage({ data }) {
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => renderProjectItem(project))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
+          className="relative mt-12 overflow-hidden rounded-[20px] border border-[#D5B223]/35 bg-[linear-gradient(130deg,#081223_0%,#111827_58%,#1f2937_100%)] px-6 py-8 text-white shadow-[0_22px_46px_rgba(2,6,23,0.3)] sm:px-8 sm:py-9"
+        >
+          <div className="pointer-events-none absolute -right-12 -top-12 h-28 w-28 rounded-full bg-[#D5B223]/22 blur-2xl" aria-hidden="true" />
+          <p className="m-0 text-[1.38rem] font-bold leading-tight sm:text-[1.58rem]">Ready to move your project forward?</p>
+          <p className="m-0 mt-3 max-w-[70ch] text-[1rem] leading-7 text-[#E5E7EB]">
+            Book a consultation to review your goals, scope, and next steps.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <a
+              href="#get-in-touch"
+              className="inline-flex items-center rounded-xl bg-[#D5B223] px-7 py-3 text-[0.8rem] font-bold uppercase tracking-[0.14em] text-[#111827] shadow-[0_14px_28px_rgba(213,178,35,0.35)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#E5C64C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D5B223]"
+            >
+              Schedule Consultation
+            </a>
+            <a
+              href="#team"
+              className="inline-flex items-center rounded-xl border border-[#D5B223]/55 bg-transparent px-7 py-3 text-[0.8rem] font-bold uppercase tracking-[0.14em] text-[#F8D66A] transition duration-300 hover:-translate-y-0.5 hover:border-[#F8D66A]/70 hover:bg-[#D5B223]/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D5B223]"
+            >
+              Meet Our Team
+            </a>
+          </div>
+        </motion.div>
       </div>
     </motion.section>
   );
