@@ -13,25 +13,12 @@ function HeaderNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
+  const prevScrollYRef = useRef(0);
   const touchYRef = useRef(null);
-  const intentLockUntilRef = useRef(0);
+  const revealLockUntilRef = useRef(0);
+  const rafIdRef = useRef(0);
+  const isTickingRef = useRef(false);
   const navSurfaceClass = "bg-[#0A0A0ACC]";
-  const navMotionVariants = {
-    visible: {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      filter: "blur(0px)",
-      transition: { duration: 0.52, ease: [0.22, 1, 0.36, 1] },
-    },
-    hidden: {
-      y: -64,
-      opacity: 0,
-      scale: 0.965,
-      filter: "blur(3px)",
-      transition: { duration: 0.32, ease: [0.4, 0, 1, 1] },
-    },
-  };
 
   useEffect(() => {
     function handleResize() {
@@ -91,37 +78,72 @@ function HeaderNav() {
   }, [isMenuOpen]);
 
   useEffect(() => {
-    function handleScroll() {
+    const threshold = 4;
+
+    function runScrollLogic() {
+      isTickingRef.current = false;
       const currentY = window.scrollY;
+      const now = performance.now();
+
       setHasScrolled(currentY > 24);
 
-      if (isMenuOpen || currentY <= 72) {
+      if (isMenuOpen) {
+        prevScrollYRef.current = currentY;
         setIsNavVisible(true);
+        return;
       }
+
+      if (currentY <= 10) {
+        prevScrollYRef.current = currentY;
+        setIsNavVisible(true);
+        return;
+      }
+
+      if (now < revealLockUntilRef.current) {
+        prevScrollYRef.current = currentY;
+        setIsNavVisible(true);
+        return;
+      }
+
+      const deltaY = currentY - prevScrollYRef.current;
+
+      if (deltaY > threshold) {
+        setIsNavVisible((prev) => (prev ? false : prev));
+      } else if (deltaY < -threshold) {
+        setIsNavVisible((prev) => (!prev ? true : prev));
+        revealLockUntilRef.current = now + 380;
+      }
+
+      prevScrollYRef.current = currentY;
     }
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    function onScroll() {
+      if (isTickingRef.current) return;
+      isTickingRef.current = true;
+      rafIdRef.current = window.requestAnimationFrame(runScrollLogic);
+    }
+
+    prevScrollYRef.current = window.scrollY;
+    runScrollLogic();
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", onScroll);
+      if (rafIdRef.current) {
+        window.cancelAnimationFrame(rafIdRef.current);
+      }
     };
   }, [isMenuOpen]);
 
   useEffect(() => {
-    function shouldIgnoreIntent() {
-      return performance.now() < intentLockUntilRef.current;
-    }
-
     function handleWheel(event) {
-      if (isMenuOpen || shouldIgnoreIntent()) return;
+      if (isMenuOpen) return;
 
-      if (event.deltaY < -0.1) {
+      if (event.deltaY < -0.5) {
         setIsNavVisible(true);
-        intentLockUntilRef.current = performance.now() + 180;
-      } else if (event.deltaY > 0.1 && window.scrollY > 110) {
+        revealLockUntilRef.current = performance.now() + 380;
+      } else if (event.deltaY > 0.5 && window.scrollY > 110) {
         setIsNavVisible(false);
-        intentLockUntilRef.current = performance.now() + 140;
       }
     }
 
@@ -130,19 +152,18 @@ function HeaderNav() {
     }
 
     function handleTouchMove(event) {
-      if (isMenuOpen || shouldIgnoreIntent() || touchYRef.current === null) return;
+      if (isMenuOpen || touchYRef.current === null) return;
 
       const currentTouchY = event.touches[0]?.clientY;
       if (typeof currentTouchY !== "number") return;
 
       const delta = touchYRef.current - currentTouchY;
 
-      if (delta < -0.8) {
+      if (delta < -1.2) {
         setIsNavVisible(true);
-        intentLockUntilRef.current = performance.now() + 180;
-      } else if (delta > 0.8 && window.scrollY > 110) {
+        revealLockUntilRef.current = performance.now() + 380;
+      } else if (delta > 1.2 && window.scrollY > 110) {
         setIsNavVisible(false);
-        intentLockUntilRef.current = performance.now() + 140;
       }
 
       touchYRef.current = currentTouchY;
@@ -166,11 +187,8 @@ function HeaderNav() {
   }, [isMenuOpen]);
 
   return (
-    <motion.header
-      initial={false}
-      animate={isNavVisible ? "visible" : "hidden"}
-      variants={navMotionVariants}
-      className={`fixed left-0 right-0 top-0 z-50 px-0 pt-0 will-change-transform sm:px-4 ${isNavVisible ? "" : "pointer-events-none"}`}
+    <header
+      className={`fixed left-0 right-0 top-0 z-50 px-0 pt-0 transition-transform duration-300 ease-in-out will-change-transform sm:px-4 ${isNavVisible ? "translate-y-0" : "-translate-y-full pointer-events-none"}`}
     >
       <nav
         className={`mx-auto w-full max-w-[1400px] rounded-none border-x border-x-[#7A6940]/35 border-b border-b-[rgba(212,175,55,0.18)] ${navSurfaceClass} backdrop-blur-[12px] transition-all duration-500 sm:rounded-md ${
@@ -285,7 +303,7 @@ function HeaderNav() {
           </AnimatePresence>
         </div>
       </nav>
-    </motion.header>
+    </header>
   );
 }
 
