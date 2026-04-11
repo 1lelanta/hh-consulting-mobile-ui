@@ -108,10 +108,10 @@ function HeroSection({ data }) {
           aria-hidden="true"
         />
 
-        <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1200px] px-5 py-12 text-white sm:px-8 sm:py-14 lg:min-h-[100vh] lg:px-10 lg:py-18">
-          <div className="grid grid-cols-1 items-end gap-8 lg:gap-10">
+        <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1200px] px-5 py-22 text-white sm:px-8 sm:py-24 lg:min-h-[100vh] lg:px-10 lg:py-28">
+          <div className="grid grid-cols-1 items-start gap-8 lg:gap-10">
             <motion.div
-              className="max-w-[820px] pt-12 sm:pt-16 lg:pt-24"
+              className="max-w-[820px] pt-32 sm:pt-36 lg:pt-44 translate-y-6 sm:translate-y-8 lg:translate-y-10"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
