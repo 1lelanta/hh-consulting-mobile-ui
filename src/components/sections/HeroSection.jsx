@@ -201,10 +201,10 @@ function HeroSection({ data, contact }) {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-16 z-20 px-4 sm:bottom-18 sm:px-6 lg:bottom-20 lg:px-10" aria-hidden="true">
-          <div className="overflow-hidden rounded-full border border-[#F3D36B]/45 bg-[#D5B223] shadow-[0_14px_30px_rgba(213,178,35,0.28)]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 px-4 sm:bottom-0 sm:px-6 lg:bottom-1 lg:px-10" aria-hidden="true">
+          <div className="overflow-hidden rounded-[8px] border border-[#F3D36B]/45 bg-[#D5B223] shadow-[0_14px_30px_rgba(213,178,35,0.28)]">
             <div className="flex w-max items-center gap-4 py-3 text-[#0B1730] sm:gap-6 sm:py-3.5">
-              <div className="animate-marquee flex w-max items-center gap-4 sm:gap-6 [animation-duration:24s] [animation-timing-function:linear] [animation-iteration-count:infinite]">
+              <div className="animate-marquee flex w-max items-center gap-4 sm:gap-6 [animation-duration:42s] [animation-timing-function:linear] [animation-iteration-count:infinite]">
                 {tickerContent.map((item, index) => (
                   <div key={`${item.label}-${index}`} className="flex items-center gap-4 whitespace-nowrap px-4 text-[0.78rem] font-bold uppercase tracking-[0.14em] sm:gap-6 sm:px-6 sm:text-[0.84rem] lg:text-[0.88rem]">
                     <span className="text-[#0B1730]/72">{item.label}</span>
@@ -218,7 +218,7 @@ function HeroSection({ data, contact }) {
         </div>
 
         {backgrounds.length > 1 ? (
-          <div className="pointer-events-none absolute inset-x-0 bottom-6 z-20 flex items-center justify-center gap-2.5 sm:bottom-7 lg:bottom-8" aria-hidden="true">
+          <div className="pointer-events-none absolute inset-x-0 bottom-14 z-20 flex items-center justify-center gap-2.5 sm:bottom-16 lg:bottom-18" aria-hidden="true">
             {backgrounds.map((background, index) => {
               const isActive = index === activeIndex;
 
