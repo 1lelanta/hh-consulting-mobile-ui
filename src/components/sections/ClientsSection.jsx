@@ -6,8 +6,8 @@ function ClientLogoTile({ item, index }) {
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1], delay: index * 0.04 }}
-      className="group flex min-h-[126px] items-center justify-center rounded-2xl border border-[#E5E7EB] bg-white px-5 py-5 shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition duration-300 hover:scale-[1.05] hover:border-[#D5B223]/40 hover:shadow-[0_20px_36px_rgba(15,23,42,0.14)]"
+      transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1], delay: (index % 10) * 0.03 }}
+      className="group flex h-[122px] w-[176px] shrink-0 items-center justify-center rounded-2xl border border-[#E5E7EB] bg-white px-5 py-5 shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition duration-300 hover:scale-[1.05] hover:border-[#D5B223]/40 hover:shadow-[0_20px_36px_rgba(15,23,42,0.14)] sm:h-[128px] sm:w-[190px]"
     >
       <img
         src={item.logoSrc}
@@ -21,6 +21,7 @@ function ClientLogoTile({ item, index }) {
 
 function ClientsSection({ data, className = "" }) {
   const logos = (data.logoRows || []).flatMap((row) => row.items || []);
+  const marqueeLogos = [...logos, ...logos];
 
   return (
     <motion.section
@@ -56,10 +57,15 @@ function ClientsSection({ data, className = "" }) {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8 md:grid-cols-4 lg:mt-12 lg:grid-cols-5 lg:gap-10 xl:grid-cols-6">
-          {logos.map((item, index) => (
-            <ClientLogoTile key={`${item.name}-${index}`} item={item} index={index} />
-          ))}
+        <div className="relative mt-10 overflow-hidden py-2 lg:mt-12">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 bg-gradient-to-r from-[#F6F9FC] to-transparent sm:w-24" aria-hidden="true" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 bg-gradient-to-l from-[#F2F5F9] to-transparent sm:w-24" aria-hidden="true" />
+
+          <div className="animate-marquee flex w-max gap-7 [animation-duration:30s] [animation-timing-function:linear] [animation-iteration-count:infinite] sm:gap-8 lg:gap-10">
+            {marqueeLogos.map((item, index) => (
+              <ClientLogoTile key={`${item.name}-${index}`} item={item} index={index} />
+            ))}
+          </div>
         </div>
 
       </div>
