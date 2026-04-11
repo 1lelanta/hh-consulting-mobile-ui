@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
-function HeroSection({ data }) {
+function HeroSection({ data, contact }) {
   const backgrounds = useMemo(() => {
     if (Array.isArray(data.backgroundImages) && data.backgroundImages.length > 0) {
       return data.backgroundImages;
@@ -46,6 +46,19 @@ function HeroSection({ data }) {
   const leadingHeadline = shouldHighlightLastWord
     ? currentTitleWords.slice(0, -1).join(" ")
     : currentSlide?.title;
+  const officeAddressCard = Array.isArray(contact?.contactCards)
+    ? contact.contactCards.find((card) => card.icon === "address")
+    : null;
+  const phoneCard = Array.isArray(contact?.contactCards)
+    ? contact.contactCards.find((card) => card.icon === "phone")
+    : null;
+  const officeAddress = officeAddressCard ? officeAddressCard.lines.join(" ") : "22 Mazoriya, Efrata Building, 3rd Floor, Addis Ababa, Ethiopia";
+  const contactPhone = phoneCard?.lines?.[0] || "+251 911 228 253";
+  const tickerItems = [
+    { label: "Office Address", value: officeAddress },
+    { label: "Phone", value: contactPhone },
+  ];
+  const tickerContent = [...tickerItems, ...tickerItems];
 
   useEffect(() => {
     if (backgrounds.length <= 1) {
@@ -185,6 +198,22 @@ function HeroSection({ data }) {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-16 z-20 px-4 sm:bottom-18 sm:px-6 lg:bottom-20 lg:px-10" aria-hidden="true">
+          <div className="overflow-hidden rounded-full border border-[#F3D36B]/45 bg-[#D5B223] shadow-[0_14px_30px_rgba(213,178,35,0.28)]">
+            <div className="flex w-max items-center gap-4 py-3 text-[#0B1730] sm:gap-6 sm:py-3.5">
+              <div className="animate-marquee flex w-max items-center gap-4 sm:gap-6 [animation-duration:24s] [animation-timing-function:linear] [animation-iteration-count:infinite]">
+                {tickerContent.map((item, index) => (
+                  <div key={`${item.label}-${index}`} className="flex items-center gap-4 whitespace-nowrap px-4 text-[0.78rem] font-bold uppercase tracking-[0.14em] sm:gap-6 sm:px-6 sm:text-[0.84rem] lg:text-[0.88rem]">
+                    <span className="text-[#0B1730]/72">{item.label}</span>
+                    <span className="h-4 w-px bg-[#0B1730]/35" aria-hidden="true" />
+                    <span className="text-[#0B1730]">{item.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

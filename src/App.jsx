@@ -125,7 +125,7 @@ function App() {
         ) : (
           <>
             <section>
-              <HeroSection data={siteContent.hero} />
+              <HeroSection data={siteContent.hero} contact={siteContent.contact} />
             </section>
             <ServicesSection data={siteContent.services} className="lg:mt-8" />
             <ProjectsSection data={siteContent.projects} className="lg:mt-8" />
