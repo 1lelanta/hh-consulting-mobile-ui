@@ -4,7 +4,7 @@ import HeroSection from "./components/sections/HeroSection";
 import AboutSection from "./components/sections/AboutSection";
 import ServicesSection from "./components/sections/ServicesSection";
 import ProjectsSection from "./components/sections/ProjectsSection";
-import PostProjectsCtaSection from "./components/sections/PostProjectsCtaSection";
+import CertificationsSection from "./components/sections/CertificationsSection";
 import ProjectsArchivePage from "./components/sections/ProjectsArchivePage";
 import ClientsSection from "./components/sections/ClientsSection";
 import TeamSection from "./components/sections/TeamSection";
@@ -117,7 +117,11 @@ function App() {
         {isProjectsArchive ? (
           <ProjectsArchivePage data={siteContent.projects} />
         ) : isAboutPage ? (
-          <AboutSection data={siteContent.about} className="lg:mt-8" />
+          <>
+            <AboutSection data={siteContent.about} className="lg:mt-8" />
+            <CertificationsSection className="lg:mt-8" />
+            <ClientsSection data={siteContent.clients} className="lg:mt-8" />
+          </>
         ) : isTeamPage ? (
           <TeamSection data={siteContent.team} className="lg:mt-8" />
         ) : isContactPage ? (
@@ -127,10 +131,9 @@ function App() {
             <section>
               <HeroSection data={siteContent.hero} contact={siteContent.contact} />
             </section>
-            <ServicesSection data={siteContent.services} className="lg:mt-8" />
-            <ProjectsSection data={siteContent.projects} className="lg:mt-8" />
-            <PostProjectsCtaSection className="lg:mt-8" />
-            <ClientsSection data={siteContent.clients} className="lg:mt-8" />
+            <ServicesSection data={siteContent.services} />
+            <ProjectsSection data={siteContent.projects} />
+            <TeamSection data={siteContent.team} className="lg:mt-8" showList={false} />
           </>
         )}
         <FooterSection data={siteContent.footer} className={isContactPage ? "mt-0" : "mt-8"} />

@@ -1,7 +1,26 @@
 import { motion } from "framer-motion";
 
-function TeamSection({ data, className = "" }) {
+function TeamSection({ data, className = "", showList = true }) {
   const members = [...(data.leadership || []), ...(data.departmentLeads || []), ...(data.supportTeam || [])];
+
+  const avatarItems = members.slice(0, 3);
+  const extraCount = Math.max(0, members.length - avatarItems.length);
+  const heroImage = data.image || "/asset/bg.png";
+  const heroImageAlt = data.imageAlt || "Our people and workspace";
+
+  function TeamAvatar({ member, index }) {
+    return (
+      <div
+        className={`flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border-4 border-white bg-[#0F172A] shadow-[0_10px_20px_rgba(15,23,42,0.14)] ${index > 0 ? "-ml-3" : ""}`}
+      >
+        <img
+          src={member.image}
+          alt={member.imageAlt}
+          className="h-full w-full object-cover object-center"
+        />
+      </div>
+    );
+  }
 
   function TeamCard({ member, index }) {
     const mailTo = `mailto:hhconsultingarchitectengineers@gmail.com?subject=${encodeURIComponent(`Connect with ${member.name}`)}`;
@@ -76,31 +95,76 @@ function TeamSection({ data, className = "" }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: [0.17, 0.67, 0.83, 0.67] }}
       viewport={{ once: true, amount: 0.2 }}
-      className={`animate-reveal mt-8 -mx-3 scroll-mt-28 bg-transparent px-3 py-16 [animation-delay:360ms] sm:-mx-6 sm:px-6 sm:py-20 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${className}`}
+      className={`animate-reveal mt-8 -mx-3 scroll-mt-28 bg-white px-3 py-16 [animation-delay:360ms] sm:-mx-6 sm:px-6 sm:py-20 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${className}`}
     >
       <div className="mx-auto w-full max-w-[1240px]">
-        <div className="max-w-[880px]">
-          <div className="flex items-center gap-3">
-            <span className="h-[2px] w-14 bg-[#D5B223]" />
-            <p className="section-eyebrow text-[#D5B223]">
-              {data.eyebrow}
+        <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+          <div className="max-w-[640px] justify-self-start text-left lg:pt-10">
+            <h2 className="m-0 text-[2.7rem] font-black leading-[1.02] tracking-[-0.04em] text-[#F4F7FB] sm:text-[3.6rem] lg:text-[4.4rem]">
+              Our People
+            </h2>
+
+            <p className="m-0 mt-6 max-w-[34rem] text-[1rem] leading-8 text-[#8EA0C2] sm:text-[1.08rem]">
+              Behind every successful project is a team of dedicated professionals. We bring together diverse expertise to solve complex challenges.
             </p>
+
+            <div className="mt-10 flex items-center">
+              {avatarItems.map((member, index) => (
+                <TeamAvatar key={member.name} member={member} index={index} />
+              ))}
+
+              {extraCount > 0 ? (
+                <div className="-ml-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#F4F7FB] text-[0.72rem] font-bold text-[#D4DEE9] shadow-[0_10px_20px_rgba(15,23,42,0.08)]">
+                  +{extraCount}
+                </div>
+              ) : null}
+            </div>
+
+            <a
+              href="#team-list"
+              className="mt-10 inline-flex items-center justify-center bg-[#121A33] px-8 py-3.5 text-[0.88rem] font-medium text-white transition duration-300 hover:bg-[#0B1220] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#121A33] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            >
+              Meet The Team
+            </a>
           </div>
 
-          <h2 className="m-0 mt-5 font-['Poppins','Inter',sans-serif] text-[2rem] font-bold leading-[1.12] tracking-[-0.02em] text-brand-navy900 sm:text-[2.5rem] lg:text-[3.25rem]">
-            {data.title}
-          </h2>
-
-          <p className="m-0 mt-5 max-w-[760px] text-[1.03rem] leading-8 text-brand-gray500 sm:text-[1.1rem]">
-            {data.subtitle}
-          </p>
+          <div className="justify-self-end lg:pr-2">
+            <figure className="m-0 overflow-hidden bg-white shadow-[0_18px_50px_rgba(15,23,42,0.14)] lg:w-[640px]">
+              <img
+                src={heroImage}
+                alt={heroImageAlt}
+                className="aspect-[0.92/1] w-full object-cover object-center sm:aspect-[0.98/1] lg:aspect-[1/1.02]"
+              />
+            </figure>
+          </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
-          {members.map((member, index) => (
-            <TeamCard key={member.name} member={member} index={index} />
-          ))}
-        </div>
+        {showList ? (
+          <div id="team-list" className="mt-14 scroll-mt-28">
+            <div className="max-w-[880px]">
+              <div className="flex items-center gap-3">
+                <span className="h-[2px] w-14 bg-[#D5B223]" />
+                <p className="section-eyebrow text-[#D5B223]">
+                  {data.eyebrow}
+                </p>
+              </div>
+
+              <h2 className="m-0 mt-5 font-['Poppins','Inter',sans-serif] text-[2rem] font-bold leading-[1.12] tracking-[-0.02em] text-brand-navy900 sm:text-[2.5rem] lg:text-[3.25rem]">
+                {data.title}
+              </h2>
+
+              <p className="m-0 mt-5 max-w-[760px] text-[1.03rem] leading-8 text-brand-gray500 sm:text-[1.1rem]">
+                {data.subtitle}
+              </p>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
+              {members.map((member, index) => (
+                <TeamCard key={member.name} member={member} index={index} />
+              ))}
+            </div>
+          </div>
+        ) : null}
       </div>
     </motion.section>
   );

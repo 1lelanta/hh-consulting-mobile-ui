@@ -2,12 +2,11 @@ export const siteContent = {
   hero: {
     company: "HH CONSULTING ARCHITECTS & ENGINEERS PLC.",
     companyAmharic: "ኤች ኤች ኮንሰልቲንግ አርክቴክቶች እና መሀንዲሶች ሃ/የተ/የግል/ማህበር",
-    subtitle: "Worldwide Consulting",
-    headline: "Engineered Excellence",
-    description:
-      "For local and international projects, we deliver integrated architecture, engineering design, and construction supervision with precision.",
-    ctaLabel: "Explore Projects",
-    ctaHref: "#projects",
+    subtitle: "Engineering & Architecture Solutions",
+    headline: "Designing the Future of Infrastructure",
+    description: "Trusted by clients for clear design, solid execution, and dependable project delivery.",
+    ctaLabel: "Get Consultation",
+    ctaHref: "#get-in-touch",
     backgroundImages: [
       {
         src: "/asset/ali%20bira%20guesthouse.png",
@@ -268,6 +267,8 @@ export const siteContent = {
     title: "OUR TEAM",
     subtitle:
       "Meet the workers behind our architectural, engineering, and project delivery excellence.",
+    image: "/asset/bg.png",
+    imageAlt: "Modern campus and workplace visual",
     leadership: [
       {
         name: "Hailemichael Solomon",
@@ -380,6 +381,8 @@ export const siteContent = {
       { label: "About", href: "#about-us" },
       { label: "Services", href: "#services" },
       { label: "Projects", href: "#projects" },
+      { label: "Certifications", href: "#certifications" },
+      { label: "Team", href: "#team" },
       { label: "Get In Touch", href: "#get-in-touch" },
     ],
     services: [

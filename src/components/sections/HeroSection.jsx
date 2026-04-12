@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
 function HeroSection({ data, contact }) {
@@ -14,20 +14,6 @@ function HeroSection({ data, contact }) {
 
   const heroSlides = useMemo(
     () => [
-      {
-        key: "mission",
-        badge: "Core Direction",
-        title: "MISSION",
-        description:
-          "To provide integrated architectural and engineering solutions driven by innovation, efficiency, and intelligent project management-delivering quality, value, and precision in every project.",
-      },
-      {
-        key: "vision",
-        badge: "Future Direction",
-        title: "VISION",
-        description:
-          "To redefine standards in the construction industry by leading with innovation, strong partnerships, and excellence in project delivery and supervision.",
-      },
       {
         key: "default",
         badge: data.subtitle,
@@ -45,19 +31,6 @@ function HeroSection({ data, contact }) {
   const leadingHeadline = shouldHighlightLastWord
     ? currentTitleWords.slice(0, -1).join(" ")
     : currentSlide?.title;
-  const officeAddressCard = Array.isArray(contact?.contactCards)
-    ? contact.contactCards.find((card) => card.icon === "address")
-    : null;
-  const phoneCard = Array.isArray(contact?.contactCards)
-    ? contact.contactCards.find((card) => card.icon === "phone")
-    : null;
-  const officeAddress = officeAddressCard ? officeAddressCard.lines.join(" ") : "22 Mazoriya, Efrata Building, 3rd Floor, Addis Ababa, Ethiopia";
-  const contactPhone = phoneCard?.lines?.[0] || "+251 911 228 253";
-  const tickerItems = [
-    { label: "Office Address", value: officeAddress },
-    { label: "Phone", value: contactPhone },
-  ];
-  const tickerContent = [...tickerItems, ...tickerItems];
 
   useEffect(() => {
     if (backgrounds.length <= 1) {
@@ -121,15 +94,13 @@ function HeroSection({ data, contact }) {
             >
               <div className="space-y-5">
                 <div className="min-h-[340px] sm:min-h-[360px] lg:min-h-[420px]">
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.div
-                      key={currentSlide.key}
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -16 }}
-                      transition={{ duration: 0.9, ease: "easeInOut" }}
-                      className="space-y-5"
-                    >
+                  <motion.div
+                    key={currentSlide.key}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.9, ease: "easeInOut" }}
+                    className="space-y-5"
+                  >
                       <p className="m-0 inline-flex w-fit items-center rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[0.8rem] font-bold uppercase tracking-[0.16em] text-[#E7CB74] backdrop-blur sm:text-[0.86rem]">
                         {currentSlide.badge}
                       </p>
@@ -150,10 +121,10 @@ function HeroSection({ data, contact }) {
 
                       <div className="flex flex-col gap-3 pt-2 sm:flex-row">
                         <a
-                          href={data.ctaHref}
+                          href="#get-in-touch"
                           className="inline-flex w-full items-center justify-center rounded-[12px] bg-[#D5B223] px-6 py-3.5 text-center text-[0.9rem] font-extrabold uppercase tracking-[0.12em] text-[#0B1730] shadow-[0_12px_26px_rgba(213,178,35,0.35)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#E2C241] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F8E8B3] sm:w-auto sm:min-w-[190px]"
                         >
-                          {data.ctaLabel}
+                          Get Consultation
                         </a>
 
                         <div className="relative inline-flex w-full sm:w-auto sm:min-w-[190px]">
@@ -175,51 +146,21 @@ function HeroSection({ data, contact }) {
                           />
 
                           <a
-                            href="#get-in-touch"
+                            href="#services"
                             className="inline-flex w-full items-center justify-center rounded-none border border-white/30 bg-white/10 px-6 py-3.5 text-center text-[0.9rem] font-bold uppercase tracking-[0.12em] text-white backdrop-blur transition duration-300 hover:border-white/60 hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                           >
-                            Contact Us
+                            View Services
                           </a>
                         </div>
                       </div>
-                    </motion.div>
-                  </AnimatePresence>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 w-full sm:bottom-0 lg:bottom-1" aria-hidden="true">
-          <div className="overflow-hidden border-y border-[#F3D36B]/45 bg-[#D5B223] shadow-[0_14px_30px_rgba(213,178,35,0.28)]">
-            <div className="flex w-full items-center gap-4 py-3 text-[#0B1730] sm:gap-6 sm:py-3.5">
-              <div className="animate-marquee flex w-max items-center gap-4 sm:gap-6 [animation-duration:42s] [animation-timing-function:linear] [animation-iteration-count:infinite]">
-                {tickerContent.map((item, index) => (
-                  <div key={`${item.label}-${index}`} className="flex items-center gap-4 whitespace-nowrap px-4 text-[0.78rem] font-bold uppercase tracking-[0.14em] sm:gap-6 sm:px-6 sm:text-[0.84rem] lg:text-[0.88rem]">
-                    <span className="text-[#0B1730]/72">{item.label}</span>
-                    <span className="h-4 w-px bg-[#0B1730]/35" aria-hidden="true" />
-                    <span className="text-[#0B1730]">{item.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {backgrounds.length > 1 ? (
-          <div className="pointer-events-none absolute inset-x-0 bottom-14 z-20 flex items-center justify-center gap-2.5 sm:bottom-16 lg:bottom-18" aria-hidden="true">
-            {backgrounds.map((background, index) => {
-              const isActive = index === activeIndex;
-
-              return (
-                <span
-                  key={`hero-dot-${background.src}-${index}`}
-                  className={`h-2.5 rounded-full transition-all duration-500 ease-in-out ${isActive ? "w-7 bg-[#D5B223] shadow-[0_0_14px_rgba(213,178,35,0.55)]" : "w-2.5 bg-white/55"}`}
-                />
-              );
-            })}
-          </div>
-        ) : null}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-20 bg-[linear-gradient(180deg,rgba(8,10,14,0)_0%,rgba(8,10,14,0.96)_100%)]" aria-hidden="true" />
       </div>
     </motion.section>
   );

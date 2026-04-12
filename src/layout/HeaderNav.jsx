@@ -7,6 +7,7 @@ const navItems = [
   { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
   { label: "Team", href: "#team" },
+  { label: "Contact", href: "#get-in-touch" },
 ];
 
 function HeaderNav() {
@@ -192,12 +193,6 @@ function HeaderNav() {
               </a>
             ))}
 
-            <a
-              href="#get-in-touch"
-              className="ml-3 inline-flex border-l border-white/20 pl-4 pr-2 py-2 text-[0.84rem] font-extrabold uppercase tracking-[0.18em] text-[#F5F5F5] transition duration-300 hover:text-[#FFE9A8] focus-visible:rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E4A0] lg:text-[0.9rem]"
-            >
-              Get Started
-            </a>
           </div>
 
           <AnimatePresence>
@@ -222,13 +217,6 @@ function HeaderNav() {
                       </a>
                     ))}
 
-                    <a
-                      href="#get-in-touch"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block font-['Georgia',serif] text-[2.1rem] leading-[1.05] tracking-[-0.01em] text-[#F5F5F5] transition duration-300 hover:translate-x-1 hover:text-[#EAD9A3] focus-visible:rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4E4A0]"
-                    >
-                      Contact
-                    </a>
                   </div>
                 </div>
 
