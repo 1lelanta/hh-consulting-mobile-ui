@@ -9,6 +9,7 @@ import CertificationsSection from "./components/sections/CertificationsSection";
 import ProjectsArchivePage from "./components/sections/ProjectsArchivePage";
 import ClientsSection from "./components/sections/ClientsSection";
 import TeamSection from "./components/sections/TeamSection";
+import HomeCtaSection from "./components/sections/HomeCtaSection";
 import ContactSection from "./components/sections/ContactSection";
 import FooterSection from "./components/sections/FooterSection";
 import StickyActions from "./components/sections/StickyActions";
@@ -178,11 +179,20 @@ function App() {
                   >
                     <TeamSection data={siteContent.team} className="lg:mt-8" showList={false} />
                   </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 34, scale: 0.99 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: false, amount: 0.16 }}
+                    transition={{ duration: 0.72, ease: [0.22, 0.61, 0.36, 1], delay: 0.04 }}
+                    className="will-change-transform"
+                  >
+                    <HomeCtaSection />
+                  </motion.div>
                 </>
               )}
             </motion.div>
           </AnimatePresence>
-          <FooterSection data={siteContent.footer} className={isContactPage ? "mt-0" : "mt-8"} />
+          <FooterSection data={siteContent.footer} className={isHomePage || isContactPage ? "mt-0" : "mt-8"} />
         </MobileShell>
       </div>
 
