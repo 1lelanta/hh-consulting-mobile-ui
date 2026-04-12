@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import MobileShell from "./layout/MobileShell";
 import HeroSection from "./components/sections/HeroSection";
@@ -23,6 +24,16 @@ function App() {
   const [showPreloader, setShowPreloader] = useState(true);
   const isHomePage = !isProjectsArchive && !isAboutPage && !isTeamPage && !isContactPage;
   const useFlushTopLayout = isHomePage || isContactPage;
+  const homePageShellClass = isHomePage ? "gap-14 sm:gap-16 lg:gap-20" : "";
+  const routeKey = isProjectsArchive
+    ? "projects-archive"
+    : isAboutPage
+      ? "about"
+      : isTeamPage
+        ? "team"
+        : isContactPage
+          ? "contact"
+          : "home";
 
   useEffect(() => {
     let hasCompleted = false;
@@ -113,31 +124,66 @@ function App() {
       <div className="pointer-events-none fixed inset-0 opacity-40 [background:radial-gradient(circle_at_100%_0%,rgba(190,154,90,0.20),transparent_35%),radial-gradient(circle_at_0%_10%,rgba(22,59,99,0.14),transparent_30%)]" />
 
       <div className={`transition-all duration-700 ease-out ${showPreloader ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100"}`}>
-      <MobileShell className={useFlushTopLayout ? "pt-0" : "pt-[88px]"}>
-        {isProjectsArchive ? (
-          <ProjectsArchivePage data={siteContent.projects} />
-        ) : isAboutPage ? (
-          <>
-            <AboutSection data={siteContent.about} className="lg:mt-8" />
-            <CertificationsSection className="lg:mt-8" />
-            <ClientsSection data={siteContent.clients} className="lg:mt-8" />
-          </>
-        ) : isTeamPage ? (
-          <TeamSection data={siteContent.team} className="lg:mt-8" />
-        ) : isContactPage ? (
-          <ContactSection data={siteContent.contact} className="mt-0 lg:mt-0" />
-        ) : (
-          <>
-            <section>
-              <HeroSection data={siteContent.hero} contact={siteContent.contact} />
-            </section>
-            <ServicesSection data={siteContent.services} />
-            <ProjectsSection data={siteContent.projects} />
-            <TeamSection data={siteContent.team} className="lg:mt-8" showList={false} />
-          </>
-        )}
-        <FooterSection data={siteContent.footer} className={isContactPage ? "mt-0" : "mt-8"} />
-      </MobileShell>
+        <MobileShell className={`${useFlushTopLayout ? "pt-0" : "pt-[88px]"} ${homePageShellClass}`}>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={routeKey}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.38, ease: [0.22, 0.61, 0.36, 1] }}
+              className="w-full"
+            >
+              {isProjectsArchive ? (
+                <ProjectsArchivePage data={siteContent.projects} />
+              ) : isAboutPage ? (
+                <>
+                  <AboutSection data={siteContent.about} className="lg:mt-8" />
+                  <CertificationsSection className="lg:mt-8" />
+                  <ClientsSection data={siteContent.clients} className="lg:mt-8" />
+                </>
+              ) : isTeamPage ? (
+                <TeamSection data={siteContent.team} className="lg:mt-8" />
+              ) : isContactPage ? (
+                <ContactSection data={siteContent.contact} className="mt-0 lg:mt-0" />
+              ) : (
+                <>
+                  <section>
+                    <HeroSection data={siteContent.hero} contact={siteContent.contact} />
+                  </section>
+                  <motion.div
+                    initial={{ opacity: 0, y: 28, scale: 0.99 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: false, amount: 0.18 }}
+                    transition={{ duration: 0.65, ease: [0.22, 0.61, 0.36, 1] }}
+                    className="will-change-transform"
+                  >
+                    <ServicesSection data={siteContent.services} />
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 34, scale: 0.985 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: false, amount: 0.18 }}
+                    transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
+                    className="will-change-transform"
+                  >
+                    <ProjectsSection data={siteContent.projects} />
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 34, scale: 0.985 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: false, amount: 0.18 }}
+                    transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1], delay: 0.05 }}
+                    className="will-change-transform"
+                  >
+                    <TeamSection data={siteContent.team} className="lg:mt-8" showList={false} />
+                  </motion.div>
+                </>
+              )}
+            </motion.div>
+          </AnimatePresence>
+          <FooterSection data={siteContent.footer} className={isContactPage ? "mt-0" : "mt-8"} />
+        </MobileShell>
       </div>
 
       <StickyActions data={siteContent.stickyActions} />
