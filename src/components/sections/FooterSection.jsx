@@ -63,7 +63,7 @@ function FooterSection({ data, className = "" }) {
                 <p className="m-0 mt-3 text-[0.98rem] leading-7 text-white/74 sm:text-[1.02rem] sm:leading-7">
                   Engineering &amp; Architecture firm focused on scalable infrastructure solutions.
                 </p>
-                <p className="m-0 mt-3 text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white/58">
+                <p className="m-0 mt-3 text-[0.82rem] font-semibold tracking-wide text-white/58">
                   Trusted by institutions across Ethiopia and beyond
                 </p>
               </div>

@@ -41,7 +41,7 @@ function HeroSection({ data, contact }) {
             >
               <div className="space-y-8 sm:space-y-10">
                 {currentSlide.badge ? (
-                  <p className="m-0 inline-flex w-fit items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[0.78rem] font-bold uppercase tracking-[0.16em] text-[#F4D97D] backdrop-blur sm:text-[0.84rem]">
+                  <p className="m-0 inline-flex w-fit items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[0.78rem] font-bold uppercase tracking-[0.12em] text-[#F4D97D] backdrop-blur sm:text-[0.84rem]">
                     {currentSlide.badge}
                   </p>
                 ) : null}
