@@ -195,7 +195,7 @@ function ServicesSection({ data, className = "" }) {
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
       viewport={{ once: true, amount: 0.2 }}
-      className={`animate-reveal -mx-3 scroll-mt-28 bg-[linear-gradient(180deg,#0A0A0F_0%,#111827_100%)] px-3 py-12 text-white [animation-delay:200ms] sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${className}`}
+      className={`animate-reveal -mx-3 scroll-mt-28 bg-[linear-gradient(180deg,#0A0A0F_0%,#111827_100%)] px-3 py-20 text-white [animation-delay:200ms] sm:-mx-6 sm:px-6 sm:py-24 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${className}`}
     >
       <div className="mx-auto w-full max-w-[1320px]">
         <div className="max-w-[840px]">
@@ -204,7 +204,7 @@ function ServicesSection({ data, className = "" }) {
             <p className="section-eyebrow text-[#D5B223]">OUR SERVICES</p>
           </div>
 
-          <h2 className="m-0 mb-12 mt-4 text-[1.8rem] font-black uppercase leading-[1.08] tracking-[0.08em] text-white sm:mt-5 sm:text-[2.4rem] lg:text-[3.1rem]">
+          <h2 className="m-0 mb-10 mt-4 text-[1.8rem] font-black uppercase leading-[1.08] tracking-[0.08em] text-white sm:mt-5 sm:text-[2.4rem] lg:text-[3.1rem]">
             {data.title || "Our Services"}
           </h2>
 
@@ -227,7 +227,7 @@ function ServicesSection({ data, className = "" }) {
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.55, ease: [0.22, 0.61, 0.36, 1], delay: index * 0.06 }}
               viewport={{ once: true, amount: 0.35 }}
-              className="group min-w-[112px] max-w-[112px] flex-1 snap-start overflow-hidden rounded-[16px] border border-white/10 bg-white/6 shadow-[0_14px_30px_rgba(2,6,23,0.22)] transition-all duration-300 hover:-translate-y-2 hover:border-[#D5B223]/35 hover:bg-white/10 hover:shadow-[0_20px_34px_rgba(2,6,23,0.28)] sm:min-w-0 sm:max-w-none md:min-w-0 md:max-w-none lg:min-w-0"
+              className="group min-w-[112px] max-w-[112px] flex-1 snap-start overflow-hidden rounded-[18px] border border-white/12 bg-white/[0.06] shadow-[0_16px_34px_rgba(2,6,23,0.24)] transition-all duration-300 hover:-translate-y-2 hover:border-[#D5B223]/35 hover:bg-white/10 hover:shadow-[0_22px_40px_rgba(2,6,23,0.3)] sm:min-w-0 sm:max-w-none md:min-w-0 md:max-w-none lg:min-w-0"
             >
               <div className="relative h-full">
                 <div className="relative aspect-[0.95/1] overflow-hidden bg-[#111827]">
@@ -249,7 +249,7 @@ function ServicesSection({ data, className = "" }) {
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-7 rounded-[24px] border border-white/10 bg-white/5 px-5 py-5 shadow-[0_18px_34px_rgba(2,6,23,0.24)] transition-all duration-300 hover:-translate-y-2 sm:mt-8 sm:px-6 sm:py-6"
+          className="mt-7 rounded-[24px] border border-white/12 bg-white/5 px-5 py-5 shadow-[0_18px_34px_rgba(2,6,23,0.24)] transition-all duration-300 hover:-translate-y-2 sm:mt-8 sm:px-6 sm:py-6"
         >
           <div className="flex items-center gap-3">
             <span className="h-[2px] w-10 bg-[#D5B223]" />

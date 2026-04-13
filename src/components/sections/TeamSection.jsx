@@ -99,12 +99,12 @@ function TeamSection({ data, className = "", showList = true, backgroundClassNam
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
       viewport={{ once: true, amount: 0.2 }}
-      className={`animate-reveal -mx-3 scroll-mt-28 px-3 py-16 [animation-delay:360ms] sm:-mx-6 sm:px-6 sm:py-20 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${backgroundClassName} ${className}`}
+      className={`animate-reveal -mx-3 scroll-mt-28 px-3 py-20 [animation-delay:360ms] sm:-mx-6 sm:px-6 sm:py-24 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${backgroundClassName} ${className}`}
     >
       <div className="mx-auto w-full max-w-[1240px]">
         <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           <div className="max-w-[640px] justify-self-start text-left lg:pt-10">
-            <h2 className="m-0 mb-12 text-[2.7rem] font-black leading-[1.02] tracking-[-0.04em] text-[#F4F7FB] sm:text-[3.6rem] lg:text-[4.4rem]">
+            <h2 className="m-0 mb-10 text-[2.7rem] font-black leading-[1.02] tracking-[-0.04em] text-[#F4F7FB] sm:text-[3.6rem] lg:text-[4.4rem]">
               Our People
             </h2>
 
@@ -126,14 +126,14 @@ function TeamSection({ data, className = "", showList = true, backgroundClassNam
 
             <a
               href="#team-list"
-              className="mt-10 inline-flex items-center justify-center bg-[#121A33] px-8 py-3.5 text-[0.88rem] font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 hover:bg-[#0B1220] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#121A33] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+              className="mt-10 inline-flex items-center justify-center rounded-[12px] border border-white/12 bg-white/[0.06] px-8 py-3.5 text-[0.88rem] font-semibold uppercase tracking-[0.12em] text-white shadow-[0_16px_34px_rgba(2,6,23,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D5B223]/45 hover:bg-white/[0.1] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D5B223] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
             >
               Meet The Team
             </a>
           </div>
 
           <div className="justify-self-end lg:pr-2">
-            <figure className="m-0 overflow-hidden bg-white shadow-[0_18px_50px_rgba(15,23,42,0.14)] lg:w-[640px]">
+            <figure className="m-0 overflow-hidden rounded-[24px] border border-white/10 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.14)] lg:w-[640px]">
               <img
                 src={heroImage}
                 alt={heroImageAlt}
@@ -153,11 +153,11 @@ function TeamSection({ data, className = "", showList = true, backgroundClassNam
                 </p>
               </div>
 
-              <h2 className="m-0 mt-5 font-['Poppins','Inter',sans-serif] text-[2rem] font-bold leading-[1.12] tracking-[-0.02em] text-brand-navy900 sm:text-[2.5rem] lg:text-[3.25rem]">
+              <h2 className="m-0 mt-5 font-['Poppins','Inter',sans-serif] text-[2rem] font-bold leading-[1.12] tracking-[-0.02em] text-white sm:text-[2.5rem] lg:text-[3.25rem]">
                 {data.title}
               </h2>
 
-              <p className="m-0 mt-5 max-w-[760px] text-[1.03rem] leading-8 text-brand-gray500 sm:text-[1.1rem]">
+              <p className="m-0 mt-5 max-w-[760px] text-[1.03rem] leading-8 text-white/72 sm:text-[1.1rem]">
                 {data.subtitle}
               </p>
             </div>
