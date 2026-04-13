@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Button from "../ui/Button";
 import heroBg from "../../assets/newbg.jpeg";
 
 function HeroSection({ data, contact }) {
+  const shouldReduceMotion = useReducedMotion();
   const currentSlide = {
     badge: data.subtitle,
     title: data.headline,
@@ -17,8 +18,8 @@ function HeroSection({ data, contact }) {
   return (
     <motion.section
       id="home"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 50 }}
+      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
       viewport={{ once: true, amount: 0.2 }}
       style={{
@@ -34,8 +35,8 @@ function HeroSection({ data, contact }) {
           <div className="grid grid-cols-1 items-start gap-8 lg:gap-10">
             <motion.div
               className="max-w-[820px] pt-24 translate-y-4 sm:pt-32 sm:translate-y-6 lg:pt-40 lg:translate-y-8"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
               viewport={{ once: true, amount: 0.25 }}
             >
