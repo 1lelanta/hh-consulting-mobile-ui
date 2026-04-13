@@ -56,7 +56,7 @@ function ContactSection({ data, className = "" }) {
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 0.55, ease: [0.22, 0.61, 0.36, 1] }}
+        transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
         whileHover={{ scale: 1.03, y: -3 }}
         className="group flex h-full min-h-[158px] items-start gap-4 rounded-[18px] border border-white/20 bg-white/[0.07] p-6 shadow-[0_20px_46px_rgba(2,6,23,0.38)] backdrop-blur-xl transition duration-300 hover:border-[#D5B223]/55 hover:shadow-[0_26px_58px_rgba(2,6,23,0.48)]"
       >

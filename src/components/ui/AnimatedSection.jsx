@@ -6,7 +6,7 @@ export const sectionRevealVariants = {
 };
 
 export const sectionRevealTransition = {
-  duration: 0.6,
+  duration: 0.5,
   ease: [0.22, 0.61, 0.36, 1],
 };
 
@@ -27,7 +27,7 @@ export const staggerItemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.55,
+      duration: 0.5,
       ease: [0.22, 0.61, 0.36, 1],
     },
   },
