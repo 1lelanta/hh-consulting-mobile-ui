@@ -158,7 +158,7 @@ function ContactSection({ data, className = "" }) {
                       href={mapsUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex w-fit items-center rounded-xl border border-[#D5B223]/55 bg-[#D5B223]/20 px-4 py-2 text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-[#F8D66A] transition duration-300 hover:-translate-y-0.5 hover:border-[#F8D66A]/70 hover:bg-[#D5B223]/30 hover:text-[#FFE8A3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D5B223]"
+                      className="inline-flex w-fit items-center rounded-xl border border-[#D5B223]/55 bg-[#D5B223]/20 px-4 py-2 text-[0.78rem] font-semibold tracking-normal text-[#F8D66A] transition duration-300 hover:-translate-y-0.5 hover:border-[#F8D66A]/70 hover:bg-[#D5B223]/30 hover:text-[#FFE8A3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D5B223]"
                     >
                       Open in Maps
                     </a>
@@ -188,7 +188,7 @@ function ContactSection({ data, className = "" }) {
                 <p className="relative z-10 m-0 mt-3 text-[1rem] leading-7 text-[#E5E7EB]">{data.cta.subtitle}</p>
                 <a
                   href="#get-in-touch"
-                  className="relative z-10 mt-6 inline-flex items-center rounded-xl bg-[#D5B223] px-7 py-3 text-[0.8rem] font-bold uppercase tracking-[0.14em] text-[#111827] shadow-[0_14px_28px_rgba(213,178,35,0.35)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#E5C64C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D5B223]"
+                  className="relative z-10 mt-6 inline-flex items-center rounded-xl bg-[#D5B223] px-7 py-3 text-[0.8rem] font-bold tracking-normal text-[#111827] shadow-[0_14px_28px_rgba(213,178,35,0.35)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#E5C64C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D5B223]"
                 >
                   {data.cta.buttonLabel}
                 </a>
