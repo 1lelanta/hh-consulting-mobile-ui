@@ -15,7 +15,7 @@ function Button({ as: Component = motion.a, variant = "primary", className = "",
       whileHover={{ y: -2, scale: 1.03 }}
       whileTap={{ scale: 0.99 }}
       transition={{ duration: 0.25, ease: [0.22, 0.61, 0.36, 1] }}
-      className={`inline-flex items-center justify-center rounded-[12px] px-6 py-3.5 text-center text-[0.9rem] font-extrabold uppercase tracking-[0.12em] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D5B223] ${variantClasses[variant]} ${className}`}
+      className={`inline-flex items-center justify-center rounded-[12px] px-6 py-3.5 text-center text-[0.9rem] font-extrabold tracking-normal transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D5B223] ${variantClasses[variant]} ${className}`}
       {...props}
     >
       {children}
