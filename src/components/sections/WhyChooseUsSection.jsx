@@ -158,7 +158,7 @@ function WhyChooseUsSection({ data, className = "" }) {
               />
 
               <div className="mt-4 pl-3 sm:pl-4">
-                <h3 className="m-0 font-['JetBrains_Mono',monospace] text-[1rem] font-semibold uppercase leading-tight tracking-[0.02em] text-brand-navy900 sm:text-[1.08rem]">
+                <h3 className="m-0 font-['JetBrains_Mono',monospace] text-[1rem] font-semibold leading-tight tracking-normal text-brand-navy900 sm:text-[1.08rem]">
                   {item.title}
                 </h3>
 
