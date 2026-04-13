@@ -204,7 +204,7 @@ function ServicesSection({ data, className = "" }) {
             <p className="section-eyebrow text-[#D5B223]">OUR SERVICES</p>
           </div>
 
-          <h2 className="m-0 mb-10 mt-4 text-[1.8rem] font-black uppercase leading-[1.08] tracking-[0.08em] text-white sm:mt-5 sm:text-[2.4rem] lg:text-[3.1rem]">
+          <h2 className="m-0 mb-10 mt-4 text-[1.8rem] font-black leading-[1.08] tracking-tight text-white sm:mt-5 sm:text-[2.4rem] lg:text-[3.1rem]">
             {data.title || "Our Services"}
           </h2>
 
@@ -234,7 +234,7 @@ function ServicesSection({ data, className = "" }) {
                   <ServiceVisual type={service.icon} />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,14,0)_0%,rgba(8,10,14,0.44)_55%,rgba(8,10,14,0.82)_100%)]" />
                   <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
-                    <h3 className="m-0 text-[0.72rem] font-extrabold uppercase leading-[1.15] tracking-[0.06em] text-white sm:text-[1rem] sm:leading-[1.18] sm:tracking-[0.12em]">
+                    <h3 className="m-0 text-[0.72rem] font-extrabold leading-[1.15] tracking-normal text-white sm:text-[1rem] sm:leading-[1.18]">
                       {service.title}
                     </h3>
                   </div>
