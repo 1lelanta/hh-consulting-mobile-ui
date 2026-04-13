@@ -152,7 +152,7 @@ function App() {
                   <TrustedCertifiedSection className="lg:mt-8" />
                 </>
               ) : isTeamPage ? (
-                <TeamSection data={siteContent.team} className="mt-8 lg:mt-8" />
+                <TeamSection data={siteContent.team} className="mt-8 lg:mt-8" variant="page" />
               ) : isContactPage ? (
                 <ContactSection data={siteContent.contact} className="mt-0 lg:mt-0" />
               ) : (
@@ -160,7 +160,12 @@ function App() {
                   <HeroSection data={siteContent.hero} contact={siteContent.contact} />
                   <ServicesSection data={siteContent.services} />
                   <ProjectsSection data={siteContent.projects} />
-                  <TeamSection data={siteContent.team} backgroundClassName="bg-[#050816]" showList={false} />
+                  <TeamSection
+                    data={siteContent.team}
+                    backgroundClassName="bg-[#050816]"
+                    showList={false}
+                    variant="home"
+                  />
                   <HomeCtaSection />
                 </>
               )}
