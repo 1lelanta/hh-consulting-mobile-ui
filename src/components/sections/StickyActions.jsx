@@ -4,7 +4,7 @@ function StickyActions({ data }) {
   return (
     <nav
       aria-label="Quick contact actions"
-      className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3"
+      className="fixed bottom-3 right-3 z-40 flex flex-col items-end gap-3 sm:bottom-5 sm:right-5"
     >
       {sortedActions.map((action) => {
         const active = action.variant === "active";

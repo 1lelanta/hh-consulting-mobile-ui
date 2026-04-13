@@ -1,31 +1,19 @@
 import { motion } from "framer-motion";
 
-export type CertificateItem = {
-  title: string;
-  organization: string;
-  description: string;
-  image: string;
-  alt: string;
-};
-
-type CertificateCardProps = {
-  certificate: CertificateItem;
-  index: number;
-};
-
-function CertificateCard({ certificate, index }: CertificateCardProps) {
+function CertificateCard({ certificate, index }) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1], delay: index * 0.08 }}
+      transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1], delay: index * 0.08 }}
       className="group overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white shadow-lg transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_22px_40px_rgba(15,23,42,0.16)]"
     >
       <div className="relative overflow-hidden">
         <img
           src={certificate.image}
           alt={certificate.alt}
+          loading="lazy"
           className="h-56 w-full object-cover object-center transition-transform duration-500 group-hover:scale-105 sm:h-60"
         />
       </div>

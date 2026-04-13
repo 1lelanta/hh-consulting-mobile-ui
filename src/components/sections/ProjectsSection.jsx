@@ -27,10 +27,7 @@ function ProjectsSection({ data, className = "" }) {
     };
   }, []);
 
-  const getProjectYear = (project) => {
-    const yearMeta = (project.meta || []).find((item) => item.label?.toLowerCase() === "year");
-    return yearMeta?.value || "N/A";
-  };
+  
 
   const renderProjectItem = (project) => {
     const content = (
@@ -39,6 +36,7 @@ function ProjectsSection({ data, className = "" }) {
           <img
             src={project.image}
             alt={project.imageAlt}
+            loading="lazy"
             className="aspect-square w-full rounded-none object-cover object-center transition-all duration-300 group-hover:scale-105 sm:aspect-[4/3]"
           />
 
@@ -87,7 +85,7 @@ function ProjectsSection({ data, className = "" }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
       viewport={{ once: true, amount: 0.2 }}
-      className={`animate-reveal -mx-3 scroll-mt-28 bg-[linear-gradient(180deg,#0A0A0F_0%,#111827_100%)] px-3 pt-0 pb-12 text-white [animation-delay:280ms] sm:-mx-6 sm:px-6 sm:pt-0 sm:pb-16 lg:-mx-10 lg:px-10 lg:pt-0 lg:pb-20 2xl:-mx-14 2xl:px-14 ${className}`}
+      className={`-mx-3 scroll-mt-32 bg-[linear-gradient(180deg,#0A0A0F_0%,#111827_100%)] px-3 pt-0 pb-12 text-white sm:-mx-6 sm:px-6 sm:pt-0 sm:pb-16 lg:-mx-10 lg:px-10 lg:pt-0 lg:pb-20 2xl:-mx-14 2xl:px-14 ${className}`}
     >
       <div className="mx-auto w-full max-w-[1320px]">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-8">

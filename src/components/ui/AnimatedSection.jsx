@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export const sectionRevealVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -40,15 +40,25 @@ function AnimatedSection({
   children,
   ...rest
 }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  const variants = shouldReduceMotion
+    ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
+    : sectionRevealVariants;
+
+  const transition = shouldReduceMotion
+    ? { duration: 0 }
+    : sectionRevealTransition;
+
   return (
     <motion.section
       id={id}
       initial="hidden"
       whileInView="visible"
-      variants={sectionRevealVariants}
-      transition={sectionRevealTransition}
+      variants={variants}
+      transition={transition}
       viewport={{ once: true, amount: 0.2 }}
-      className={`animate-reveal relative -mx-3 scroll-mt-28 px-3 py-16 text-brand-navy950 sm:-mx-6 sm:px-6 md:py-24 lg:-mx-10 lg:px-10 2xl:-mx-14 2xl:px-14 ${backgroundClassName} ${className}`}
+      className={`relative -mx-3 scroll-mt-32 px-3 py-16 text-brand-navy950 sm:-mx-6 sm:px-6 md:py-24 lg:-mx-10 lg:px-10 2xl:-mx-14 2xl:px-14 ${backgroundClassName} ${className}`}
       {...rest}
     >
       {children}

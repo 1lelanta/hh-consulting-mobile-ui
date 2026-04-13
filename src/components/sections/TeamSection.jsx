@@ -26,6 +26,7 @@ function TeamSection({
         <img
           src={member.image}
           alt={member.imageAlt}
+          loading="lazy"
           className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
         />
       </motion.div>
@@ -48,6 +49,7 @@ function TeamSection({
           <img
             src={member.image}
             alt={member.imageAlt}
+            loading="lazy"
             className="h-full w-full object-cover transition-all duration-300 ease-out group-hover:scale-105"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050816]/82 via-[#050816]/24 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -105,7 +107,7 @@ function TeamSection({
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
         viewport={{ once: true, amount: 0.2 }}
-        className={`animate-reveal -mx-3 scroll-mt-28 px-4 py-20 text-white [animation-delay:360ms] sm:-mx-6 sm:px-6 sm:py-24 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${backgroundClassName} ${className}`}
+        className={`-mx-3 scroll-mt-32 px-4 py-20 text-white sm:-mx-6 sm:px-6 sm:py-24 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${backgroundClassName} ${className}`}
       >
         <div className="mx-auto w-full max-w-[1240px]">
           <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
@@ -161,7 +163,7 @@ function TeamSection({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
       viewport={{ once: true, amount: 0.2 }}
-      className={`animate-reveal -mx-3 scroll-mt-28 px-4 py-20 text-white [animation-delay:360ms] sm:-mx-6 sm:px-6 sm:py-24 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${backgroundClassName} ${className}`}
+      className={`-mx-3 scroll-mt-32 px-4 py-20 text-white sm:-mx-6 sm:px-6 sm:py-24 lg:-mx-10 lg:px-10 lg:py-24 2xl:-mx-14 2xl:px-14 ${backgroundClassName} ${className}`}
     >
       <div className="mx-auto w-full max-w-[1240px]">
         <div className="max-w-[860px]">

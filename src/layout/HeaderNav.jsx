@@ -202,7 +202,7 @@ function HeaderNav() {
                 initial={{ opacity: 0, y: -14 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className={`absolute inset-x-0 top-[calc(100%-1px)] z-[80] flex h-[calc(100dvh-5.8rem)] flex-col overflow-hidden rounded-b-md border-x border-b border-[#7A6940]/55 ${navSurfaceClass} text-[#F5F5F5] shadow-[0_22px_44px_rgba(7,6,4,0.56)] md:hidden`}
               >
                 <div className="flex-1 overflow-y-auto px-7 py-8">

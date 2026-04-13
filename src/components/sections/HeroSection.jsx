@@ -25,7 +25,7 @@ function HeroSection({ data, contact }) {
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85)), url(${heroBg})`,
         backgroundPosition: "center top",
       }}
-      className="animate-reveal relative -mx-3 min-h-[92svh] overflow-hidden scroll-mt-28 bg-cover bg-no-repeat sm:-mx-6 lg:-mx-10 2xl:-mx-14"
+      className="relative -mx-3 min-h-[92svh] overflow-hidden scroll-mt-32 bg-cover bg-no-repeat sm:-mx-6 lg:-mx-10 2xl:-mx-14"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-px bg-[#D5B223]/80" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.06),transparent_34%),radial-gradient(circle_at_50%_80%,rgba(0,0,0,0.15),transparent_55%)]" aria-hidden="true" />
@@ -33,7 +33,7 @@ function HeroSection({ data, contact }) {
         <div className="mx-auto flex w-full max-w-[1200px] px-4 py-24 text-white sm:px-8 sm:py-28 lg:px-10 lg:py-32">
           <div className="grid grid-cols-1 items-start gap-8 lg:gap-10">
             <motion.div
-              className="max-w-[820px] pt-24 translate-y-4 sm:pt-32 sm:translate-y-6 lg:pt-40 lg:translate-y-8"
+              className="max-w-[820px] pt-24 sm:pt-32 lg:pt-40"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
