@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
+import teamImage from "../../assets/team.png";
 
 function TeamSection({ data, className = "", showList = true, backgroundClassName = "bg-white" }) {
   const members = [...(data.leadership || []), ...(data.departmentLeads || []), ...(data.supportTeam || [])];
 
   const avatarItems = members.slice(0, 3);
   const extraCount = Math.max(0, members.length - avatarItems.length);
-  const heroMember = data.leadership?.[0] || data.departmentLeads?.[0] || data.supportTeam?.[0] || null;
-  const heroImage = heroMember?.image || data.image || "/asset/bg.png";
-  const heroImageAlt = heroMember?.imageAlt || data.imageAlt || "Our people and workspace";
+  const heroImage = teamImage;
+  const heroImageAlt = data.imageAlt || "Our people and workspace";
 
   function TeamAvatar({ member, index }) {
     return (
