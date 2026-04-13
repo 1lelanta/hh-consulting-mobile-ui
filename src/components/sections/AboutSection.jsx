@@ -50,7 +50,7 @@ function AboutSection({ data, className = "" }) {
   return (
     <AnimatedSection
       id="about"
-      backgroundClassName="bg-[#0A1020]"
+      backgroundClassName="bg-[#F8FAFC]"
       className={`mt-8 overflow-hidden [animation-delay:120ms] ${className}`}
     >
       <div className="relative z-10 mx-auto w-full max-w-[1240px]">
@@ -58,27 +58,27 @@ function AboutSection({ data, className = "" }) {
           <div className="max-w-[660px]">
             <div className="flex items-center gap-3">
               <span className="h-[2px] w-14 bg-[#D5B223]" />
-              <p className="section-eyebrow text-[#D5B223]">{data.eyebrow}</p>
+              <p className="section-eyebrow text-[#B18428]">{data.eyebrow}</p>
             </div>
 
-            <h2 className="m-0 mt-5 max-w-[16ch] text-[2.5rem] font-black leading-[1.02] tracking-[-0.04em] text-white sm:text-[3.35rem] lg:text-[4.2rem]">
+              <h2 className="m-0 mt-5 max-w-[16ch] text-[2.5rem] font-black leading-[1.02] tracking-[-0.04em] text-brand-navy900 sm:text-[3.35rem] lg:text-[4.2rem]">
               {data.title}
             </h2>
 
-            <p className="m-0 mt-7 max-w-[36rem] text-[1rem] leading-8 text-white/72 sm:text-[1.08rem]">
+              <p className="m-0 mt-7 max-w-[36rem] text-[1rem] leading-8 text-brand-gray500 sm:text-[1.08rem]">
               {data.description}
             </p>
 
             {data.approachTitle || data.approachDescription ? (
-              <article className="mt-8 rounded-[20px] border border-white/10 bg-white/[0.05] px-6 py-6 shadow-[0_18px_38px_rgba(2,6,23,0.24)] sm:px-7 sm:py-7">
+                <article className="mt-8 rounded-[20px] border border-[#D5DEE9] bg-white px-6 py-6 shadow-[0_18px_38px_rgba(13,40,74,0.08)] sm:px-7 sm:py-7">
                 {data.approachTitle ? (
-                  <h3 className="m-0 text-[1.2rem] font-extrabold leading-tight text-white sm:text-[1.35rem] lg:text-[1.5rem]">
+                    <h3 className="m-0 text-[1.2rem] font-extrabold leading-tight text-brand-navy900 sm:text-[1.35rem] lg:text-[1.5rem]">
                     {data.approachTitle}
                   </h3>
                 ) : null}
 
                 {data.approachDescription ? (
-                  <p className="m-0 mt-3 max-w-[62ch] text-[0.98rem] leading-[1.7] text-white/70 sm:mt-4 sm:text-[1.04rem]">
+                    <p className="m-0 mt-3 max-w-[62ch] text-[0.98rem] leading-[1.7] text-brand-gray500 sm:mt-4 sm:text-[1.04rem]">
                     {data.approachDescription}
                   </p>
                 ) : null}
@@ -94,7 +94,7 @@ function AboutSection({ data, className = "" }) {
 
           <div className="justify-self-end lg:pr-2">
             {data.image ? (
-              <figure className="m-0 overflow-hidden rounded-[24px] border border-white/10 bg-white/5 shadow-[0_26px_60px_rgba(2,6,23,0.38)] lg:w-[640px]">
+              <figure className="m-0 overflow-hidden rounded-[24px] border border-[#D5DEE9] bg-white shadow-[0_26px_60px_rgba(13,40,74,0.12)] lg:w-[640px]">
                 <img
                   src={data.image}
                   alt={data.imageAlt || "About us image"}
