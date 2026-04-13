@@ -90,14 +90,14 @@ function AboutSection({ data, valuesData, stats = {}, className = "" }) {
         <section className="pt-[20px] pb-[60px] sm:pt-[32px]">
           <div className="max-w-[960px]">
             <p className="section-eyebrow text-[#FACC15]">{data.eyebrow.toUpperCase()}</p>
-            <h1 className="m-0 mt-4 text-[clamp(3rem,8vw,6.5rem)] font-black leading-[0.92] tracking-[-0.06em] text-white [text-shadow:0_14px_36px_rgba(0,0,0,0.45)]">
+            <h1 className="m-0 mt-4 text-[clamp(3rem,8vw,6.5rem)] font-black leading-[0.92] tracking-tight text-white [text-shadow:0_14px_36px_rgba(0,0,0,0.45)]">
               About Us
             </h1>
-            <p className="m-0 mt-5 max-w-[620px] text-[1rem] leading-7 text-white/76 sm:text-[1.08rem] sm:leading-8">
+            <p className="m-0 mt-5 max-w-[620px] text-[1rem] leading-7 tracking-normal text-white/76 sm:text-[1.08rem] sm:leading-8">
               {data.title}
             </p>
             <div className="mt-7 max-w-[620px] space-y-4 text-[0.98rem] leading-[1.7] text-white/72 sm:text-[1.05rem]">
-              <p className="m-0">{data.description}</p>
+              <p className="m-0 tracking-normal">{data.description}</p>
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
