@@ -139,7 +139,17 @@ function App() {
                 <ProjectsArchivePage data={siteContent.projects} />
               ) : isAboutPage ? (
                 <>
-                  <AboutSection data={siteContent.about} className="lg:mt-8" />
+                  <AboutSection
+                    data={siteContent.about}
+                    valuesData={siteContent.whyChooseUs}
+                    stats={{
+                      projects: siteContent.projects.items.length,
+                      years: 10,
+                      clients: siteContent.clients.logoRows.flatMap((row) => row.items || []).length,
+                      countries: 2,
+                    }}
+                    className="lg:mt-8"
+                  />
                   <CertificationsSection className="lg:mt-8" />
                   <ClientsSection data={siteContent.clients} className="lg:mt-8" />
                 </>

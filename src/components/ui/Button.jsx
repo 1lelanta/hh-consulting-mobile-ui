@@ -6,7 +6,7 @@ const variantClasses = {
   secondary:
     "border border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/15 hover:border-white/30",
   outline:
-    "border border-[#D5B223]/50 bg-transparent text-[#F8D66A] hover:bg-[#D5B223]/12 hover:border-[#F8D66A]/70",
+    "border border-[#FACC15]/60 bg-transparent text-[#FACC15] hover:bg-white/5 hover:border-[#FACC15] hover:text-[#FDE047]",
 };
 
 function Button({ as: Component = motion.a, variant = "primary", className = "", children, ...props }) {
