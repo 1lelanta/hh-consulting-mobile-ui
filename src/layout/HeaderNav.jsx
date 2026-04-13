@@ -15,6 +15,26 @@ function HeaderNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
+  // Intersection Observer for active nav highlighting
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.replace('#', ''));
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
+    if (!sections.length) return;
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (visible.length > 0) {
+          // Pick the one closest to the top
+          const topMost = visible.reduce((a, b) => (a.boundingClientRect.top < b.boundingClientRect.top ? a : b));
+          setActiveSection(`#${topMost.target.id}`);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
@@ -80,59 +100,68 @@ function HeaderNav() {
         ${hasScrolled ? "shadow-xl" : ""}`}
       >
         <div className="flex items-center justify-between px-4 py-3">
-
           {/* LOGO */}
           <a href="#home" className="flex items-center gap-3">
             <img src={logo} alt="logo" className="h-10 w-10 object-contain" />
             <span className="text-white font-bold">HH CONSULTING</span>
           </a>
-
           {/* DESKTOP NAV */}
           <div className="hidden md:flex gap-6">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-white text-sm tracking-wide hover:text-[#E5D39B] transition"
+                className={`text-white text-sm tracking-wide hover:text-[#E5D39B] transition ${activeSection === item.href ? "border-b-2 border-[#D5B223] text-[#D5B223]" : ""}`}
               >
                 {item.label}
               </a>
             ))}
           </div>
-
           {/* MOBILE BUTTON */}
           <button
             onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="md:hidden text-white text-xl"
+            className="md:hidden text-white text-xl z-[101]"
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? "✕" : "☰"}
           </button>
         </div>
-
-        {/* MOBILE MENU */}
+        {/* OVERLAY BLUR */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden px-6 pb-6 space-y-4"
-            >
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block text-white text-lg"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </motion.div>
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.5 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm md:hidden"
+                onClick={() => setIsMenuOpen(false)}
+                aria-hidden="true"
+              />
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ duration: 0.32, ease: [0.22, 0.61, 0.36, 1] }}
+                className="fixed top-0 right-0 bottom-0 z-[110] w-[80vw] max-w-xs bg-[#181B23] shadow-2xl px-8 pt-24 pb-8 space-y-6 md:hidden"
+                role="dialog"
+                aria-modal="true"
+              >
+                {navItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`block text-white text-lg py-2 px-2 rounded transition ${activeSection === item.href ? "bg-[#D5B223]/20 text-[#D5B223] font-bold" : "hover:bg-white/10"}`}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
-
       </nav>
     </header>
   );
