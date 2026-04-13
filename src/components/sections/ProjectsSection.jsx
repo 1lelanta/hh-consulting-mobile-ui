@@ -33,7 +33,7 @@ function ProjectsSection({ data, className = "" }) {
 
   const renderProjectItem = (project) => {
     const content = (
-      <div className="group flex h-full min-w-[42vw] max-w-[42vw] flex-col overflow-hidden rounded-[18px] border border-white/10 bg-white/6 shadow-[0_14px_30px_rgba(2,6,23,0.22)] transition-all duration-300 hover:-translate-y-2 hover:border-[#D5B223]/35 hover:shadow-[0_20px_34px_rgba(2,6,23,0.28)] sm:min-w-0 sm:max-w-none">
+      <div className="group flex h-full min-w-[42vw] max-w-[42vw] flex-col rounded-[18px] border border-white/10 bg-white/6 shadow-[0_14px_30px_rgba(2,6,23,0.22)] transition-all duration-300 hover:-translate-y-2 hover:border-[#D5B223]/35 hover:shadow-[0_20px_34px_rgba(2,6,23,0.28)] sm:min-w-0 sm:max-w-none">
         <div className="relative overflow-hidden">
           <img
             src={project.image}
@@ -108,7 +108,7 @@ function ProjectsSection({ data, className = "" }) {
           </a>
         </div>
 
-        <div className="mt-8 flex gap-8 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:overflow-visible">
+        <div className="no-scrollbar mt-8 flex gap-8 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:overflow-visible">
           {visibleProjects.map((project, index) => (
             <motion.div
               key={project.title}
