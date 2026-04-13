@@ -15,7 +15,7 @@ function TeamSection({ data, className = "", showList = true, backgroundClassNam
         whileHover={{ y: -4, scale: 1.08 }}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.25, ease: [0.22, 0.61, 0.36, 1] }}
-        className={`group flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border-4 border-white bg-[#0F172A] shadow-[0_10px_20px_rgba(15,23,42,0.14)] transition-all duration-300 hover:border-[#D5B223]/70 hover:shadow-[0_16px_28px_rgba(15,23,42,0.2)] ${index > 0 ? "-ml-3" : ""}`}
+        className={`group flex h-14 w-14 cursor-pointer items-center justify-center overflow-hidden rounded-full border-4 border-white bg-[#0F172A] shadow-[0_10px_20px_rgba(15,23,42,0.14)] transition-all duration-300 hover:border-[#D5B223]/70 hover:brightness-110 hover:shadow-[0_16px_28px_rgba(15,23,42,0.2)] ${index > 0 ? "-ml-3" : ""}`}
       >
         <img
           src={member.image}

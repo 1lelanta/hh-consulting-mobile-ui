@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import logo from "../assets/hhlogo.jpeg";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -18,7 +19,7 @@ function HeaderNav() {
   const accumulatedDeltaRef = useRef(0);
   const rafIdRef = useRef(0);
   const isTickingRef = useRef(false);
-  const navSurfaceClass = "bg-[#0A0A0ACC]";
+  const navSurfaceClass = "bg-[#090B12CC]";
 
   useEffect(() => {
     function handleResize() {
@@ -141,12 +142,12 @@ function HeaderNav() {
       className={`fixed left-0 right-0 top-0 z-50 px-0 pt-0 transition-transform duration-300 ease-in-out will-change-transform sm:px-4 ${isNavVisible ? "translate-y-0" : "-translate-y-full pointer-events-none"}`}
     >
       <nav
-        className={`mx-auto w-full max-w-[1400px] rounded-none border-x border-x-[#7A6940]/35 border-b border-b-[rgba(212,175,55,0.18)] ${navSurfaceClass} backdrop-blur-[12px] transition-all duration-500 sm:rounded-md ${
+        className={`mx-auto w-full max-w-[1400px] rounded-none border-x border-x-white/10 border-b border-b-white/10 ${navSurfaceClass} backdrop-blur-[18px] transition-all duration-500 sm:rounded-2xl ${
           hasScrolled
-            ? "shadow-[0_10px_22px_rgba(10,8,5,0.34),inset_0_1px_0_rgba(255,255,255,0.05)]"
-            : "shadow-[0_18px_38px_rgba(10,8,5,0.42),inset_0_1px_0_rgba(255,255,255,0.08)]"
+            ? "shadow-[0_16px_32px_rgba(3,5,12,0.35),inset_0_1px_0_rgba(255,255,255,0.06)]"
+            : "shadow-[0_22px_46px_rgba(3,5,12,0.46),inset_0_1px_0_rgba(255,255,255,0.09)]"
         }`}
-        style={{ backgroundColor: "rgba(10, 10, 10, 0.75)" }}
+        style={{ backgroundColor: "rgba(9, 11, 18, 0.82)" }}
       >
         <div
           className={`mx-auto flex w-full items-center justify-between gap-3 px-3 transition-all duration-500 sm:px-6 lg:px-8 ${
@@ -154,8 +155,8 @@ function HeaderNav() {
           }`}
         >
           <a href="#home" aria-label="HH Consulting home" className="flex shrink-0 items-center gap-3">
-            <span className="inline-grid h-10 w-10 place-items-center overflow-hidden rounded-xl border border-white/25 bg-white/90 p-1.25 shadow-[0_8px_16px_rgba(10,9,7,0.22)] sm:h-12 sm:w-12 sm:rounded-2xl sm:p-1">
-              <img src="/asset/hhlogo.jpeg" alt="HH Consulting logo" className="h-full w-full object-contain" />
+            <span className="inline-grid h-10 w-10 place-items-center overflow-hidden rounded-xl border border-white/15 bg-white/95 p-1.25 shadow-[0_10px_18px_rgba(10,9,7,0.25)] sm:h-12 sm:w-12 sm:rounded-2xl sm:p-1">
+              <img src={logo} alt="HH Consulting logo" className="h-full w-full object-contain" />
             </span>
             <span className="flex min-w-0 flex-col leading-none">
               <span className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[#E5D39B]">Engineering & Architecture</span>

@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Button from "../ui/Button";
+import Card from "../ui/Card";
 
 function ProjectsSection({ data, className = "" }) {
   const [isMobile, setIsMobile] = useState(() => window.matchMedia("(max-width: 639px)").matches);
@@ -33,7 +35,7 @@ function ProjectsSection({ data, className = "" }) {
 
   const renderProjectItem = (project) => {
     const content = (
-      <div className="group flex h-full min-w-[42vw] max-w-[42vw] flex-col rounded-[18px] border border-white/10 bg-white/6 shadow-[0_14px_30px_rgba(2,6,23,0.22)] transition-all duration-300 hover:-translate-y-2 hover:border-[#D5B223]/35 hover:shadow-[0_20px_34px_rgba(2,6,23,0.28)] sm:min-w-0 sm:max-w-none">
+      <Card className="flex h-full min-w-[42vw] max-w-[42vw] flex-col sm:min-w-0 sm:max-w-none">
         <div className="relative overflow-hidden">
           <img
             src={project.image}
@@ -55,7 +57,7 @@ function ProjectsSection({ data, className = "" }) {
           </div>
         </div>
 
-      </div>
+      </Card>
     );
 
     if (project.href && project.href !== "#") {
@@ -97,15 +99,9 @@ function ProjectsSection({ data, className = "" }) {
             </h2>
           </div>
 
-          <a
-            href="#all-projects"
-            className="inline-flex shrink-0 items-center gap-3 self-start text-right text-[0.78rem] font-extrabold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 hover:text-[#F5D77A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D5B223] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0F] sm:self-auto sm:pb-1"
-          >
-            <span>View All Projects</span>
-            <span aria-hidden="true" className="text-[1.15rem] leading-none">
-              →
-            </span>
-          </a>
+          <Button as={motion.a} href="#all-projects" variant="secondary" className="shrink-0 sm:self-auto sm:pb-1">
+            View All Projects
+          </Button>
         </div>
 
         <div className="no-scrollbar mt-8 flex gap-8 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:overflow-visible">
@@ -128,12 +124,13 @@ function ProjectsSection({ data, className = "" }) {
             Need a Professional Engineering Partner?
           </p>
 
-          <a
+          <Button
+            as={motion.a}
             href="#get-in-touch"
-            className="inline-flex items-center justify-center rounded-xl border border-[#D5B223]/45 bg-[#D5B223] px-6 py-3 text-[0.78rem] font-extrabold uppercase tracking-[0.12em] text-[#0B1730] shadow-[0_12px_24px_rgba(213,178,35,0.28)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-[#E5C64C] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D5B223] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0F]"
+            className="min-w-[190px]"
           >
             Contact Us
-          </a>
+          </Button>
         </div>
 
         {totalProjects === 0 ? (
