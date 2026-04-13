@@ -25,7 +25,7 @@ function HeroSection({ data, contact }) {
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85)), url(${heroBg})`,
         backgroundPosition: "center top",
       }}
-      className="animate-reveal relative -mx-3 min-h-[92svh] overflow-hidden scroll-mt-28 bg-cover bg-no-repeat sm:-mx-6 lg:-mx-10 2xl:-mx-14"
+      className="relative -mx-3 min-h-[92svh] overflow-hidden scroll-mt-28 bg-cover bg-no-repeat sm:-mx-6 lg:-mx-10 2xl:-mx-14"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-px bg-[#D5B223]/80" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.06),transparent_34%),radial-gradient(circle_at_50%_80%,rgba(0,0,0,0.15),transparent_55%)]" aria-hidden="true" />
