@@ -131,7 +131,7 @@ function App() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
+              transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
               className="w-full"
             >
               {isProjectsArchive ? (
