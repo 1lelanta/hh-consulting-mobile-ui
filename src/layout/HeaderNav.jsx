@@ -55,30 +55,32 @@ function HeaderNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Active section tracking
+  // ✅ FIXED: Active section tracking (scroll-based)
   useEffect(() => {
-    const sections = navItems
-      .map((item) => document.getElementById(item.href.replace("#", "")))
-      .filter(Boolean);
+    const handleScroll = () => {
+      let current = "home";
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
+      navItems.forEach((item) => {
+        const section = document.getElementById(
+          item.href.replace("#", "")
+        );
 
-        if (visible.length > 0) {
-          const topMost = visible.reduce((a, b) =>
-            a.boundingClientRect.top < b.boundingClientRect.top ? a : b
-          );
+        if (section) {
+          const top = section.offsetTop - 120;
 
-          setActiveSection(topMost.target.id);
+          if (window.scrollY >= top) {
+            current = section.id;
+          }
         }
-      },
-      { threshold: 0.5 }
-    );
+      });
 
-    sections.forEach((section) => observer.observe(section));
+      setActiveSection(current);
+    };
 
-    return () => observer.disconnect();
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // run once on load
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -168,7 +170,7 @@ function HeaderNav() {
                 px-6 pt-24
               "
             >
-              {/* CLOSE BUTTON (FIXED VISIBILITY) */}
+              {/* CLOSE BUTTON */}
               <button
                 onClick={() => setIsMenuOpen(false)}
                 className="
