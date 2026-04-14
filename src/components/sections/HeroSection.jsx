@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Button from "../ui/Button";
-import heroBg from "../../assets/newbg.jpeg";
+const heroBg = "/asset/newpg.png";
 
 function HeroSection({ data }) {
   const reduceMotion = useReducedMotion();
