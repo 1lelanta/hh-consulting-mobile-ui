@@ -95,15 +95,15 @@ function HeaderNav() {
           bg-[#090B12CC] backdrop-blur-[18px]
           ${hasScrolled ? "shadow-xl" : ""}`}
         >
-          <div className="flex items-center justify-between px-4 py-4">
+          <div className="flex items-center justify-between gap-3 px-4 py-3 sm:py-4">
             {/* LOGO */}
-            <a href="#home" className="flex items-center gap-3">
-              <img src={logo} alt="logo" className="h-11 w-11" />
-              <div className="flex flex-col leading-tight">
-                <span className="text-white font-bold text-lg">
+            <a href="#home" className="flex min-w-0 items-center gap-2.5 sm:gap-3">
+              <img src={logo} alt="logo" className="h-10 w-10 shrink-0 sm:h-11 sm:w-11" />
+              <div className="flex min-w-0 flex-col leading-tight">
+                <span className="truncate text-base font-bold text-white sm:text-lg">
                   HH CONSULTING
                 </span>
-                <span className="text-[#D5B223] text-sm">
+                <span className="truncate text-[0.72rem] text-[#D5B223] sm:text-sm">
                   Engineering & Architecture
                 </span>
               </div>
@@ -133,9 +133,15 @@ function HeaderNav() {
             {/* MOBILE BUTTON */}
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="md:hidden text-white text-2xl z-[120]"
+              aria-label="Open menu"
+              className="z-[120] inline-grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-white/12 bg-white/[0.06] text-white shadow-[0_12px_24px_rgba(0,0,0,0.24)] transition-all duration-300 hover:border-[#D5B223]/35 hover:bg-white/[0.1] active:scale-95 md:hidden"
             >
-              ☰
+              <span className="sr-only">Open navigation</span>
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+                <path d="M4 7h16" />
+                <path d="M7 12h13" />
+                <path d="M10 17h10" />
+              </svg>
             </button>
           </div>
         </nav>
@@ -150,7 +156,7 @@ function HeaderNav() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black z-[999]"
+              className="fixed inset-0 z-[999] bg-[rgba(2,6,23,0.78)] backdrop-blur-sm"
               onClick={() => setIsMenuOpen(false)}
             />
 
@@ -162,49 +168,93 @@ function HeaderNav() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="
                 fixed top-0 right-0
-                h-screen w-[280px]
-                bg-black
+                h-screen w-[min(86vw,340px)]
+                bg-[linear-gradient(180deg,#070A12_0%,#0D1321_100%)]
                 z-[1000]
                 flex flex-col
                 border-l border-white/10
-                px-6 pt-24
+                px-6 pb-8 pt-24
+                shadow-[-24px_0_60px_rgba(0,0,0,0.4)]
               "
             >
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(213,178,35,0.16),transparent_38%)]" />
+
               {/* CLOSE BUTTON */}
               <button
                 onClick={() => setIsMenuOpen(false)}
+                aria-label="Close menu"
                 className="
-                  absolute top-5 right-5
-                  w-10 h-10
-                  flex items-center justify-center
-                  rounded-full
-                  bg-white/10 hover:bg-white/20
-                  text-white text-2xl
+                  absolute right-5 top-5
+                  inline-grid h-10 w-10 place-items-center
+                  rounded-full border border-white/10
+                  bg-white/8 text-white
+                  transition-all duration-300 hover:bg-white/14 active:scale-95
                 "
               >
-                ✕
+                <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+                  <path d="M6 6l12 12" />
+                  <path d="M18 6 6 18" />
+                </svg>
               </button>
 
-              {/* NAV ITEMS */}
-              {navItems.map((item) => {
-                const isActive = item.href === `#${activeSection}`;
+              <div className="relative">
+                <p className="text-[0.72rem] font-bold uppercase tracking-[0.22em] text-[#D5B223]">
+                  Menu
+                </p>
+                <p className="mt-3 max-w-[18ch] text-2xl font-black leading-[1.02] text-white">
+                  Navigate the studio
+                </p>
+                <p className="mt-3 text-sm leading-6 text-white/60">
+                  Explore our work, services, team, and contact options.
+                </p>
+              </div>
 
-                return (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`text-lg font-medium px-3 py-3 rounded transition
-                      ${
+              <div className="relative mt-8 flex flex-col gap-2">
+                {navItems.map((item, index) => {
+                  const isActive = item.href === `#${activeSection}`;
+
+                  return (
+                    <motion.a
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      initial={{ opacity: 0, x: 16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 12 }}
+                      transition={{ delay: 0.04 * index }}
+                      className={`group flex items-center justify-between rounded-2xl border px-4 py-3.5 transition-all duration-300 active:scale-[0.985] ${
                         isActive
-                          ? "bg-[#D5B223] text-black"
-                          : "text-white hover:bg-white/10"
+                          ? "border-[#D5B223]/45 bg-[#D5B223]/14 text-white shadow-[0_18px_34px_rgba(213,178,35,0.12)]"
+                          : "border-white/8 bg-white/[0.04] text-white/88 hover:border-white/15 hover:bg-white/[0.08]"
                       }`}
-                  >
-                    {item.label}
-                  </a>
-                );
-              })}
+                    >
+                      <span className="text-[1.02rem] font-semibold">
+                        {item.label}
+                      </span>
+                      <span
+                        className={`inline-flex items-center gap-2 text-[0.72rem] font-bold uppercase tracking-[0.18em] ${
+                          isActive ? "text-[#D5B223]" : "text-white/35"
+                        }`}
+                      >
+                        {isActive ? "Current" : "Open"}
+                        <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+                          <path d="M4 10h12" />
+                          <path d="m10 4 6 6-6 6" />
+                        </svg>
+                      </span>
+                    </motion.a>
+                  );
+                })}
+              </div>
+
+              <div className="relative mt-auto rounded-[20px] border border-white/10 bg-white/[0.04] px-4 py-4">
+                <p className="text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#D5B223]">
+                  HH Consulting
+                </p>
+                <p className="mt-2 text-sm leading-6 text-white/65">
+                  Engineering and architecture solutions shaped for durable, future-ready projects.
+                </p>
+              </div>
             </motion.div>
           </>
         )}
