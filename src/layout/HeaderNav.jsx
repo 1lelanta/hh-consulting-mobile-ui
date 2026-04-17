@@ -134,13 +134,13 @@ function HeaderNav() {
             <button
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open menu"
-              className="z-[120] inline-grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-white/12 bg-white/[0.06] text-white shadow-[0_12px_24px_rgba(0,0,0,0.24)] transition-all duration-300 hover:border-[#D5B223]/35 hover:bg-white/[0.1] active:scale-95 md:hidden"
+              className="z-[120] inline-grid h-11 w-11 shrink-0 place-items-center border border-white/18 bg-white/[0.04] text-white transition-all duration-300 hover:border-[#D5B223]/35 hover:bg-white/[0.08] active:scale-95 md:hidden"
             >
               <span className="sr-only">Open navigation</span>
               <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
                 <path d="M4 7h16" />
-                <path d="M7 12h13" />
-                <path d="M10 17h10" />
+                <path d="M4 12h16" />
+                <path d="M4 17h16" />
               </svg>
             </button>
           </div>
@@ -168,7 +168,7 @@ function HeaderNav() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="
                 fixed top-0 right-0
-                h-screen w-[min(86vw,340px)]
+                h-dvh max-h-dvh w-[min(86vw,340px)] overflow-y-auto
                 bg-[linear-gradient(180deg,#070A12_0%,#0D1321_100%)]
                 z-[1000]
                 flex flex-col
@@ -198,10 +198,7 @@ function HeaderNav() {
               </button>
 
               <div className="relative">
-                <p className="text-[0.72rem] font-bold uppercase tracking-[0.22em] text-[#D5B223]">
-                  Menu
-                </p>
-                <p className="mt-3 max-w-[18ch] text-2xl font-black leading-[1.02] text-white">
+                <p className="max-w-[18ch] text-2xl font-black leading-[1.02] text-white">
                   Explore HH Consulting
                 </p>
               </div>
@@ -229,11 +226,11 @@ function HeaderNav() {
                         {item.label}
                       </span>
                       <span
-                        className={`inline-flex items-center gap-2 text-[0.72rem] font-bold uppercase tracking-[0.18em] ${
+                        className={`inline-flex items-center gap-2 ${
                           isActive ? "text-[#D5B223]" : "text-white/35"
                         }`}
+                        aria-hidden="true"
                       >
-                        {isActive ? "Current" : "Open"}
                         <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
                           <path d="M4 10h12" />
                           <path d="m10 4 6 6-6 6" />
@@ -244,7 +241,7 @@ function HeaderNav() {
                 })}
               </div>
 
-              <div className="relative mt-auto rounded-[20px] border border-white/10 bg-white/[0.04] px-4 py-4">
+              <div className="relative mt-8 rounded-[20px] border border-white/10 bg-white/[0.04] px-4 py-4">
                 <p className="text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#D5B223]">
                   HH Consulting
                 </p>
